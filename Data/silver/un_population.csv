@@ -1,0 +1,1189 @@
+﻿country,year,population
+World,2020,7851414621
+World,2021,7922587963
+World,2022,7986308820
+World,2023,8056505564
+Sub-Saharan Africa,2020,1110090241
+Sub-Saharan Africa,2021,1138953149
+Sub-Saharan Africa,2022,1167589175
+Sub-Saharan Africa,2023,1196738277
+Northern Africa and Western Asia,2020,539821021
+Northern Africa and Western Asia,2021,548077234
+Northern Africa and Western Asia,2022,556776711
+Northern Africa and Western Asia,2023,568040469
+Central and Southern Asia,2020,2048450375
+Central and Southern Asia,2021,2071434114
+Central and Southern Asia,2022,2090826199
+Central and Southern Asia,2023,2112791911
+Eastern and South-Eastern Asia,2020,2337314584
+Eastern and South-Eastern Asia,2021,2343728363
+Eastern and South-Eastern Asia,2022,2346753893
+Eastern and South-Eastern Asia,2023,2349572733
+Latin America and the Caribbean,2020,644685940
+Latin America and the Caribbean,2021,648772828
+Latin America and the Caribbean,2022,652157752
+Latin America and the Caribbean,2023,656575828
+Oceania (excluding Australia and New Zealand),2020,13148134
+Oceania (excluding Australia and New Zealand),2021,13382442
+Oceania (excluding Australia and New Zealand),2022,13605753
+Oceania (excluding Australia and New Zealand),2023,13827509
+Australia/New Zealand,2020,30692423
+Australia/New Zealand,2021,30934949
+Australia/New Zealand,2022,31193279
+Australia/New Zealand,2023,31472159
+Europe and Northern America,2020,1127211903
+Europe and Northern America,2021,1127304884
+Europe and Northern America,2022,1127406058
+Europe and Northern America,2023,1127486678
+"Europe, Northern America, Australia, and New Zealand",2020,1157904326
+"Europe, Northern America, Australia, and New Zealand",2021,1158239833
+"Europe, Northern America, Australia, and New Zealand",2022,1158599337
+"Europe, Northern America, Australia, and New Zealand",2023,1158958837
+More developed regions,2020,1284479178
+More developed regions,2021,1284274067
+More developed regions,2022,1283923779
+More developed regions,2023,1283629551
+Less developed regions,2020,6566935443
+Less developed regions,2021,6638313896
+Less developed regions,2022,6702385041
+Less developed regions,2023,6772876013
+Least developed countries,2020,1070860483
+Least developed countries,2021,1096846656
+Least developed countries,2022,1121947809
+Least developed countries,2023,1147676012
+"Less developed regions, excluding least developed countries",2020,5496074960
+"Less developed regions, excluding least developed countries",2021,5541467240
+"Less developed regions, excluding least developed countries",2022,5580437232
+"Less developed regions, excluding least developed countries",2023,5625200001
+"Less developed regions, excluding China",2020,5109651333
+"Less developed regions, excluding China",2021,5179712298
+"Less developed regions, excluding China",2022,5244637433
+"Less developed regions, excluding China",2023,5317083718
+Land-locked Developing Countries (LLDC),2020,534511997
+Land-locked Developing Countries (LLDC),2021,547769337
+Land-locked Developing Countries (LLDC),2022,560014033
+Land-locked Developing Countries (LLDC),2023,572243875
+LLDC: Africa,2020,343996331
+LLDC: Africa,2021,353667930
+LLDC: Africa,2022,363092227
+LLDC: Africa,2023,372653688
+LLDC: Asia,2020,167228315
+LLDC: Asia,2021,170666387
+LLDC: Asia,2022,173363971
+LLDC: Asia,2023,175712351
+LLDC: Europe,2020,4976141
+LLDC: Europe,2021,4906152
+LLDC: Europe,2022,4843620
+LLDC: Europe,2023,4916815
+LLDC: Latin America,2020,18311210
+LLDC: Latin America,2021,18528868
+LLDC: Latin America,2022,18714215
+LLDC: Latin America,2023,18961021
+Small Island Developing States (SIDS),2020,70947609
+Small Island Developing States (SIDS),2021,71409665
+Small Island Developing States (SIDS),2022,71855234
+Small Island Developing States (SIDS),2023,72605430
+SIDS Caribbean,2020,45404912
+SIDS Caribbean,2021,45650536
+SIDS Caribbean,2022,45792075
+SIDS Caribbean,2023,46001460
+SIDS Pacific,2020,14447992
+SIDS Pacific,2021,14707203
+SIDS Pacific,2022,14953724
+SIDS Pacific,2023,15190593
+"SIDS Atlantic, Indian Ocean and South China Sea (AIS)",2020,11094705
+"SIDS Atlantic, Indian Ocean and South China Sea (AIS)",2021,11051926
+"SIDS Atlantic, Indian Ocean and South China Sea (AIS)",2022,11109435
+"SIDS Atlantic, Indian Ocean and South China Sea (AIS)",2023,11413377
+High-and-upper-middle-income countries,2020,4030140745
+High-and-upper-middle-income countries,2021,4041945499
+High-and-upper-middle-income countries,2022,4050739395
+High-and-upper-middle-income countries,2023,4067374584
+Low-and-Lower-middle-income countries,2020,3791646566
+Low-and-Lower-middle-income countries,2021,3851295195
+Low-and-Lower-middle-income countries,2022,3906352598
+Low-and-Lower-middle-income countries,2023,3959841078
+High-income countries,2020,1246313009
+High-income countries,2021,1247643340
+High-income countries,2022,1249917881
+High-income countries,2023,1258715498
+Low-and-middle-income countries,2020,6575474302
+Low-and-middle-income countries,2021,6645597354
+Low-and-middle-income countries,2022,6707174112
+Low-and-middle-income countries,2023,6768500164
+Middle-income countries,2020,5905456459
+Middle-income countries,2021,5956493705
+Middle-income countries,2022,5999847344
+Middle-income countries,2023,6042095367
+Upper-middle-income countries,2020,2783827736
+Upper-middle-income countries,2021,2794302159
+Upper-middle-income countries,2022,2800821514
+Upper-middle-income countries,2023,2808659086
+Lower-middle-income countries,2020,3121628723
+Lower-middle-income countries,2021,3162191546
+Lower-middle-income countries,2022,3199025830
+Lower-middle-income countries,2023,3233436281
+Low-income countries,2020,670017843
+Low-income countries,2021,689103649
+Low-income countries,2022,707326768
+Low-income countries,2023,726404797
+No income group available,2020,29218706
+No income group available,2021,28941085
+No income group available,2022,28824709
+No income group available,2023,28912625
+Africa,2020,1364276394
+Africa,2021,1397365945
+Africa,2022,1430140159
+Africa,2023,1463627143
+Eastern Africa,2020,445111122
+Eastern Africa,2021,457294586
+Eastern Africa,2022,469222862
+Eastern Africa,2023,481376957
+Burundi,2020,12441306
+Burundi,2021,12792766
+Burundi,2022,13138197
+Burundi,2023,13503998
+Comoros,2020,794087
+Comoros,2021,810240
+Comoros,2022,826109
+Comoros,2023,842267
+Djibouti,2020,1097058
+Djibouti,2021,1113319
+Djibouti,2022,1129177
+Djibouti,2023,1145015
+Eritrea,2020,3262070
+Eritrea,2021,3320471
+Eritrea,2022,3379895
+Eritrea,2023,3438999
+Ethiopia,2020,117298379
+Ethiopia,2021,120536964
+Ethiopia,2022,123740213
+Ethiopia,2023,127028360
+Kenya,2020,51707746
+Kenya,2021,52726921
+Kenya,2022,53711410
+Kenya,2023,54793511
+Madagascar,2020,28585993
+Madagascar,2021,29321120
+Madagascar,2022,30061046
+Madagascar,2023,30813475
+Malawi,2020,19277882
+Malawi,2021,19789893
+Malawi,2022,20304623
+Malawi,2023,20832833
+Mauritius,2020,1284799
+Mauritius,2021,1281647
+Mauritius,2022,1277600
+Mauritius,2023,1274659
+Mayotte,2020,279657
+Mayotte,2021,289084
+Mayotte,2022,299758
+Mayotte,2023,310779
+Mozambique,2020,30323642
+Mozambique,2021,31243734
+Mozambique,2022,32171866
+Mozambique,2023,33140626
+Réunion,2020,856724
+Réunion,2021,866168
+Réunion,2022,869990
+Réunion,2023,873091
+Rwanda,2020,12920618
+Rwanda,2021,13211056
+Rwanda,2022,13499464
+Rwanda,2023,13802596
+Seychelles,2020,118958
+Seychelles,2021,121624
+Seychelles,2022,124351
+Seychelles,2023,126694
+Somalia,2020,16331908
+Somalia,2021,16970473
+Somalia,2022,17572390
+Somalia,2023,18031404
+South Sudan,2020,10560834
+South Sudan,2021,10836100
+South Sudan,2022,10895460
+South Sudan,2023,11146895
+Uganda,2020,43736774
+Uganda,2021,45177531
+Uganda,2022,46644329
+Uganda,2023,47981110
+United Republic of Tanzania,2020,60051409
+United Republic of Tanzania,2021,61894186
+United Republic of Tanzania,2022,63766638
+United Republic of Tanzania,2023,65657004
+Zambia,2020,18787069
+Zambia,2021,19331721
+Zambia,2022,19875494
+Zambia,2023,20430382
+Zimbabwe,2020,15394209
+Zimbabwe,2021,15659568
+Zimbabwe,2022,15934852
+Zimbabwe,2023,16203259
+Middle Africa,2020,184977543
+Middle Africa,2021,190846914
+Middle Africa,2022,196727377
+Middle Africa,2023,202700272
+Angola,2020,32920509
+Angola,2021,33981756
+Angola,2022,35083102
+Angola,2023,36186956
+Cameroon,2020,25857309
+Cameroon,2021,26563807
+Cameroon,2022,27267710
+Cameroon,2023,27997833
+Central African Republic,2020,4960544
+Central African Republic,2021,5092713
+Central African Republic,2022,5131487
+Central African Republic,2023,5064592
+Chad,2020,16935758
+Chad,2021,17513600
+Chad,2022,18142947
+Chad,2023,18767684
+Congo,2020,5683281
+Congo,2021,5822300
+Congo,2022,5962066
+Congo,2023,6108142
+Democratic Republic of the Congo,2020,94412756
+Democratic Republic of the Congo,2021,97567240
+Democratic Republic of the Congo,2022,100730624
+Democratic Republic of the Congo,2023,104063312
+Equatorial Guinea,2020,1696974
+Equatorial Guinea,2021,1735963
+Equatorial Guinea,2022,1781610
+Equatorial Guinea,2023,1825480
+Gabon,2020,2295413
+Gabon,2021,2349665
+Gabon,2022,2403779
+Gabon,2023,2457715
+Sao Tome and Principe,2020,214999
+Sao Tome and Principe,2021,219870
+Sao Tome and Principe,2022,224052
+Sao Tome and Principe,2023,228558
+Northern Africa,2020,254186153
+Northern Africa,2021,258412796
+Northern Africa,2022,262550984
+Northern Africa,2023,266888866
+Algeria,2020,43685420
+Algeria,2021,44398762
+Algeria,2022,45123436
+Algeria,2023,45831343
+Egypt,2020,108459596
+Egypt,2021,110170651
+Egypt,2022,111743365
+Egypt,2023,113493134
+Libya,2020,6999279
+Libya,2021,7091519
+Libya,2022,7178831
+Libya,2023,7268778
+Morocco,2020,36393933
+Morocco,2021,36774483
+Morocco,2022,37134402
+Morocco,2023,37523726
+Sudan,2020,46174297
+Sudan,2021,47404165
+Sudan,2022,48729683
+Sudan,2023,50037008
+Tunisia,2020,11928934
+Tunisia,2021,12019180
+Tunisia,2022,12078065
+Tunisia,2023,12160602
+Western Sahara,2020,544694
+Western Sahara,2021,554036
+Western Sahara,2022,563202
+Western Sahara,2023,574275
+Southern Africa,2020,68523454
+Southern Africa,2021,69647530
+Southern Africa,2022,70717923
+Southern Africa,2023,71708059
+Botswana,2020,2348752
+Botswana,2021,2383035
+Botswana,2022,2419846
+Botswana,2023,2459937
+Eswatini,2020,1185399
+Eswatini,2021,1200060
+Eswatini,2022,1213127
+Eswatini,2023,1224706
+Lesotho,2020,2222094
+Lesotho,2021,2249359
+Lesotho,2022,2273725
+Lesotho,2023,2298496
+Namibia,2020,2687716
+Namibia,2021,2769807
+Namibia,2022,2851288
+Namibia,2023,2928037
+South Africa,2020,60079493
+South Africa,2021,61045269
+South Africa,2022,61959937
+South Africa,2023,62796883
+Western Africa,2020,411478122
+Western Africa,2021,421164119
+Western Africa,2022,430921013
+Western Africa,2023,440952989
+Benin,2020,12898339
+Benin,2021,13241999
+Benin,2022,13584835
+Benin,2023,13934166
+Burkina Faso,2020,21219334
+Burkina Faso,2021,21738045
+Burkina Faso,2022,22252441
+Burkina Faso,2023,22765636
+Cabo Verde,2020,514496
+Cabo Verde,2021,514863
+Cabo Verde,2022,518435
+Cabo Verde,2023,521047
+Côte d'Ivoire,2020,28557910
+Côte d'Ivoire,2021,29272989
+Côte d'Ivoire,2022,30006484
+Côte d'Ivoire,2023,30783520
+Gambia,2020,2485602
+Gambia,2021,2545865
+Gambia,2022,2606154
+Gambia,2023,2666786
+Ghana,2020,31569221
+Ghana,2021,32206397
+Ghana,2022,32830933
+Ghana,2023,33467371
+Guinea,2020,13202219
+Guinea,2021,13540147
+Guinea,2022,13880879
+Guinea,2023,14229395
+Guinea-Bissau,2020,1990595
+Guinea-Bissau,2021,2035915
+Guinea-Bissau,2022,2081768
+Guinea-Bissau,2023,2129290
+Liberia,2020,5094199
+Liberia,2021,5204728
+Liberia,2022,5313918
+Liberia,2023,5432670
+Mali,2020,21379781
+Mali,2021,22047890
+Mali,2022,22729371
+Mali,2023,23415909
+Mauritania,2020,4533426
+Mauritania,2021,4666836
+Mauritania,2022,4802913
+Mauritania,2023,4948362
+Niger,2020,23327598
+Niger,2021,24107629
+Niger,2022,24896651
+Niger,2023,25727295
+Nigeria,2020,211740831
+Nigeria,2021,216251531
+Nigeria,2022,220807042
+Nigeria,2023,225494749
+Saint Helena,2020,5448
+Saint Helena,2021,5412
+Saint Helena,2022,5368
+Saint Helena,2023,5318
+Senegal,2020,16571839
+Senegal,2021,17006600
+Senegal,2022,17435133
+Senegal,2023,17867073
+Sierra Leone,2020,7821406
+Sierra Leone,2021,8003710
+Sierra Leone,2022,8185494
+Sierra Leone,2023,8368119
+Togo,2020,8565878
+Togo,2021,8773563
+Togo,2022,8983194
+Togo,2023,9196283
+Asia,2020,4671399827
+Asia,2021,4704826915
+Asia,2022,4731805819
+Asia,2023,4763516247
+Central Asia,2020,75721118
+Central Asia,2021,77142584
+Central Asia,2022,78590874
+Central Asia,2023,80092661
+Kazakhstan,2020,19350246
+Kazakhstan,2021,19613988
+Kazakhstan,2022,19873218
+Kazakhstan,2023,20196000
+Kyrgyzstan,2020,6582461
+Kyrgyzstan,2021,6745818
+Kyrgyzstan,2022,6895139
+Kyrgyzstan,2023,7016437
+Tajikistan,2020,9641357
+Tajikistan,2021,9857264
+Tajikistan,2022,10076553
+Tajikistan,2023,10287891
+Turkmenistan,2020,6877950
+Turkmenistan,2021,7021874
+Turkmenistan,2022,7162213
+Turkmenistan,2023,7298173
+Uzbekistan,2020,33269104
+Uzbekistan,2021,33903640
+Uzbekistan,2022,34583751
+Uzbekistan,2023,35294160
+Eastern Asia,2020,1665038572
+Eastern Asia,2021,1666027380
+Eastern Asia,2022,1664521712
+Eastern Asia,2023,1662008090
+China,2020,1425435844
+China,2021,1426776342
+China,2022,1426098192
+China,2023,1424260946
+"China, Hong Kong SAR",2020,7490707
+"China, Hong Kong SAR",2021,7489764
+"China, Hong Kong SAR",2022,7479439
+"China, Hong Kong SAR",2023,7452391
+"China, Macao SAR",2020,677086
+"China, Macao SAR",2021,689047
+"China, Macao SAR",2022,699757
+"China, Macao SAR",2023,708956
+"China, Taiwan Province of China",2020,23680473
+"China, Taiwan Province of China",2021,23646445
+"China, Taiwan Province of China",2022,23470220
+"China, Taiwan Province of China",2023,23370002
+Dem. People's Republic of Korea,2020,26089153
+Dem. People's Republic of Korea,2021,26183471
+Dem. People's Republic of Korea,2022,26281596
+Dem. People's Republic of Korea,2023,26376094
+Japan,2020,126574852
+Japan,2021,126034234
+Japan,2022,125324442
+Japan,2023,124670714
+Mongolia,2020,3264658
+Mongolia,2021,3316913
+Mongolia,2022,3362435
+Mongolia,2023,3409595
+Republic of Korea,2020,51825799
+Republic of Korea,2021,51891164
+Republic of Korea,2022,51805631
+Republic of Korea,2023,51759392
+Southern Asia,2020,1972729257
+Southern Asia,2021,1994291530
+Southern Asia,2022,2012235325
+Southern Asia,2023,2032699250
+Afghanistan,2020,38429950
+Afghanistan,2021,39708008
+Afghanistan,2022,40292816
+Afghanistan,2023,40864868
+Bangladesh,2020,165621622
+Bangladesh,2021,166974426
+Bangladesh,2022,168343283
+Bangladesh,2023,170426512
+Bhutan,2020,767294
+Bhutan,2021,772718
+Bhutan,2022,778165
+Bhutan,2023,783664
+India,2020,1395971076
+India,2021,1409264315
+India,2022,1419143477
+India,2023,1431702948
+Iran (Islamic Republic of),2020,87481767
+Iran (Islamic Republic of),2021,87965119
+Iran (Islamic Republic of),2022,88945856
+Iran (Islamic Republic of),2023,90102637
+Maldives,2020,494999
+Maldives,2021,509238
+Maldives,2022,523069
+Maldives,2023,525144
+Nepal,2020,28698722
+Nepal,2021,29234427
+Nepal,2022,29715593
+Nepal,2023,29715279
+Pakistan,2020,232775824
+Pakistan,2021,237227668
+Pakistan,2022,241727933
+Pakistan,2023,245673401
+Sri Lanka,2020,22488003
+Sri Lanka,2021,22635611
+Sri Lanka,2022,22765133
+Sri Lanka,2023,22904797
+South-Eastern Asia,2020,672276012
+South-Eastern Asia,2021,677700983
+South-Eastern Asia,2022,682232181
+South-Eastern Asia,2023,687564643
+Brunei Darussalam,2020,445077
+Brunei Darussalam,2021,449730
+Brunei Darussalam,2022,453711
+Brunei Darussalam,2023,457028
+Cambodia,2020,16591105
+Cambodia,2021,16859842
+Cambodia,2022,17088769
+Cambodia,2023,17314678
+Indonesia,2020,273748193
+Indonesia,2021,275881538
+Indonesia,2022,277634568
+Indonesia,2023,280026489
+Lao People's Democratic Republic,2020,7292382
+Lao People's Democratic Republic,2021,7400683
+Lao People's Democratic Republic,2022,7505704
+Lao People's Democratic Republic,2023,7612311
+Malaysia,2020,33696952
+Malaysia,2021,34082165
+Malaysia,2022,34482632
+Malaysia,2023,34908354
+Myanmar,2020,52825300
+Myanmar,2021,53207743
+Myanmar,2022,53566461
+Myanmar,2023,53947114
+Philippines,2020,111477954
+Philippines,2021,112684574
+Philippines,2022,113517326
+Philippines,2023,114411351
+Singapore,2020,5681772
+Singapore,2021,5558529
+Singapore,2022,5534051
+Singapore,2023,5765718
+Thailand,2020,71583299
+Thailand,2021,71699668
+Thailand,2022,71754996
+Thailand,2023,71715662
+Timor-Leste,2020,1313574
+Timor-Leste,2021,1338533
+Timor-Leste,2022,1361744
+Timor-Leste,2023,1376847
+Viet Nam,2020,97620404
+Viet Nam,2021,98537978
+Viet Nam,2022,99332219
+Viet Nam,2023,100029091
+Western Asia,2020,285634868
+Western Asia,2021,289664438
+Western Asia,2022,294225727
+Western Asia,2023,301151603
+Armenia,2020,2900489
+Armenia,2021,2881296
+Armenia,2022,2859401
+Armenia,2023,2902348
+Azerbaijan,2020,10153702
+Azerbaijan,2021,10209758
+Azerbaijan,2022,10258983
+Azerbaijan,2023,10331625
+Bahrain,2020,1478018
+Bahrain,2021,1488136
+Bahrain,2022,1515391
+Bahrain,2023,1551527
+Cyprus,2020,1294504
+Cyprus,2021,1309991
+Cyprus,2022,1324626
+Cyprus,2023,1338114
+Georgia,2020,3796876
+Georgia,2021,3794480
+Georgia,2022,3782422
+Georgia,2023,3807145
+Iraq,2020,41641695
+Iraq,2021,42591514
+Iraq,2022,43550907
+Iraq,2023,44590195
+Israel,2020,8730394
+Israel,2021,8870358
+Israel,2022,9015491
+Israel,2023,9190811
+Jordan,2020,10762786
+Jordan,2021,10967669
+Jordan,2022,11165043
+Jordan,2023,11347484
+Kuwait,2020,4464406
+Kuwait,2021,4335882
+Kuwait,2022,4385601
+Kuwait,2023,4793420
+Lebanon,2020,5696335
+Lebanon,2021,5708460
+Lebanon,2022,5727783
+Lebanon,2023,5761194
+Oman,2020,4571203
+Oman,2021,4473790
+Oman,2022,4527058
+Oman,2023,4933394
+Qatar,2020,2815984
+Qatar,2021,2790766
+Qatar,2022,2839198
+Qatar,2023,2945712
+Saudi Arabia,2020,30809025
+Saudi Arabia,2021,31173389
+Saudi Arabia,2022,31483360
+Saudi Arabia,2023,32867343
+State of Palestine,2020,5011276
+State of Palestine,2021,5128108
+State of Palestine,2022,5242563
+State of Palestine,2023,5367977
+Syrian Arab Republic,2020,20750906
+Syrian Arab Republic,2021,21347952
+Syrian Arab Republic,2022,21909727
+Syrian Arab Republic,2023,23014618
+Türkiye,2020,85758495
+Türkiye,2021,86424888
+Türkiye,2022,86947617
+Türkiye,2023,87169328
+United Arab Emirates,2020,9358094
+United Arab Emirates,2021,9538954
+United Arab Emirates,2022,10039142
+United Arab Emirates,2023,10445031
+Yemen,2020,35640680
+Yemen,2021,36629047
+Yemen,2022,37651414
+Yemen,2023,38794337
+Europe,2020,749924805
+Europe,2021,749123284
+Europe,2022,748103725
+Europe,2023,745825460
+Eastern Europe,2020,294284252
+Eastern Europe,2021,293162009
+Eastern Europe,2022,291351866
+Eastern Europe,2023,286750088
+Belarus,2020,9400170
+Belarus,2021,9301718
+Belarus,2022,9201012
+Belarus,2023,9145462
+Bulgaria,2020,6951197
+Bulgaria,2021,6916107
+Bulgaria,2022,6838344
+Bulgaria,2023,6813384
+Czechia,2020,10557442
+Czechia,2021,10542817
+Czechia,2022,10518548
+Czechia,2023,10827878
+Hungary,2020,9768620
+Hungary,2021,9730293
+Hungary,2022,9685406
+Hungary,2023,9683205
+Poland,2020,38218950
+Poland,2021,38123074
+Poland,2022,37957529
+Poland,2023,38813949
+Republic of Moldova,2020,3089950
+Republic of Moldova,2021,3048312
+Republic of Moldova,2022,2999245
+Republic of Moldova,2023,3080724
+Romania,2020,19453042
+Romania,2021,19331896
+Romania,2022,19164426
+Romania,2023,19169119
+Russian Federation,2020,146554625
+Russian Federation,2021,146187972
+Russian Federation,2022,145484378
+Russian Federation,2023,145675420
+Slovakia,2020,5454386
+Slovakia,2021,5455661
+Slovakia,2022,5429857
+Slovakia,2023,5516536
+Ukraine,2020,44835870
+Ukraine,2021,44524159
+Ukraine,2022,44073121
+Ukraine,2023,38024411
+Northern Europe,2020,105986507
+Northern Europe,2021,106262747
+Northern Europe,2022,106953063
+Northern Europe,2023,107925860
+Denmark,2020,5822944
+Denmark,2021,5840116
+Denmark,2022,5873437
+Denmark,2023,5932370
+Estonia,2020,1328857
+Estonia,2021,1330482
+Estonia,2022,1333017
+Estonia,2023,1367166
+Faroe Islands,2020,52245
+Faroe Islands,2021,52928
+Faroe Islands,2022,53672
+Faroe Islands,2023,54350
+Finland,2020,5525345
+Finland,2021,5533879
+Finland,2022,5548271
+Finland,2023,5590327
+Guernsey,2020,62970
+Guernsey,2021,63241
+Guernsey,2022,63586
+Guernsey,2023,63865
+Iceland,2020,364277
+Iceland,2021,368951
+Iceland,2022,376336
+Iceland,2023,384375
+Ireland,2020,4962558
+Ireland,2021,5002655
+Ireland,2022,5054196
+Ireland,2023,5165835
+Isle of Man,2020,84022
+Isle of Man,2021,84105
+Isle of Man,2022,84106
+Isle of Man,2023,84158
+Jersey,2020,103003
+Jersey,2021,103257
+Jersey,2022,103398
+Jersey,2023,103583
+Latvia,2020,1908100
+Latvia,2021,1894147
+Latvia,2022,1877027
+Latvia,2023,1885099
+Lithuania,2020,2795008
+Lithuania,2021,2796521
+Lithuania,2022,2792454
+Lithuania,2023,2841385
+Norway,2020,5367414
+Norway,2021,5391133
+Norway,2022,5425048
+Norway,2023,5488555
+Sweden,2020,10327876
+Sweden,2021,10379497
+Sweden,2022,10452766
+Sweden,2023,10521910
+United Kingdom,2020,67281888
+United Kingdom,2021,67421835
+United Kingdom,2022,67915749
+United Kingdom,2023,68442882
+Southern Europe,2020,152863654
+Southern Europe,2021,152528470
+Southern Europe,2022,152020930
+Southern Europe,2023,151930785
+Albania,2020,2878203
+Albania,2021,2865704
+Albania,2022,2833567
+Albania,2023,2821649
+Andorra,2020,77149
+Andorra,2021,77611
+Andorra,2022,79116
+Andorra,2023,80294
+Bosnia and Herzegovina,2020,3324022
+Bosnia and Herzegovina,2021,3274677
+Bosnia and Herzegovina,2022,3215138
+Bosnia and Herzegovina,2023,3194466
+Croatia,2020,3970038
+Croatia,2021,3937878
+Croatia,2022,3911342
+Croatia,2023,3902712
+Gibraltar,2020,35826
+Gibraltar,2021,36520
+Gibraltar,2022,37197
+Gibraltar,2023,38022
+Greece,2020,10715280
+Greece,2021,10683458
+Greece,2022,10475664
+Greece,2023,10349296
+Holy See,2020,532
+Holy See,2021,524
+Holy See,2022,513
+Holy See,2023,500
+Italy,2020,60041302
+Italy,2021,59784236
+Italy,2022,59674464
+Italy,2023,59563765
+Kosovo (under UNSC res. 1244),2020,1746695
+Kosovo (under UNSC res. 1244),2021,1756139
+Kosovo (under UNSC res. 1244),2022,1726752
+Kosovo (under UNSC res. 1244),2023,1709140
+Malta,2020,514526
+Malta,2021,521887
+Malta,2022,526866
+Malta,2023,529518
+Montenegro,2020,609795
+Montenegro,2021,606075
+Montenegro,2022,601626
+Montenegro,2023,627669
+North Macedonia,2020,1886191
+North Macedonia,2021,1857840
+North Macedonia,2022,1844375
+North Macedonia,2023,1836091
+Portugal,2020,10362447
+Portugal,2021,10378591
+Portugal,2022,10403320
+Portugal,2023,10430825
+San Marino,2020,34714
+San Marino,2021,34823
+San Marino,2022,34322
+San Marino,2023,33858
+Serbia,2020,6939123
+Serbia,2021,6876501
+Serbia,2022,6794359
+Serbia,2023,6788068
+Slovenia,2020,2090739
+Slovenia,2021,2114100
+Slovenia,2022,2112888
+Slovenia,2023,2117568
+Spain,2020,47637072
+Spain,2021,47721906
+Spain,2022,47749421
+Spain,2023,47907344
+Western Europe,2020,196790392
+Western Europe,2021,197170058
+Western Europe,2022,197777866
+Western Europe,2023,199218727
+Austria,2020,8901948
+Austria,2021,8940862
+Austria,2022,8993251
+Austria,2023,9136103
+Belgium,2020,11524063
+Belgium,2021,11556151
+Belgium,2022,11585536
+Belgium,2023,11698104
+France,2020,65816792
+France,2021,65993763
+France,2022,66173332
+France,2023,66381485
+Germany,2020,83634807
+Germany,2021,83622610
+Germany,2022,83771555
+Germany,2023,84400899
+Liechtenstein,2020,38620
+Liechtenstein,2021,38914
+Liechtenstein,2022,39174
+Liechtenstein,2023,39460
+Luxembourg,2020,626279
+Luxembourg,2021,634915
+Luxembourg,2022,645633
+Luxembourg,2023,660992
+Monaco,2020,37774
+Monaco,2021,38327
+Monaco,2022,38727
+Monaco,2023,39136
+Netherlands,2020,17601682
+Netherlands,2021,17671780
+Netherlands,2022,17789347
+Netherlands,2023,18019495
+Switzerland,2020,8608427
+Switzerland,2021,8672736
+Switzerland,2022,8741311
+Switzerland,2023,8843053
+Latin America and the Caribbean,2020,644685940
+Latin America and the Caribbean,2021,648772828
+Latin America and the Caribbean,2022,652157752
+Latin America and the Caribbean,2023,656575828
+Caribbean,2020,43609629
+Caribbean,2021,43833400
+Caribbean,2022,43958562
+Caribbean,2023,44147243
+Anguilla,2020,14799
+Anguilla,2021,14887
+Anguilla,2022,14062
+Anguilla,2023,14297
+Antigua and Barbuda,2020,91592
+Antigua and Barbuda,2021,92100
+Antigua and Barbuda,2022,92598
+Antigua and Barbuda,2023,93082
+Aruba,2020,107381
+Aruba,2021,107420
+Aruba,2022,107696
+Aruba,2023,107868
+Bahamas,2020,395541
+Bahamas,2021,396184
+Bahamas,2022,396562
+Bahamas,2023,398515
+Barbados,2020,281443
+Barbados,2021,281953
+Barbados,2022,282340
+Barbados,2023,282296
+"Bonaire, Sint Eustatius and Saba",2020,26041
+"Bonaire, Sint Eustatius and Saba",2021,26865
+"Bonaire, Sint Eustatius and Saba",2022,27781
+"Bonaire, Sint Eustatius and Saba",2023,29473
+British Virgin Islands,2020,36645
+British Virgin Islands,2021,37624
+British Virgin Islands,2022,37995
+British Virgin Islands,2023,38643
+Cayman Islands,2020,68017
+Cayman Islands,2021,69352
+Cayman Islands,2022,70863
+Cayman Islands,2023,72320
+Cuba,2020,11188743
+Cuba,2021,11163965
+Cuba,2022,11080372
+Cuba,2023,11039268
+Curaçao,2020,184702
+Curaçao,2021,185334
+Curaçao,2022,185295
+Curaçao,2023,185394
+Dominica,2020,67727
+Dominica,2021,67419
+Dominica,2022,66985
+Dominica,2023,66668
+Dominican Republic,2020,10948573
+Dominican Republic,2021,11068027
+Dominican Republic,2022,11178924
+Dominican Republic,2023,11282543
+Grenada,2020,116126
+Grenada,2021,116556
+Grenada,2022,116819
+Grenada,2023,117007
+Guadeloupe,2020,408604
+Guadeloupe,2021,406184
+Guadeloupe,2022,392118
+Guadeloupe,2023,377277
+Haiti,2020,11176134
+Haiti,2021,11311562
+Haiti,2022,11437610
+Haiti,2023,11569602
+Jamaica,2020,2824653
+Jamaica,2021,2836825
+Jamaica,2022,2838538
+Jamaica,2023,2839750
+Martinique,2020,358164
+Martinique,2021,355065
+Martinique,2022,351491
+Martinique,2023,347427
+Montserrat,2020,4526
+Montserrat,2021,4489
+Montserrat,2022,4470
+Montserrat,2023,4436
+Puerto Rico,2020,3287115
+Puerto Rico,2021,3264495
+Puerto Rico,2022,3241925
+Puerto Rico,2023,3240012
+Saint Barthélemy,2020,10405
+Saint Barthélemy,2021,10681
+Saint Barthélemy,2022,10847
+Saint Barthélemy,2023,10993
+Saint Kitts and Nevis,2020,46920
+Saint Kitts and Nevis,2021,46820
+Saint Kitts and Nevis,2022,46706
+Saint Kitts and Nevis,2023,46713
+Saint Lucia,2020,177973
+Saint Lucia,2021,178528
+Saint Lucia,2022,178516
+Saint Lucia,2023,179046
+Saint Martin (French part),2020,33134
+Saint Martin (French part),2021,30438
+Saint Martin (French part),2022,29484
+Saint Martin (French part),2023,28257
+Saint Vincent and the Grenadines,2020,103783
+Saint Vincent and the Grenadines,2021,103269
+Saint Vincent and the Grenadines,2022,102413
+Saint Vincent and the Grenadines,2023,101679
+Sint Maarten (Dutch part),2020,40708
+Sint Maarten (Dutch part),2021,41307
+Sint Maarten (Dutch part),2022,41835
+Sint Maarten (Dutch part),2023,42442
+Trinidad and Tobago,2020,1478345
+Trinidad and Tobago,2021,1483702
+Trinidad and Tobago,2022,1491733
+Trinidad and Tobago,2023,1500110
+Turks and Caicos Islands,2020,43953
+Turks and Caicos Islands,2021,44818
+Turks and Caicos Islands,2022,45669
+Turks and Caicos Islands,2023,46026
+United States Virgin Islands,2020,87882
+United States Virgin Islands,2021,87531
+United States Virgin Islands,2022,86915
+United States Virgin Islands,2023,86099
+Central America,2020,176041603
+Central America,2021,177547104
+Central America,2022,178928768
+Central America,2023,180713451
+Belize,2020,388282
+Belize,2021,393341
+Belize,2022,397352
+Belize,2023,408114
+Costa Rica,2020,5019218
+Costa Rica,2021,5049422
+Costa Rica,2022,5070553
+Costa Rica,2023,5092976
+El Salvador,2020,6223159
+El Salvador,2021,6246188
+El Salvador,2022,6265375
+El Salvador,2023,6295263
+Guatemala,2020,17228621
+Guatemala,2021,17486030
+Guatemala,2022,17711271
+Guatemala,2023,17984483
+Honduras,2020,10032962
+Honduras,2021,10206319
+Honduras,2022,10373434
+Honduras,2023,10554310
+Mexico,2020,126356930
+Mexico,2021,127241179
+Mexico,2022,128055116
+Mexico,2023,129171119
+Nicaragua,2020,6525203
+Nicaragua,2021,6605331
+Nicaragua,2022,6684151
+Nicaragua,2023,6777156
+Panama,2020,4267228
+Panama,2021,4319294
+Panama,2022,4371516
+Panama,2023,4430030
+South America,2020,425034708
+South America,2021,427392324
+South America,2022,429270422
+South America,2023,431715134
+Argentina,2020,45116150
+Argentina,2021,45267779
+Argentina,2022,45356784
+Argentina,2023,45459024
+Bolivia (Plurinational State of),2020,11752693
+Bolivia (Plurinational State of),2021,11879906
+Bolivia (Plurinational State of),2022,11994813
+Bolivia (Plurinational State of),2023,12159495
+Brazil,2020,208126926
+Brazil,2021,209194759
+Brazil,2022,209905829
+Brazil,2023,210707000
+Chile,2020,19331414
+Chile,2021,19409834
+Chile,2022,19502834
+Chile,2023,19603239
+Colombia,2020,50326931
+Colombia,2021,50933064
+Colombia,2022,51443283
+Colombia,2023,52032604
+Ecuador,2020,17473005
+Ecuador,2021,17619124
+Ecuador,2022,17745785
+Ecuador,2023,17902009
+Falkland Islands (Malvinas),2020,3512
+Falkland Islands (Malvinas),2021,3499
+Falkland Islands (Malvinas),2022,3497
+Falkland Islands (Malvinas),2023,3483
+French Guiana,2020,287849
+French Guiana,2021,290262
+French Guiana,2022,295769
+French Guiana,2023,300843
+Guyana,2020,803199
+Guyana,2021,811764
+Guyana,2022,819200
+Guyana,2023,824074
+Paraguay,2020,6558517
+Paraguay,2021,6648962
+Paraguay,2022,6719402
+Paraguay,2023,6801526
+Peru,2020,32659927
+Peru,2021,33017232
+Peru,2022,33294532
+Peru,2023,33656344
+Suriname,2020,609141
+Suriname,2021,615492
+Suriname,2022,620300
+Suriname,2023,626028
+Uruguay,2020,3397691
+Uruguay,2021,3400245
+Uruguay,2022,3393144
+Uruguay,2023,3388682
+Venezuela (Bolivarian Republic of),2020,28587753
+Venezuela (Bolivarian Republic of),2021,28300402
+Venezuela (Bolivarian Republic of),2022,28175250
+Venezuela (Bolivarian Republic of),2023,28250783
+Northern America,2020,377287098
+Northern America,2021,378181600
+Northern America,2022,379302333
+Northern America,2023,381661218
+Bermuda,2020,64241
+Bermuda,2021,64523
+Bermuda,2022,64773
+Bermuda,2023,64724
+Canada,2020,38018483
+Canada,2021,38325321
+Canada,2022,38582793
+Canada,2023,39059725
+Greenland,2020,56095
+Greenland,2021,56064
+Greenland,2022,56019
+Greenland,2023,55962
+Saint Pierre and Miquelon,2020,5851
+Saint Pierre and Miquelon,2021,5803
+Saint Pierre and Miquelon,2022,5755
+Saint Pierre and Miquelon,2023,5709
+United States of America,2020,339142428
+United States of America,2021,339729889
+United States of America,2022,340592993
+United States of America,2023,342475098
+Oceania,2020,43840557
+Oceania,2021,44317391
+Oceania,2022,44799032
+Oceania,2023,45299668
+Australia/New Zealand,2020,30692423
+Australia/New Zealand,2021,30934949
+Australia/New Zealand,2022,31193279
+Australia/New Zealand,2023,31472159
+Australia,2020,25655914
+Australia,2021,25831668
+Australia,2022,26081167
+Australia,2023,26320802
+New Zealand,2020,5036509
+New Zealand,2021,5103281
+New Zealand,2022,5112112
+New Zealand,2023,5151357
+Melanesia,2020,11943945
+Melanesia,2021,12172538
+Melanesia,2022,12394024
+Melanesia,2023,12613630
+Fiji,2020,913601
+Fiji,2021,916325
+Fiji,2022,917097
+Fiji,2023,921747
+New Caledonia,2020,283701
+New Caledonia,2021,284652
+New Caledonia,2022,285776
+New Caledonia,2023,288470
+Papua New Guinea,2020,9715829
+Papua New Guinea,2021,9915662
+Papua New Guinea,2022,10110130
+Papua New Guinea,2023,10296209
+Solomon Islands,2020,735473
+Solomon Islands,2021,753523
+Solomon Islands,2022,771660
+Solomon Islands,2023,790472
+Vanuatu,2020,295341
+Vanuatu,2021,302376
+Vanuatu,2022,309361
+Vanuatu,2023,316732
+Micronesia,2020,517059
+Micronesia,2021,520627
+Micronesia,2022,522511
+Micronesia,2023,524443
+Guam,2020,161358
+Guam,2021,162958
+Guam,2022,164502
+Guam,2023,165858
+Kiribati,2020,124847
+Kiribati,2021,127351
+Kiribati,2022,129403
+Kiribati,2023,131534
+Marshall Islands,2020,43361
+Marshall Islands,2021,42052
+Marshall Islands,2022,40682
+Marshall Islands,2023,39472
+Micronesia (Fed. States of),2020,110443
+Micronesia (Fed. States of),2021,111390
+Micronesia (Fed. States of),2022,111859
+Micronesia (Fed. States of),2023,112368
+Nauru,2020,11626
+Nauru,2021,11660
+Nauru,2022,11757
+Nauru,2023,11845
+Northern Mariana Islands,2020,47636
+Northern Mariana Islands,2021,47420
+Northern Mariana Islands,2022,46538
+Northern Mariana Islands,2023,45618
+Palau,2020,17788
+Palau,2021,17796
+Palau,2022,17770
+Palau,2023,17748
+Polynesia,2020,687130
+Polynesia,2021,689277
+Polynesia,2022,689218
+Polynesia,2023,689436
+American Samoa,2020,49855
+American Samoa,2021,49668
+American Samoa,2022,48782
+American Samoa,2023,47901
+Cook Islands,2020,15892
+Cook Islands,2021,15395
+Cook Islands,2022,14970
+Cook Islands,2023,14477
+French Polynesia,2020,278819
+French Polynesia,2021,279599
+French Polynesia,2022,279985
+French Polynesia,2023,280771
+Niue,2020,1793
+Niue,2021,1804
+Niue,2022,1823
+Niue,2023,1820
+Samoa,2020,210867
+Samoa,2021,213021
+Samoa,2022,214537
+Samoa,2023,215984
+Tokelau,2020,2084
+Tokelau,2021,2172
+Tokelau,2022,2238
+Tokelau,2023,2342
+Tonga,2020,105696
+Tonga,2021,105711
+Tonga,2022,105268
+Tonga,2023,104816
+Tuvalu,2020,10492
+Tuvalu,2021,10307
+Tuvalu,2022,10080
+Tuvalu,2023,9904
+Wallis and Futuna Islands,2020,11632
+Wallis and Futuna Islands,2021,11600
+Wallis and Futuna Islands,2022,11535
+Wallis and Futuna Islands,2023,11421

@@ -1,0 +1,4 @@
+Things to implement or take care:
+* prophet
+* see difference in shape of process between epidemics and pandemics or human-human contagions
+* external variables like rain, temp, pop density....

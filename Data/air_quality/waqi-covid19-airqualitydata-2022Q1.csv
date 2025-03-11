@@ -1,0 +1,5 @@
+# Daily air quality and meteorological measurements for majors world-wide cities
+# By using this data you agree with the terms of service: https://aqicn.org/data-platform/tos/
+# For more information check: https://aqicn.org/data-platform/covid19/
+# Data-Set Generated on 2024-01-31T07:41:57Z
+Date,Country,City,Specie,count,min,max,median,variance

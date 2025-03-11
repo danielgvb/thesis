@@ -1,0 +1,1101 @@
+country,country_code,indicator_name,indicator_code,year,value
+Brazil,BRA,"Compulsory education, duration (years)",SE.COM.DURS,2019,14.0
+Brazil,BRA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2019,1.703
+Brazil,BRA,Gini index,SI.POV.GINI,2019,53.5
+Brazil,BRA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2019,46.0
+Brazil,BRA,Income share held by highest 10%,SI.DST.10TH.10,2019,42.0
+Brazil,BRA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2019,73.9124
+Brazil,BRA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2019,75.338
+Brazil,BRA,Net migration,SM.POP.NETM,2019,-129216.0
+Brazil,BRA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2019,0.521852706592371
+Brazil,BRA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2019,98.9355439518362
+Brazil,BRA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2019,89.298795927984
+Brazil,BRA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2019,85.1909258971105
+Brazil,BRA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2019,47.8493130261362
+Brazil,BRA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2019,21.0598118773538
+Brazil,BRA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2019,69.6671137738846
+Brazil,BRA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2019,9.27307434876159
+Brazil,BRA,Population density (people per sq. km of land area),EN.POP.DNST,2019,24.82076861598394
+Brazil,BRA,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2019,5.4
+Brazil,BRA,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2019,0.5
+Brazil,BRA,Rural population,SP.RUR.TOTL,2019,27334331.0
+Brazil,BRA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2019,91.0
+Brazil,BRA,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2019,69.0
+Chile,CHL,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2019,4300.0
+Chile,CHL,"Compulsory education, duration (years)",SE.COM.DURS,2019,12.0
+Chile,CHL,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2019,9.36262131
+Chile,CHL,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2019,1.545
+Chile,CHL,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2019,17.0
+Chile,CHL,Individuals using the Internet (% of population),IT.NET.USER.ZS,2019,85.0176
+Chile,CHL,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2019,80.326
+Chile,CHL,Net migration,SM.POP.NETM,2019,181339.0
+Chile,CHL,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2019,3.666
+Chile,CHL,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2019,0.0
+Chile,CHL,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2019,100.0
+Chile,CHL,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2019,100.0
+Chile,CHL,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2019,98.7713665442106
+Chile,CHL,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2019,95.2356042497103
+Chile,CHL,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2019,2.649
+Chile,CHL,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2019,18.7029345739791
+Chile,CHL,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2019,68.97100513477
+Chile,CHL,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2019,12.3260602912509
+Chile,CHL,Population density (people per sq. km of land area),EN.POP.DNST,2019,25.819660754345474
+Chile,CHL,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2019,0.5
+Chile,CHL,Rural population,SP.RUR.TOTL,2019,2372265.0
+Chile,CHL,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2019,87.0
+Chile,CHL,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2019,74.0
+Colombia,COL,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2019,8700.0
+Colombia,COL,"Compulsory education, duration (years)",SE.COM.DURS,2019,12.0
+Colombia,COL,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2019,1.765
+Colombia,COL,Gini index,SI.POV.GINI,2019,51.3
+Colombia,COL,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2019,35.0
+Colombia,COL,Income share held by highest 10%,SI.DST.10TH.10,2019,40.3
+Colombia,COL,Individuals using the Internet (% of population),IT.NET.USER.ZS,2019,65.0069
+Colombia,COL,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2019,76.752
+Colombia,COL,Net migration,SM.POP.NETM,2019,396826.0
+Colombia,COL,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2019,3.04673147653761
+Colombia,COL,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2019,96.8925246726353
+Colombia,COL,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2019,92.151091537794
+Colombia,COL,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2019,73.2719193638744
+Colombia,COL,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2019,18.034778610067
+Colombia,COL,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2019,69.724608105128
+Colombia,COL,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2019,22.1227454885225
+Colombia,COL,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2019,69.6869318607033
+Colombia,COL,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2019,8.19032265077422
+Colombia,COL,Population density (people per sq. km of land area),EN.POP.DNST,2019,44.98241099594412
+Colombia,COL,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2019,5.3
+Colombia,COL,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2019,0.4
+Colombia,COL,Rural population,SP.RUR.TOTL,2019,9430613.0
+Colombia,COL,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2019,81.0
+Colombia,COL,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2019,75.0
+Dominican Republic,DOM,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2019,3600.0
+Dominican Republic,DOM,"Compulsory education, duration (years)",SE.COM.DURS,2019,15.0
+Dominican Republic,DOM,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2019,2.344
+Dominican Republic,DOM,Gini index,SI.POV.GINI,2019,41.9
+Dominican Republic,DOM,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2019,42.0
+Dominican Republic,DOM,Income share held by highest 10%,SI.DST.10TH.10,2019,33.1
+Dominican Republic,DOM,Individuals using the Internet (% of population),IT.NET.USER.ZS,2019,79.7155
+Dominican Republic,DOM,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2019,73.577
+Dominican Republic,DOM,Net migration,SM.POP.NETM,2019,-35797.0
+Dominican Republic,DOM,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2019,1.44
+Dominican Republic,DOM,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2019,2.16787581605461
+Dominican Republic,DOM,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2019,96.1401141515674
+Dominican Republic,DOM,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2019,87.2031083799599
+Dominican Republic,DOM,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2019,44.6893608651201
+Dominican Republic,DOM,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2019,44.4365867783292
+Dominican Republic,DOM,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2019,49.4131682229902
+Dominican Republic,DOM,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2019,1.433
+Dominican Republic,DOM,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2019,27.9439906771072
+Dominican Republic,DOM,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2019,65.4731826616995
+Dominican Republic,DOM,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2019,6.58282666119334
+Dominican Republic,DOM,Population density (people per sq. km of land area),EN.POP.DNST,2019,226.02677454385056
+Dominican Republic,DOM,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2019,0.8
+Dominican Republic,DOM,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2019,1.0
+Dominican Republic,DOM,Rural population,SP.RUR.TOTL,2019,1979665.0
+Dominican Republic,DOM,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2019,79.0
+Dominican Republic,DOM,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2019,80.0
+Germany,DEU,"Compulsory education, duration (years)",SE.COM.DURS,2019,13.0
+Germany,DEU,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2019,11.71550655
+Germany,DEU,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2019,1.54
+Germany,DEU,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2019,6.1
+Germany,DEU,Individuals using the Internet (% of population),IT.NET.USER.ZS,2019,88.1345
+Germany,DEU,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2019,81.29268292682927
+Germany,DEU,Net migration,SM.POP.NETM,2019,319082.0
+Germany,DEU,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2019,0.0
+Germany,DEU,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2019,99.9999995489977
+Germany,DEU,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2019,99.2253840840528
+Germany,DEU,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2019,99.9093444594773
+Germany,DEU,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2019,96.8705960796567
+Germany,DEU,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2019,13.6625971101334
+Germany,DEU,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2019,64.709009583285
+Germany,DEU,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2019,21.6283933065816
+Germany,DEU,Population density (people per sq. km of land area),EN.POP.DNST,2019,237.82295429176565
+Germany,DEU,Rural population,SP.RUR.TOTL,2019,18798952.0
+Germany,DEU,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2019,91.0
+Germany,DEU,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2019,69.0
+Italy,ITA,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2019,2600.0
+Italy,ITA,"Compulsory education, duration (years)",SE.COM.DURS,2019,12.0
+Italy,ITA,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2019,8.66
+Italy,ITA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2019,1.27
+Italy,ITA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2019,6.1
+Italy,ITA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2019,67.8507
+Italy,ITA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2019,83.49756097560977
+Italy,ITA,Net migration,SM.POP.NETM,2019,46634.0
+Italy,ITA,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2019,6.445
+Italy,ITA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2019,0.0
+Italy,ITA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2019,99.9170340740928
+Italy,ITA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2019,99.8852240140235
+Italy,ITA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2019,93.2241567870465
+Italy,ITA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2019,79.0189612379409
+Italy,ITA,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2019,4.051
+Italy,ITA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2019,13.0238937094704
+Italy,ITA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2019,63.8719351973526
+Italy,ITA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2019,23.104171093177
+Italy,ITA,Population density (people per sq. km of land area),EN.POP.DNST,2019,201.9805455891951
+Italy,ITA,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2019,0.2
+Italy,ITA,Rural population,SP.RUR.TOTL,2019,17479118.0
+Italy,ITA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2019,87.0
+Mexico,MEX,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2019,19000.0
+Mexico,MEX,"Compulsory education, duration (years)",SE.COM.DURS,2019,14.0
+Mexico,MEX,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2019,1.916
+Mexico,MEX,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2019,23.0
+Mexico,MEX,Individuals using the Internet (% of population),IT.NET.USER.ZS,2019,69.6321
+Mexico,MEX,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2019,74.202
+Mexico,MEX,Net migration,SM.POP.NETM,2019,-169628.0
+Mexico,MEX,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2019,0.892243800654402
+Mexico,MEX,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2019,99.1153530172831
+Mexico,MEX,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2019,90.7765580654672
+Mexico,MEX,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2019,42.7827436572252
+Mexico,MEX,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2019,55.0519335207361
+Mexico,MEX,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2019,92.845159353106
+Mexico,MEX,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2019,26.3467733838135
+Mexico,MEX,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2019,66.3185850415085
+Mexico,MEX,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2019,7.33464157467799
+Mexico,MEX,Population density (people per sq. km of land area),EN.POP.DNST,2019,64.69455592993647
+Mexico,MEX,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2019,0.4
+Mexico,MEX,"Prevalence of overweight, weight for height (% of children under 5)",SH.STA.OWGH.ZS,2019,6.3
+Mexico,MEX,Rural population,SP.RUR.TOTL,2019,24594209.0
+Mexico,MEX,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2019,81.0
+Mexico,MEX,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2019,72.0
+Panama,PAN,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2019,1300.0
+Panama,PAN,"Compulsory education, duration (years)",SE.COM.DURS,2019,11.0
+Panama,PAN,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2019,2.375
+Panama,PAN,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2019,37.0
+Panama,PAN,Individuals using the Internet (% of population),IT.NET.USER.ZS,2019,63.6284
+Panama,PAN,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2019,77.81
+Panama,PAN,Net migration,SM.POP.NETM,2019,10623.0
+Panama,PAN,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2019,4.35983722871473
+Panama,PAN,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2019,94.182498815948
+Panama,PAN,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2019,83.3785517603304
+Panama,PAN,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2019,26.7423044439624
+Panama,PAN,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2019,65.1881520310586
+Panama,PAN,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2019,8.06954352497892
+Panama,PAN,Population density (people per sq. km of land area),EN.POP.DNST,2019,57.08681585332974
+Panama,PAN,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2019,1.0
+Panama,PAN,Rural population,SP.RUR.TOTL,2019,1352606.0
+Panama,PAN,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2019,80.0
+Panama,PAN,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2019,83.0
+United States,USA,"Compulsory education, duration (years)",SE.COM.DURS,2019,12.0
+United States,USA,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2019,16.66580582
+United States,USA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2019,1.706
+United States,USA,Gini index,SI.POV.GINI,2019,41.5
+United States,USA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2019,2.9
+United States,USA,Income share held by highest 10%,SI.DST.10TH.10,2019,30.3
+United States,USA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2019,89.4303
+United States,USA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2019,78.78780487804877
+United States,USA,Net migration,SM.POP.NETM,2019,1774500.0
+United States,USA,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2019,13.16
+United States,USA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2019,0.0
+United States,USA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2019,99.7446309234849
+United States,USA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2019,99.6844350554525
+United States,USA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2019,97.0093298983949
+United States,USA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2019,97.113840693715
+United States,USA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2019,18.6084404882877
+United States,USA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2019,65.718674264212
+United States,USA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2019,15.6728852475003
+United States,USA,Population density (people per sq. km of land area),EN.POP.DNST,2019,35.8931756713915
+United States,USA,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2019,1.0
+United States,USA,Rural population,SP.RUR.TOTL,2019,57592357.0
+United States,USA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2019,87.0
+United States,USA,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2019,75.0
+Uruguay,URY,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2019,1000.0
+Uruguay,URY,"Compulsory education, duration (years)",SE.COM.DURS,2019,14.0
+Uruguay,URY,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2019,1.546
+Uruguay,URY,Gini index,SI.POV.GINI,2019,39.7
+Uruguay,URY,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2019,36.0
+Uruguay,URY,Income share held by highest 10%,SI.DST.10TH.10,2019,29.7
+Uruguay,URY,Individuals using the Internet (% of population),IT.NET.USER.ZS,2019,83.3515
+Uruguay,URY,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2019,77.508
+Uruguay,URY,Net migration,SM.POP.NETM,2019,-2899.0
+Uruguay,URY,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2019,0.27654358325958
+Uruguay,URY,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2019,99.4872379896577
+Uruguay,URY,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2019,97.7678001669948
+Uruguay,URY,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2019,20.1749643935287
+Uruguay,URY,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2019,64.6984116798351
+Uruguay,URY,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2019,15.1266239266362
+Uruguay,URY,Population density (people per sq. km of land area),EN.POP.DNST,2019,19.410387384298936
+Uruguay,URY,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2019,0.1
+Uruguay,URY,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2019,0.6
+Uruguay,URY,Rural population,SP.RUR.TOTL,2019,155388.0
+Uruguay,URY,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2019,87.0
+Uruguay,URY,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2019,73.0
+Brazil,BRA,"Compulsory education, duration (years)",SE.COM.DURS,2020,14.0
+Brazil,BRA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2020,1.649
+Brazil,BRA,Gini index,SI.POV.GINI,2020,48.9
+Brazil,BRA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2020,45.0
+Brazil,BRA,Income share held by highest 10%,SI.DST.10TH.10,2020,39.5
+Brazil,BRA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2020,81.3427
+Brazil,BRA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2020,74.009
+Brazil,BRA,Net migration,SM.POP.NETM,2020,-78437.0
+Brazil,BRA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2020,0.30412818244418
+Brazil,BRA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2020,99.3208587959277
+Brazil,BRA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2020,90.0784764801568
+Brazil,BRA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2020,85.9216178835864
+Brazil,BRA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2020,48.7063179315612
+Brazil,BRA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2020,20.7566949222876
+Brazil,BRA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2020,69.6446402012395
+Brazil,BRA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2020,9.59866487647293
+Brazil,BRA,Population density (people per sq. km of land area),EN.POP.DNST,2020,24.964985271842778
+Brazil,BRA,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2020,2.0
+Brazil,BRA,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2020,0.6
+Brazil,BRA,Rural population,SP.RUR.TOTL,2020,26973587.0
+Brazil,BRA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2020,80.0
+Brazil,BRA,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2020,67.0
+Chile,CHL,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2020,4400.0
+Chile,CHL,"Compulsory education, duration (years)",SE.COM.DURS,2020,12.0
+Chile,CHL,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2020,9.72726822
+Chile,CHL,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2020,1.537
+Chile,CHL,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2020,14.0
+Chile,CHL,Individuals using the Internet (% of population),IT.NET.USER.ZS,2020,87.4593
+Chile,CHL,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2020,79.377
+Chile,CHL,Net migration,SM.POP.NETM,2020,26042.0
+Chile,CHL,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2020,4.306
+Chile,CHL,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2020,0.0
+Chile,CHL,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2020,100.0
+Chile,CHL,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2020,100.0
+Chile,CHL,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2020,98.7713706847373
+Chile,CHL,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2020,95.2628448029614
+Chile,CHL,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2020,2.808
+Chile,CHL,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2020,18.4128141664409
+Chile,CHL,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2020,68.9603700944275
+Chile,CHL,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2020,12.6268157391316
+Chile,CHL,Population density (people per sq. km of land area),EN.POP.DNST,2020,26.052172603196635
+Chile,CHL,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2020,0.6
+Chile,CHL,Rural population,SP.RUR.TOTL,2020,2377357.0
+Chile,CHL,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2020,87.0
+Chile,CHL,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2020,77.0
+Colombia,COL,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2020,8400.0
+Colombia,COL,"Compulsory education, duration (years)",SE.COM.DURS,2020,12.0
+Colombia,COL,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2020,1.737
+Colombia,COL,Gini index,SI.POV.GINI,2020,53.5
+Colombia,COL,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2020,34.0
+Colombia,COL,Income share held by highest 10%,SI.DST.10TH.10,2020,41.8
+Colombia,COL,Individuals using the Internet (% of population),IT.NET.USER.ZS,2020,69.7953
+Colombia,COL,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2020,74.769
+Colombia,COL,Net migration,SM.POP.NETM,2020,227130.0
+Colombia,COL,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2020,2.82621488861657
+Colombia,COL,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2020,97.0410236613368
+Colombia,COL,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2020,93.0127700372276
+Colombia,COL,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2020,73.413231097311
+Colombia,COL,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2020,18.1713637419349
+Colombia,COL,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2020,69.8701790353322
+Colombia,COL,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2020,21.6647057902778
+Colombia,COL,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2020,69.8711687670931
+Colombia,COL,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2020,8.46412544262915
+Colombia,COL,Population density (people per sq. km of land area),EN.POP.DNST,2020,45.63316538981523
+Colombia,COL,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2020,9.4
+Colombia,COL,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2020,0.5
+Colombia,COL,Rural population,SP.RUR.TOTL,2020,9404522.0
+Colombia,COL,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2020,69.0
+Colombia,COL,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2020,71.0
+Dominican Republic,DOM,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2020,3700.0
+Dominican Republic,DOM,"Compulsory education, duration (years)",SE.COM.DURS,2020,15.0
+Dominican Republic,DOM,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2020,2.303
+Dominican Republic,DOM,Gini index,SI.POV.GINI,2020,39.6
+Dominican Republic,DOM,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2020,41.0
+Dominican Republic,DOM,Income share held by highest 10%,SI.DST.10TH.10,2020,30.4
+Dominican Republic,DOM,Individuals using the Internet (% of population),IT.NET.USER.ZS,2020,81.6173
+Dominican Republic,DOM,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2020,72.889
+Dominican Republic,DOM,Net migration,SM.POP.NETM,2020,-17957.0
+Dominican Republic,DOM,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2020,1.893
+Dominican Republic,DOM,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2020,2.05173034646244
+Dominican Republic,DOM,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2020,96.3065793359028
+Dominican Republic,DOM,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2020,87.7003894263525
+Dominican Republic,DOM,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2020,44.7787855135927
+Dominican Republic,DOM,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2020,44.0000775190469
+Dominican Republic,DOM,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2020,48.8144407220184
+Dominican Republic,DOM,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2020,1.949
+Dominican Republic,DOM,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2020,27.6825804165948
+Dominican Republic,DOM,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2020,65.5074489249021
+Dominican Republic,DOM,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2020,6.80997065850313
+Dominican Republic,DOM,Population density (people per sq. km of land area),EN.POP.DNST,2020,228.3973491027225
+Dominican Republic,DOM,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2020,1.0
+Dominican Republic,DOM,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2020,1.0
+Dominican Republic,DOM,Rural population,SP.RUR.TOTL,2020,1922049.0
+Dominican Republic,DOM,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2020,58.0
+Dominican Republic,DOM,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2020,84.0
+Germany,DEU,"Compulsory education, duration (years)",SE.COM.DURS,2020,13.0
+Germany,DEU,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2020,12.69255257
+Germany,DEU,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2020,1.53
+Germany,DEU,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2020,5.3
+Germany,DEU,Individuals using the Internet (% of population),IT.NET.USER.ZS,2020,89.8129
+Germany,DEU,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2020,81.04146341463415
+Germany,DEU,Net migration,SM.POP.NETM,2020,203468.0
+Germany,DEU,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2020,0.0
+Germany,DEU,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2020,100.0
+Germany,DEU,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2020,99.2256171729146
+Germany,DEU,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2020,99.9126502107578
+Germany,DEU,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2020,96.8760471917282
+Germany,DEU,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2020,13.7617263334875
+Germany,DEU,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2020,64.3935455490144
+Germany,DEU,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2020,21.8447281174981
+Germany,DEU,Population density (people per sq. km of land area),EN.POP.DNST,2020,238.01731875554538
+Germany,DEU,Rural population,SP.RUR.TOTL,2020,18750282.0
+Germany,DEU,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2020,91.0
+Germany,DEU,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2020,74.0
+Italy,ITA,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2020,2300.0
+Italy,ITA,"Compulsory education, duration (years)",SE.COM.DURS,2020,12.0
+Italy,ITA,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2020,9.63
+Italy,ITA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2020,1.24
+Italy,ITA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2020,4.2
+Italy,ITA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2020,70.4834
+Italy,ITA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2020,82.19512195121952
+Italy,ITA,Net migration,SM.POP.NETM,2020,85281.0
+Italy,ITA,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2020,6.56
+Italy,ITA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2020,0.0
+Italy,ITA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2020,99.9170340740928
+Italy,ITA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2020,99.8851587287766
+Italy,ITA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2020,92.9673571734084
+Italy,ITA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2020,79.0230000842319
+Italy,ITA,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2020,3.997
+Italy,ITA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2020,12.8259753776361
+Italy,ITA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2020,63.7947913907968
+Italy,ITA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2020,23.379233231567
+Italy,ITA,Population density (people per sq. km of land area),EN.POP.DNST,2020,200.99910049134814
+Italy,ITA,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2020,0.2
+Italy,ITA,Rural population,SP.RUR.TOTL,2020,17214086.0
+Italy,ITA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2020,87.0
+Mexico,MEX,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2020,19000.0
+Mexico,MEX,"Compulsory education, duration (years)",SE.COM.DURS,2020,14.0
+Mexico,MEX,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2020,1.905
+Mexico,MEX,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2020,23.0
+Mexico,MEX,Individuals using the Internet (% of population),IT.NET.USER.ZS,2020,71.4902
+Mexico,MEX,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2020,70.133
+Mexico,MEX,Net migration,SM.POP.NETM,2020,-147456.0
+Mexico,MEX,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2020,0.519236599068691
+Mexico,MEX,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2020,99.3687045328802
+Mexico,MEX,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2020,91.3853355718832
+Mexico,MEX,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2020,42.8921018203856
+Mexico,MEX,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2020,57.5235330882718
+Mexico,MEX,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2020,93.2103783677687
+Mexico,MEX,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2020,25.9842947015035
+Mexico,MEX,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2020,66.5296254239814
+Mexico,MEX,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2020,7.48607987451515
+Mexico,MEX,Population density (people per sq. km of land area),EN.POP.DNST,2020,65.22752848581496
+Mexico,MEX,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2020,0.4
+Mexico,MEX,"Prevalence of overweight, weight for height (% of children under 5)",SH.STA.OWGH.ZS,2020,8.1
+Mexico,MEX,Rural population,SP.RUR.TOTL,2020,24432910.0
+Mexico,MEX,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2020,62.0
+Mexico,MEX,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2020,71.0
+Panama,PAN,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2020,1300.0
+Panama,PAN,"Compulsory education, duration (years)",SE.COM.DURS,2020,11.0
+Panama,PAN,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2020,2.344
+Panama,PAN,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2020,33.0
+Panama,PAN,Individuals using the Internet (% of population),IT.NET.USER.ZS,2020,72.61
+Panama,PAN,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2020,76.657
+Panama,PAN,Net migration,SM.POP.NETM,2020,5473.0
+Panama,PAN,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2020,4.19322889025193
+Panama,PAN,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2020,94.3957926093894
+Panama,PAN,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2020,84.5738526161686
+Panama,PAN,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2020,26.389881723939
+Panama,PAN,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2020,65.316702152513
+Panama,PAN,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2020,8.29341612354804
+Panama,PAN,Population density (people per sq. km of land area),EN.POP.DNST,2020,57.876260447559986
+Panama,PAN,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2020,1.0
+Panama,PAN,Rural population,SP.RUR.TOTL,2020,1356069.0
+Panama,PAN,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2020,80.0
+Panama,PAN,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2020,79.0
+United States,USA,"Compulsory education, duration (years)",SE.COM.DURS,2020,12.0
+United States,USA,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2020,18.75621986
+United States,USA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2020,1.6415
+United States,USA,Gini index,SI.POV.GINI,2020,39.7
+United States,USA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2020,2.3
+United States,USA,Income share held by highest 10%,SI.DST.10TH.10,2020,29.1
+United States,USA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2020,96.5768
+United States,USA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2020,76.98048780487805
+United States,USA,Net migration,SM.POP.NETM,2020,329769.0
+United States,USA,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2020,12.47
+United States,USA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2020,0.0
+United States,USA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2020,99.8204215151458
+United States,USA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2020,99.6662736189595
+United States,USA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2020,97.1649574893557
+United States,USA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2020,97.0896575350512
+United States,USA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2020,18.3928572241369
+United States,USA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2020,65.5352308319268
+United States,USA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2020,16.0719119439363
+United States,USA,Population density (people per sq. km of land area),EN.POP.DNST,2020,36.24267093890955
+United States,USA,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2020,0.2
+United States,USA,Rural population,SP.RUR.TOTL,2020,57473509.0
+United States,USA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2020,87.0
+United States,USA,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2020,74.0
+Uruguay,URY,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2020,1000.0
+Uruguay,URY,"Compulsory education, duration (years)",SE.COM.DURS,2020,14.0
+Uruguay,URY,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2020,1.477
+Uruguay,URY,Gini index,SI.POV.GINI,2020,40.2
+Uruguay,URY,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2020,33.0
+Uruguay,URY,Income share held by highest 10%,SI.DST.10TH.10,2020,29.9
+Uruguay,URY,Individuals using the Internet (% of population),IT.NET.USER.ZS,2020,85.471
+Uruguay,URY,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2020,78.43
+Uruguay,URY,Net migration,SM.POP.NETM,2020,-1482.0
+Uruguay,URY,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2020,0.21419510799371
+Uruguay,URY,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2020,99.4957570735158
+Uruguay,URY,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2020,98.054528854659
+Uruguay,URY,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2020,19.8076445556416
+Uruguay,URY,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2020,64.866512423771
+Uruguay,URY,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2020,15.3258430205874
+Uruguay,URY,Population density (people per sq. km of land area),EN.POP.DNST,2020,19.420454805165125
+Uruguay,URY,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2020,0.2
+Uruguay,URY,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2020,0.6
+Uruguay,URY,Rural population,SP.RUR.TOTL,2020,152444.0
+Uruguay,URY,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2020,87.0
+Uruguay,URY,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2020,72.0
+Brazil,BRA,"Compulsory education, duration (years)",SE.COM.DURS,2021,14.0
+Brazil,BRA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2021,1.641
+Brazil,BRA,Gini index,SI.POV.GINI,2021,52.9
+Brazil,BRA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2021,48.0
+Brazil,BRA,Income share held by highest 10%,SI.DST.10TH.10,2021,41.6
+Brazil,BRA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2021,80.6899
+Brazil,BRA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2021,72.75
+Brazil,BRA,Net migration,SM.POP.NETM,2021,-208581.0
+Brazil,BRA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2021,0.0944484770227521
+Brazil,BRA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2021,99.5894010970371
+Brazil,BRA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2021,90.8109852394536
+Brazil,BRA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2021,86.644033115994
+Brazil,BRA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2021,49.5515086694254
+Brazil,BRA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2021,20.4706372304111
+Brazil,BRA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2021,69.6182628596073
+Brazil,BRA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2021,9.91109990998152
+Brazil,BRA,Population density (people per sq. km of land area),EN.POP.DNST,2021,25.071402728358223
+Brazil,BRA,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2021,5.8
+Brazil,BRA,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2021,0.6
+Brazil,BRA,Rural population,SP.RUR.TOTL,2021,26577264.0
+Brazil,BRA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2021,79.0
+Brazil,BRA,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2021,65.0
+Chile,CHL,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2021,4400.0
+Chile,CHL,"Compulsory education, duration (years)",SE.COM.DURS,2021,12.0
+Chile,CHL,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2021,9.34327984
+Chile,CHL,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2021,1.537
+Chile,CHL,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2021,16.0
+Chile,CHL,Individuals using the Internet (% of population),IT.NET.USER.ZS,2021,88.8045
+Chile,CHL,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2021,78.944
+Chile,CHL,Net migration,SM.POP.NETM,2021,65480.0
+Chile,CHL,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2021,4.601
+Chile,CHL,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2021,0.0
+Chile,CHL,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2021,100.0
+Chile,CHL,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2021,100.0
+Chile,CHL,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2021,98.7713676396397
+Chile,CHL,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2021,95.2920244547787
+Chile,CHL,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2021,2.973
+Chile,CHL,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2021,18.0965848962091
+Chile,CHL,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2021,68.9469814817118
+Chile,CHL,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2021,12.9564336220791
+Chile,CHL,Population density (people per sq. km of land area),EN.POP.DNST,2021,26.167446727242407
+Chile,CHL,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2021,0.6
+Chile,CHL,Rural population,SP.RUR.TOTL,2021,2370365.0
+Chile,CHL,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2021,87.0
+Chile,CHL,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2021,74.0
+Colombia,COL,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2021,8600.0
+Colombia,COL,"Compulsory education, duration (years)",SE.COM.DURS,2021,12.0
+Colombia,COL,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2021,1.717
+Colombia,COL,Gini index,SI.POV.GINI,2021,55.1
+Colombia,COL,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2021,41.0
+Colombia,COL,Income share held by highest 10%,SI.DST.10TH.10,2021,43.7
+Colombia,COL,Individuals using the Internet (% of population),IT.NET.USER.ZS,2021,73.0284
+Colombia,COL,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2021,72.83
+Colombia,COL,Net migration,SM.POP.NETM,2021,199070.0
+Colombia,COL,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2021,2.61086357250936
+Colombia,COL,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2021,97.3938172969202
+Colombia,COL,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2021,93.8726777763574
+Colombia,COL,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2021,73.7198955424508
+Colombia,COL,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2021,18.3074560277274
+Colombia,COL,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2021,70.0130213605058
+Colombia,COL,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2021,21.2984499241802
+Colombia,COL,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2021,69.9880002555668
+Colombia,COL,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2021,8.71354982025291
+Colombia,COL,Population density (people per sq. km of land area),EN.POP.DNST,2021,46.13625326723749
+Colombia,COL,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2021,7.3
+Colombia,COL,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2021,0.5
+Colombia,COL,Rural population,SP.RUR.TOTL,2021,9346960.0
+Colombia,COL,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2021,65.0
+Colombia,COL,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2021,73.0
+Dominican Republic,DOM,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2021,3800.0
+Dominican Republic,DOM,"Compulsory education, duration (years)",SE.COM.DURS,2021,15.0
+Dominican Republic,DOM,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2021,2.273
+Dominican Republic,DOM,Gini index,SI.POV.GINI,2021,38.5
+Dominican Republic,DOM,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2021,42.0
+Dominican Republic,DOM,Income share held by highest 10%,SI.DST.10TH.10,2021,30.2
+Dominican Republic,DOM,Individuals using the Internet (% of population),IT.NET.USER.ZS,2021,85.243
+Dominican Republic,DOM,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2021,72.615
+Dominican Republic,DOM,Net migration,SM.POP.NETM,2021,-17957.0
+Dominican Republic,DOM,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2021,2.018
+Dominican Republic,DOM,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2021,1.93923267520955
+Dominican Republic,DOM,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2021,96.7046144512381
+Dominican Republic,DOM,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2021,88.1932241226555
+Dominican Republic,DOM,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2021,44.8626582257639
+Dominican Republic,DOM,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2021,43.5646980049231
+Dominican Republic,DOM,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2021,48.2114397000082
+Dominican Republic,DOM,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2021,2.03
+Dominican Republic,DOM,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2021,27.4364069035797
+Dominican Republic,DOM,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2021,65.5342478167008
+Dominican Republic,DOM,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2021,7.02934527971945
+Dominican Republic,DOM,Population density (people per sq. km of land area),EN.POP.DNST,2021,230.78699083489323
+Dominican Republic,DOM,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2021,0.9
+Dominican Republic,DOM,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2021,1.0
+Dominican Republic,DOM,Rural population,SP.RUR.TOTL,2021,1867298.0
+Dominican Republic,DOM,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2021,72.0
+Dominican Republic,DOM,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2021,82.0
+Germany,DEU,"Compulsory education, duration (years)",SE.COM.DURS,2021,13.0
+Germany,DEU,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2021,12.93412971
+Germany,DEU,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2021,1.58
+Germany,DEU,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2021,5.0
+Germany,DEU,Individuals using the Internet (% of population),IT.NET.USER.ZS,2021,91.4306
+Germany,DEU,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2021,80.79024390243903
+Germany,DEU,Net migration,SM.POP.NETM,2021,310264.0
+Germany,DEU,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2021,0.0
+Germany,DEU,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2021,100.0
+Germany,DEU,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2021,99.2258922058797
+Germany,DEU,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2021,99.9160427536765
+Germany,DEU,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2021,96.8824891248943
+Germany,DEU,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2021,13.8577309430111
+Germany,DEU,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2021,64.007731691245
+Germany,DEU,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2021,22.1345373657439
+Germany,DEU,Population density (people per sq. km of land area),EN.POP.DNST,2021,238.11808580669165
+Germany,DEU,Rural population,SP.RUR.TOTL,2021,18682511.0
+Germany,DEU,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2021,91.0
+Germany,DEU,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2021,67.0
+Italy,ITA,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2021,2000.0
+Italy,ITA,"Compulsory education, duration (years)",SE.COM.DURS,2021,12.0
+Italy,ITA,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2021,9.38
+Italy,ITA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2021,1.25
+Italy,ITA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2021,4.6
+Italy,ITA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2021,74.8623
+Italy,ITA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2021,82.64634146341464
+Italy,ITA,Net migration,SM.POP.NETM,2021,157327.0
+Italy,ITA,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2021,6.487
+Italy,ITA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2021,0.0
+Italy,ITA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2021,99.9170340740928
+Italy,ITA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2021,99.8850967615747
+Italy,ITA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2021,92.7105575597704
+Italy,ITA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2021,79.0270957158613
+Italy,ITA,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2021,4.097
+Italy,ITA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2021,12.6146793829164
+Italy,ITA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2021,63.7233470647178
+Italy,ITA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2021,23.6619735523658
+Italy,ITA,Population density (people per sq. km of land area),EN.POP.DNST,2021,199.9654162594643
+Italy,ITA,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2021,0.2
+Italy,ITA,Rural population,SP.RUR.TOTL,2021,16944019.0
+Italy,ITA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2021,87.0
+Mexico,MEX,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2021,19000.0
+Mexico,MEX,"Compulsory education, duration (years)",SE.COM.DURS,2021,14.0
+Mexico,MEX,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2021,1.822
+Mexico,MEX,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2021,25.0
+Mexico,MEX,Individuals using the Internet (% of population),IT.NET.USER.ZS,2021,75.6265
+Mexico,MEX,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2021,70.213
+Mexico,MEX,Net migration,SM.POP.NETM,2021,-122791.0
+Mexico,MEX,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2021,0.152016608060137
+Mexico,MEX,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2021,99.5400027130721
+Mexico,MEX,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2021,91.9871311173379
+Mexico,MEX,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2021,42.9660419911967
+Mexico,MEX,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2021,60.0247240420464
+Mexico,MEX,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2021,93.5755964703008
+Mexico,MEX,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2021,25.6612568545109
+Mexico,MEX,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2021,66.7529844097424
+Mexico,MEX,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2021,7.58575873574664
+Mexico,MEX,Population density (people per sq. km of land area),EN.POP.DNST,2021,65.66431646904499
+Mexico,MEX,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2021,0.4
+Mexico,MEX,"Prevalence of overweight, weight for height (% of children under 5)",SH.STA.OWGH.ZS,2021,7.2
+Mexico,MEX,Rural population,SP.RUR.TOTL,2021,24232724.0
+Mexico,MEX,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2021,69.0
+Mexico,MEX,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2021,71.0
+Panama,PAN,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2021,1300.0
+Panama,PAN,"Compulsory education, duration (years)",SE.COM.DURS,2021,11.0
+Panama,PAN,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2021,2.325
+Panama,PAN,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2021,42.0
+Panama,PAN,Individuals using the Internet (% of population),IT.NET.USER.ZS,2021,73.0556
+Panama,PAN,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2021,76.223
+Panama,PAN,Net migration,SM.POP.NETM,2021,5473.0
+Panama,PAN,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2021,4.02738278380452
+Panama,PAN,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2021,94.6061069769306
+Panama,PAN,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2021,85.7768116113072
+Panama,PAN,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2021,26.0430615788402
+Panama,PAN,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2021,65.4480767615447
+Panama,PAN,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2021,8.50886165961516
+Panama,PAN,Population density (people per sq. km of land area),EN.POP.DNST,2021,58.579199245079536
+Panama,PAN,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2021,1.0
+Panama,PAN,Rural population,SP.RUR.TOTL,2021,1356853.0
+Panama,PAN,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2021,80.0
+Panama,PAN,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2021,76.0
+United States,USA,"Compulsory education, duration (years)",SE.COM.DURS,2021,12.0
+United States,USA,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2021,17.3625679
+United States,USA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2021,1.664
+United States,USA,Gini index,SI.POV.GINI,2021,39.7
+United States,USA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2021,2.6
+United States,USA,Income share held by highest 10%,SI.DST.10TH.10,2021,29.7
+United States,USA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2021,96.7792
+United States,USA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2021,76.32926829268293
+United States,USA,Net migration,SM.POP.NETM,2021,674787.0
+United States,USA,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2021,13.15
+United States,USA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2021,0.0
+United States,USA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2021,99.8949384148984
+United States,USA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2021,99.6486678114382
+United States,USA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2021,97.3193002947094
+United States,USA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2021,97.0661458186488
+United States,USA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2021,18.1461171256033
+United States,USA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2021,65.380112850592
+United States,USA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2021,16.4737700238047
+United States,USA,Population density (people per sq. km of land area),EN.POP.DNST,2021,36.29974101987227
+United States,USA,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2021,0.2
+United States,USA,Rural population,SP.RUR.TOTL,2021,56870028.0
+United States,USA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2021,87.0
+United States,USA,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2021,76.0
+Uruguay,URY,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2021,1000.0
+Uruguay,URY,"Compulsory education, duration (years)",SE.COM.DURS,2021,14.0
+Uruguay,URY,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2021,1.493
+Uruguay,URY,Gini index,SI.POV.GINI,2021,40.8
+Uruguay,URY,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2021,32.0
+Uruguay,URY,Income share held by highest 10%,SI.DST.10TH.10,2021,30.8
+Uruguay,URY,Individuals using the Internet (% of population),IT.NET.USER.ZS,2021,87.6444
+Uruguay,URY,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2021,75.436
+Uruguay,URY,Net migration,SM.POP.NETM,2021,-1482.0
+Uruguay,URY,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2021,0.151728369890553
+Uruguay,URY,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2021,99.504241877115
+Uruguay,URY,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2021,98.3258818644979
+Uruguay,URY,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2021,19.4316121158379
+Uruguay,URY,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2021,65.0844077970509
+Uruguay,URY,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2021,15.4839800871112
+Uruguay,URY,Population density (people per sq. km of land area),EN.POP.DNST,2021,19.407467717975088
+Uruguay,URY,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2021,0.1
+Uruguay,URY,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2021,0.6
+Uruguay,URY,Rural population,SP.RUR.TOTL,2021,149353.0
+Uruguay,URY,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2021,87.0
+Uruguay,URY,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2021,72.0
+Brazil,BRA,"Compulsory education, duration (years)",SE.COM.DURS,2022,14.0
+Brazil,BRA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2022,1.626
+Brazil,BRA,Gini index,SI.POV.GINI,2022,52.0
+Brazil,BRA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2022,49.0
+Brazil,BRA,Income share held by highest 10%,SI.DST.10TH.10,2022,41.0
+Brazil,BRA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2022,80.5278
+Brazil,BRA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2022,73.425
+Brazil,BRA,Net migration,SM.POP.NETM,2022,-253639.0
+Brazil,BRA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2022,0.0926761640594509
+Brazil,BRA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2022,99.5937713070223
+Brazil,BRA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2022,90.8834993687823
+Brazil,BRA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2022,87.2587154718951
+Brazil,BRA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2022,49.5867372379443
+Brazil,BRA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2022,20.2024769910192
+Brazil,BRA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2022,69.5457382256878
+Brazil,BRA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2022,10.251784783293
+Brazil,BRA,Population density (people per sq. km of land area),EN.POP.DNST,2022,25.16186795148203
+Brazil,BRA,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2022,3.5
+Brazil,BRA,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2022,0.6
+Brazil,BRA,Rural population,SP.RUR.TOTL,2022,26172633.0
+Brazil,BRA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2022,87.0
+Brazil,BRA,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2022,66.0
+Chile,CHL,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2022,4500.0
+Chile,CHL,"Compulsory education, duration (years)",SE.COM.DURS,2022,12.0
+Chile,CHL,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2022,9.00162983
+Chile,CHL,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2022,1.539
+Chile,CHL,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2022,17.0
+Chile,CHL,Individuals using the Internet (% of population),IT.NET.USER.ZS,2022,90.6769
+Chile,CHL,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2022,79.519
+Chile,CHL,Net migration,SM.POP.NETM,2022,59374.0
+Chile,CHL,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2022,4.968
+Chile,CHL,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2022,0.0
+Chile,CHL,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2022,99.9999982963226
+Chile,CHL,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2022,99.9999982963226
+Chile,CHL,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2022,98.7713643041914
+Chile,CHL,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2022,95.3228228384528
+Chile,CHL,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2022,3.17
+Chile,CHL,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2022,17.7575564797826
+Chile,CHL,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2022,68.9423635045125
+Chile,CHL,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2022,13.300080015705
+Chile,CHL,Population density (people per sq. km of land area),EN.POP.DNST,2022,26.29750434413045
+Chile,CHL,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2022,0.6
+Chile,CHL,Rural population,SP.RUR.TOTL,2022,2363571.0
+Chile,CHL,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2022,87.0
+Chile,CHL,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2022,71.0
+Colombia,COL,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2022,7600.0
+Colombia,COL,"Compulsory education, duration (years)",SE.COM.DURS,2022,12.0
+Colombia,COL,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2022,1.692
+Colombia,COL,Gini index,SI.POV.GINI,2022,54.8
+Colombia,COL,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2022,47.0
+Colombia,COL,Income share held by highest 10%,SI.DST.10TH.10,2022,43.5
+Colombia,COL,Individuals using the Internet (% of population),IT.NET.USER.ZS,2022,72.7964
+Colombia,COL,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2022,73.659
+Colombia,COL,Net migration,SM.POP.NETM,2022,183180.0
+Colombia,COL,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2022,2.40045300797647
+Colombia,COL,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2022,97.5377603878354
+Colombia,COL,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2022,94.7309784385239
+Colombia,COL,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2022,73.8560448264451
+Colombia,COL,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2022,18.4429900960156
+Colombia,COL,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2022,70.1535998009368
+Colombia,COL,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2022,20.9532806420881
+Colombia,COL,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2022,70.0401630768335
+Colombia,COL,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2022,9.00655628107831
+Colombia,COL,Population density (people per sq. km of land area),EN.POP.DNST,2022,46.6317656602073
+Colombia,COL,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2022,6.0
+Colombia,COL,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2022,0.5
+Colombia,COL,Rural population,SP.RUR.TOTL,2022,9286961.0
+Colombia,COL,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2022,68.0
+Colombia,COL,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2022,74.0
+Dominican Republic,DOM,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2022,3400.0
+Dominican Republic,DOM,"Compulsory education, duration (years)",SE.COM.DURS,2022,15.0
+Dominican Republic,DOM,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2022,2.247
+Dominican Republic,DOM,Gini index,SI.POV.GINI,2022,37.0
+Dominican Republic,DOM,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2022,42.0
+Dominican Republic,DOM,Income share held by highest 10%,SI.DST.10TH.10,2022,28.3
+Dominican Republic,DOM,Individuals using the Internet (% of population),IT.NET.USER.ZS,2022,84.3832
+Dominican Republic,DOM,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2022,74.17
+Dominican Republic,DOM,Net migration,SM.POP.NETM,2022,-35153.0
+Dominican Republic,DOM,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2022,2.078
+Dominican Republic,DOM,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2022,1.83017538770409
+Dominican Republic,DOM,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2022,96.7545243422804
+Dominican Republic,DOM,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2022,88.6817918806029
+Dominican Republic,DOM,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2022,44.9411768110773
+Dominican Republic,DOM,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2022,43.130185712713
+Dominican Republic,DOM,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2022,48.3248542782971
+Dominican Republic,DOM,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2022,2.235
+Dominican Republic,DOM,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2022,27.1919594566107
+Dominican Republic,DOM,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2022,65.5209074278185
+Dominican Republic,DOM,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2022,7.28713311557077
+Dominican Republic,DOM,Population density (people per sq. km of land area),EN.POP.DNST,2022,233.01235195968633
+Dominican Republic,DOM,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2022,0.8
+Dominican Republic,DOM,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2022,1.0
+Dominican Republic,DOM,Rural population,SP.RUR.TOTL,2022,1813988.0
+Dominican Republic,DOM,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2022,86.0
+Dominican Republic,DOM,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2022,80.0
+Germany,DEU,"Compulsory education, duration (years)",SE.COM.DURS,2022,13.0
+Germany,DEU,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2022,12.65471077
+Germany,DEU,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2022,1.455
+Germany,DEU,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2022,5.1
+Germany,DEU,Individuals using the Internet (% of population),IT.NET.USER.ZS,2022,91.6298
+Germany,DEU,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2022,80.70560975609757
+Germany,DEU,Net migration,SM.POP.NETM,2022,981552.0
+Germany,DEU,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2022,0.0
+Germany,DEU,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2022,99.9999985568823
+Germany,DEU,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2022,99.2262037402876
+Germany,DEU,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2022,99.9164119020981
+Germany,DEU,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2022,96.8898488990896
+Germany,DEU,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2022,13.9125311211787
+Germany,DEU,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2022,63.6285624993021
+Germany,DEU,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2022,22.4589063795192
+Germany,DEU,Population density (people per sq. km of land area),EN.POP.DNST,2022,239.86141802152508
+Germany,DEU,Rural population,SP.RUR.TOTL,2022,18730526.0
+Germany,DEU,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2022,91.0
+Germany,DEU,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2022,62.0
+Italy,ITA,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2022,1800.0
+Italy,ITA,"Compulsory education, duration (years)",SE.COM.DURS,2022,12.0
+Italy,ITA,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2022,9.0
+Italy,ITA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2022,1.24
+Italy,ITA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2022,4.4
+Italy,ITA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2022,85.0607
+Italy,ITA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2022,82.9
+Italy,ITA,Net migration,SM.POP.NETM,2022,231228.0
+Italy,ITA,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2022,7.71
+Italy,ITA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2022,0.0
+Italy,ITA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2022,99.9170340740928
+Italy,ITA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2022,99.8850365009352
+Italy,ITA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2022,92.7105575597704
+Italy,ITA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2022,79.0312466274538
+Italy,ITA,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2022,4.248
+Italy,ITA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2022,12.3897806298347
+Italy,ITA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2022,63.6810296805062
+Italy,ITA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2022,23.929189689659
+Italy,ITA,Population density (people per sq. km of land area),EN.POP.DNST,2022,199.55926890301637
+Italy,ITA,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2022,0.2
+Italy,ITA,Rural population,SP.RUR.TOTL,2022,16726244.0
+Italy,ITA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2022,87.0
+Mexico,MEX,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2022,19000.0
+Mexico,MEX,"Compulsory education, duration (years)",SE.COM.DURS,2022,14.0
+Mexico,MEX,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2022,1.803
+Mexico,MEX,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2022,28.0
+Mexico,MEX,Individuals using the Internet (% of population),IT.NET.USER.ZS,2022,78.6322
+Mexico,MEX,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2022,74.832
+Mexico,MEX,Net migration,SM.POP.NETM,2022,-108438.0
+Mexico,MEX,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2022,0.0
+Mexico,MEX,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2022,99.7064294458755
+Mexico,MEX,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2022,92.5184477680319
+Mexico,MEX,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2022,43.0378794213272
+Mexico,MEX,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2022,62.5008134803041
+Mexico,MEX,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2022,93.9408213324716
+Mexico,MEX,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2022,25.3113209855908
+Mexico,MEX,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2022,66.943409174418
+Mexico,MEX,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2022,7.74526983999124
+Mexico,MEX,Population density (people per sq. km of land area),EN.POP.DNST,2022,66.16071246688443
+Mexico,MEX,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2022,0.4
+Mexico,MEX,"Prevalence of overweight, weight for height (% of children under 5)",SH.STA.OWGH.ZS,2022,7.1
+Mexico,MEX,Rural population,SP.RUR.TOTL,2022,24050653.0
+Mexico,MEX,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2022,72.0
+Mexico,MEX,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2022,70.0
+Panama,PAN,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2022,1300.0
+Panama,PAN,"Compulsory education, duration (years)",SE.COM.DURS,2022,11.0
+Panama,PAN,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2022,2.297
+Panama,PAN,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2022,47.0
+Panama,PAN,Individuals using the Internet (% of population),IT.NET.USER.ZS,2022,73.6085
+Panama,PAN,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2022,76.826
+Panama,PAN,Net migration,SM.POP.NETM,2022,7967.0
+Panama,PAN,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2022,3.98534152666526
+Panama,PAN,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2022,94.6515652983232
+Panama,PAN,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2022,85.8798756121606
+Panama,PAN,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2022,25.6700356960016
+Panama,PAN,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2022,65.5636634745759
+Panama,PAN,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2022,8.76630082942247
+Panama,PAN,Population density (people per sq. km of land area),EN.POP.DNST,2022,59.32559989215422
+Panama,PAN,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2022,1.0
+Panama,PAN,Rural population,SP.RUR.TOTL,2022,1358035.0
+Panama,PAN,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2022,80.0
+Panama,PAN,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2022,74.0
+United States,USA,"Compulsory education, duration (years)",SE.COM.DURS,2022,12.0
+United States,USA,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2022,16.57115173
+United States,USA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2022,1.665
+United States,USA,Gini index,SI.POV.GINI,2022,41.3
+United States,USA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2022,2.6
+United States,USA,Income share held by highest 10%,SI.DST.10TH.10,2022,30.2
+United States,USA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2022,97.1299
+United States,USA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2022,77.43414634146343
+United States,USA,Net migration,SM.POP.NETM,2022,1319009.0
+United States,USA,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2022,11.88
+United States,USA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2022,0.0
+United States,USA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2022,99.9641128436489
+United States,USA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2022,99.631610907923
+United States,USA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2022,97.468388745246
+United States,USA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2022,97.0433043325004
+United States,USA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2022,17.8818251956671
+United States,USA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2022,65.1985544146872
+United States,USA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2022,16.9196203896458
+United States,USA,Population density (people per sq. km of land area),EN.POP.DNST,2022,36.43337804539422
+United States,USA,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2022,1.2
+United States,USA,Rural population,SP.RUR.TOTL,2022,56376192.0
+United States,USA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2022,87.0
+United States,USA,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2022,72.0
+Uruguay,URY,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2022,1000.0
+Uruguay,URY,"Compulsory education, duration (years)",SE.COM.DURS,2022,14.0
+Uruguay,URY,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2022,1.483
+Uruguay,URY,Gini index,SI.POV.GINI,2022,40.6
+Uruguay,URY,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2022,38.0
+Uruguay,URY,Income share held by highest 10%,SI.DST.10TH.10,2022,30.5
+Uruguay,URY,Individuals using the Internet (% of population),IT.NET.USER.ZS,2022,89.873
+Uruguay,URY,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2022,78.0
+Uruguay,URY,Net migration,SM.POP.NETM,2022,-1501.0
+Uruguay,URY,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2022,0.151863267260118
+Uruguay,URY,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2022,99.5079806151954
+Uruguay,URY,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2022,98.3248312886721
+Uruguay,URY,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2022,19.0668560355279
+Uruguay,URY,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2022,65.3197383713472
+Uruguay,URY,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2022,15.6134055931249
+Uruguay,URY,Population density (people per sq. km of land area),EN.POP.DNST,2022,19.374431493543597
+Uruguay,URY,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2022,0.2
+Uruguay,URY,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2022,0.6
+Uruguay,URY,Rural population,SP.RUR.TOTL,2022,146216.0
+Uruguay,URY,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2022,87.0
+Uruguay,URY,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2022,73.0
+Brazil,BRA,"Compulsory education, duration (years)",SE.COM.DURS,2023,14.0
+Brazil,BRA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2023,1.626
+Brazil,BRA,Gini index,SI.POV.GINI,2023,52.0
+Brazil,BRA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2023,49.0
+Brazil,BRA,Income share held by highest 10%,SI.DST.10TH.10,2023,41.0
+Brazil,BRA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2023,84.1506
+Brazil,BRA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2023,73.425
+Brazil,BRA,Net migration,SM.POP.NETM,2023,-240059.0
+Brazil,BRA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2023,0.0926761640594509
+Brazil,BRA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2023,99.5937713070223
+Brazil,BRA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2023,90.8834993687823
+Brazil,BRA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2023,87.2587154718951
+Brazil,BRA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2023,49.5867372379443
+Brazil,BRA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2023,19.9359520540445
+Brazil,BRA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2023,69.4304164782911
+Brazil,BRA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2023,10.6336314676644
+Brazil,BRA,Population density (people per sq. km of land area),EN.POP.DNST,2023,25.16186795148203
+Brazil,BRA,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2023,3.5
+Brazil,BRA,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2023,0.6
+Brazil,BRA,Rural population,SP.RUR.TOTL,2023,25784506.0
+Brazil,BRA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2023,89.0
+Brazil,BRA,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2023,66.0
+Chile,CHL,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2023,4500.0
+Chile,CHL,"Compulsory education, duration (years)",SE.COM.DURS,2023,12.0
+Chile,CHL,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2023,9.00162983
+Chile,CHL,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2023,1.539
+Chile,CHL,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2023,18.0
+Chile,CHL,Individuals using the Internet (% of population),IT.NET.USER.ZS,2023,94.1192
+Chile,CHL,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2023,79.519
+Chile,CHL,Net migration,SM.POP.NETM,2023,62679.0
+Chile,CHL,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2023,4.968
+Chile,CHL,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2023,0.0
+Chile,CHL,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2023,99.9999982963226
+Chile,CHL,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2023,99.9999982963226
+Chile,CHL,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2023,98.7713643041914
+Chile,CHL,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2023,95.3228228384528
+Chile,CHL,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2023,3.17
+Chile,CHL,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2023,17.3843388990243
+Chile,CHL,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2023,68.922342041123
+Chile,CHL,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2023,13.6933190598527
+Chile,CHL,Population density (people per sq. km of land area),EN.POP.DNST,2023,26.29750434413045
+Chile,CHL,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2023,0.6
+Chile,CHL,Rural population,SP.RUR.TOTL,2023,2356701.0
+Chile,CHL,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2023,87.0
+Chile,CHL,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2023,71.0
+Colombia,COL,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2023,7600.0
+Colombia,COL,"Compulsory education, duration (years)",SE.COM.DURS,2023,12.0
+Colombia,COL,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2023,1.692
+Colombia,COL,Gini index,SI.POV.GINI,2023,54.8
+Colombia,COL,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2023,46.0
+Colombia,COL,Income share held by highest 10%,SI.DST.10TH.10,2023,43.5
+Colombia,COL,Individuals using the Internet (% of population),IT.NET.USER.ZS,2023,72.7964
+Colombia,COL,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2023,73.659
+Colombia,COL,Net migration,SM.POP.NETM,2023,154521.0
+Colombia,COL,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2023,2.40045300797647
+Colombia,COL,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2023,97.5377603878354
+Colombia,COL,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2023,94.7309784385239
+Colombia,COL,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2023,73.8560448264451
+Colombia,COL,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2023,18.4429900960156
+Colombia,COL,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2023,70.1535998009368
+Colombia,COL,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2023,20.5978461579186
+Colombia,COL,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2023,70.0267258065464
+Colombia,COL,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2023,9.37542803553496
+Colombia,COL,Population density (people per sq. km of land area),EN.POP.DNST,2023,46.6317656602073
+Colombia,COL,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2023,6.0
+Colombia,COL,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2023,0.5
+Colombia,COL,Rural population,SP.RUR.TOTL,2023,9232590.0
+Colombia,COL,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2023,83.0
+Colombia,COL,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2023,74.0
+Dominican Republic,DOM,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2023,3400.0
+Dominican Republic,DOM,"Compulsory education, duration (years)",SE.COM.DURS,2023,15.0
+Dominican Republic,DOM,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2023,2.247
+Dominican Republic,DOM,Gini index,SI.POV.GINI,2023,37.0
+Dominican Republic,DOM,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2023,42.0
+Dominican Republic,DOM,Income share held by highest 10%,SI.DST.10TH.10,2023,28.3
+Dominican Republic,DOM,Individuals using the Internet (% of population),IT.NET.USER.ZS,2023,84.3832
+Dominican Republic,DOM,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2023,74.17
+Dominican Republic,DOM,Net migration,SM.POP.NETM,2023,-34915.0
+Dominican Republic,DOM,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2023,2.078
+Dominican Republic,DOM,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2023,1.83017538770409
+Dominican Republic,DOM,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2023,96.7545243422804
+Dominican Republic,DOM,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2023,88.6817918806029
+Dominican Republic,DOM,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2023,44.9411768110773
+Dominican Republic,DOM,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2023,43.130185712713
+Dominican Republic,DOM,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2023,48.3248542782971
+Dominican Republic,DOM,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2023,2.235
+Dominican Republic,DOM,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2023,26.9140017944156
+Dominican Republic,DOM,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2023,65.5051370917044
+Dominican Republic,DOM,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2023,7.58086111388
+Dominican Republic,DOM,Population density (people per sq. km of land area),EN.POP.DNST,2023,233.01235195968633
+Dominican Republic,DOM,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2023,0.8
+Dominican Republic,DOM,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2023,1.0
+Dominican Republic,DOM,Rural population,SP.RUR.TOTL,2023,1762465.0
+Dominican Republic,DOM,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2023,93.0
+Dominican Republic,DOM,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2023,80.0
+Germany,DEU,"Compulsory education, duration (years)",SE.COM.DURS,2023,13.0
+Germany,DEU,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2023,12.65471077
+Germany,DEU,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2023,1.455
+Germany,DEU,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2023,4.8
+Germany,DEU,Individuals using the Internet (% of population),IT.NET.USER.ZS,2023,92.4764
+Germany,DEU,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2023,80.70560975609757
+Germany,DEU,Net migration,SM.POP.NETM,2023,609553.0
+Germany,DEU,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2023,0.0
+Germany,DEU,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2023,99.9999985568823
+Germany,DEU,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2023,99.2262037402876
+Germany,DEU,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2023,99.9164119020981
+Germany,DEU,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2023,96.8898488990896
+Germany,DEU,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2023,13.9155702737293
+Germany,DEU,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2023,63.2943857808214
+Germany,DEU,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2023,22.7900439454493
+Germany,DEU,Population density (people per sq. km of land area),EN.POP.DNST,2023,239.86141802152508
+Germany,DEU,Rural population,SP.RUR.TOTL,2023,18517308.0
+Germany,DEU,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2023,110.0
+Germany,DEU,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2023,62.0
+Italy,ITA,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2023,1800.0
+Italy,ITA,"Compulsory education, duration (years)",SE.COM.DURS,2023,12.0
+Italy,ITA,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2023,9.0
+Italy,ITA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2023,1.24
+Italy,ITA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2023,4.4
+Italy,ITA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2023,87.0278
+Italy,ITA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2023,82.9
+Italy,ITA,Net migration,SM.POP.NETM,2023,150189.0
+Italy,ITA,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2023,7.71
+Italy,ITA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2023,0.0
+Italy,ITA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2023,99.9170340740928
+Italy,ITA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2023,99.8850365009352
+Italy,ITA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2023,92.7105575597704
+Italy,ITA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2023,79.0312466274538
+Italy,ITA,"Physicians (per 1,000 people)",SH.MED.PHYS.ZS,2023,4.248
+Italy,ITA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2023,12.1444351765721
+Italy,ITA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2023,63.6367816692365
+Italy,ITA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2023,24.2187831541913
+Italy,ITA,Population density (people per sq. km of land area),EN.POP.DNST,2023,199.55926890301637
+Italy,ITA,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2023,0.2
+Italy,ITA,Rural population,SP.RUR.TOTL,2023,16534101.0
+Italy,ITA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2023,100.0
+Mexico,MEX,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2023,19000.0
+Mexico,MEX,"Compulsory education, duration (years)",SE.COM.DURS,2023,14.0
+Mexico,MEX,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2023,1.803
+Mexico,MEX,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2023,29.0
+Mexico,MEX,Individuals using the Internet (% of population),IT.NET.USER.ZS,2023,81.1832
+Mexico,MEX,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2023,74.832
+Mexico,MEX,Net migration,SM.POP.NETM,2023,-101044.0
+Mexico,MEX,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2023,0.0
+Mexico,MEX,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2023,99.7064294458755
+Mexico,MEX,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2023,92.5184477680319
+Mexico,MEX,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2023,43.0378794213272
+Mexico,MEX,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2023,62.5008134803041
+Mexico,MEX,People with basic handwashing facilities including soap and water (% of population),SH.STA.HYGN.ZS,2023,93.9408213324716
+Mexico,MEX,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2023,24.9179721383635
+Mexico,MEX,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2023,67.0953820717364
+Mexico,MEX,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2023,7.98664578990007
+Mexico,MEX,Population density (people per sq. km of land area),EN.POP.DNST,2023,66.16071246688443
+Mexico,MEX,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2023,0.4
+Mexico,MEX,"Prevalence of overweight, weight for height (% of children under 5)",SH.STA.OWGH.ZS,2023,7.1
+Mexico,MEX,Rural population,SP.RUR.TOTL,2023,23895469.0
+Mexico,MEX,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2023,73.0
+Mexico,MEX,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2023,70.0
+Panama,PAN,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2023,1300.0
+Panama,PAN,"Compulsory education, duration (years)",SE.COM.DURS,2023,11.0
+Panama,PAN,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2023,2.297
+Panama,PAN,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2023,58.0
+Panama,PAN,Individuals using the Internet (% of population),IT.NET.USER.ZS,2023,73.6085
+Panama,PAN,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2023,76.826
+Panama,PAN,Net migration,SM.POP.NETM,2023,7262.0
+Panama,PAN,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2023,3.98534152666526
+Panama,PAN,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2023,94.6515652983232
+Panama,PAN,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2023,85.8798756121606
+Panama,PAN,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2023,25.2761698939099
+Panama,PAN,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2023,65.6670948127046
+Panama,PAN,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2023,9.05673529338545
+Panama,PAN,Population density (people per sq. km of land area),EN.POP.DNST,2023,59.32559989215422
+Panama,PAN,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2023,1.0
+Panama,PAN,Rural population,SP.RUR.TOTL,2023,1359386.0
+Panama,PAN,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2023,80.0
+Panama,PAN,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2023,74.0
+United States,USA,"Compulsory education, duration (years)",SE.COM.DURS,2023,12.0
+United States,USA,Current health expenditure (% of GDP),SH.XPD.CHEX.GD.ZS,2023,16.57115173
+United States,USA,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2023,1.665
+United States,USA,Gini index,SI.POV.GINI,2023,41.3
+United States,USA,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2023,3.1
+United States,USA,Income share held by highest 10%,SI.DST.10TH.10,2023,30.2
+United States,USA,Individuals using the Internet (% of population),IT.NET.USER.ZS,2023,97.1299
+United States,USA,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2023,77.43414634146343
+United States,USA,Net migration,SM.POP.NETM,2023,1322668.0
+United States,USA,"Nurses and midwives (per 1,000 people)",SH.MED.NUMW.P3,2023,11.88
+United States,USA,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2023,0.0
+United States,USA,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2023,99.9641128436489
+United States,USA,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2023,99.631610907923
+United States,USA,People using safely managed drinking water services (% of population),SH.H2O.SMDW.ZS,2023,97.468388745246
+United States,USA,People using safely managed sanitation services (% of population),SH.STA.SMSS.ZS,2023,97.0433043325004
+United States,USA,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2023,17.5946376490897
+United States,USA,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2023,64.9735428685564
+United States,USA,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2023,17.4318194823539
+United States,USA,Population density (people per sq. km of land area),EN.POP.DNST,2023,36.43337804539422
+United States,USA,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2023,1.2
+United States,USA,Rural population,SP.RUR.TOTL,2023,55937486.0
+United States,USA,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2023,87.0
+United States,USA,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2023,72.0
+Uruguay,URY,Adults (ages 15-49) newly infected with HIV,SH.HIV.INCD,2023,1000.0
+Uruguay,URY,"Compulsory education, duration (years)",SE.COM.DURS,2023,14.0
+Uruguay,URY,"Fertility rate, total (births per woman)",SP.DYN.TFRT.IN,2023,1.483
+Uruguay,URY,Gini index,SI.POV.GINI,2023,40.6
+Uruguay,URY,"Incidence of tuberculosis (per 100,000 people)",SH.TBS.INCD,2023,42.0
+Uruguay,URY,Income share held by highest 10%,SI.DST.10TH.10,2023,30.5
+Uruguay,URY,Individuals using the Internet (% of population),IT.NET.USER.ZS,2023,89.873
+Uruguay,URY,"Life expectancy at birth, total (years)",SP.DYN.LE00.IN,2023,78.0
+Uruguay,URY,Net migration,SM.POP.NETM,2023,-1501.0
+Uruguay,URY,People practicing open defecation (% of population),SH.STA.ODFC.ZS,2023,0.151863267260118
+Uruguay,URY,People using at least basic drinking water services (% of population),SH.H2O.BASW.ZS,2023,99.5079806151954
+Uruguay,URY,People using at least basic sanitation services (% of population),SH.STA.BASS.ZS,2023,98.3248312886721
+Uruguay,URY,Population ages 0-14 (% of total population),SP.POP.0014.TO.ZS,2023,18.6854031360825
+Uruguay,URY,Population ages 15-64 (% of total population),SP.POP.1564.TO.ZS,2023,65.5017789571411
+Uruguay,URY,Population ages 65 and above (% of total population),SP.POP.65UP.TO.ZS,2023,15.8128179067764
+Uruguay,URY,Population density (people per sq. km of land area),EN.POP.DNST,2023,19.374431493543597
+Uruguay,URY,Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population),SI.POV.DDAY,2023,0.2
+Uruguay,URY,"Prevalence of HIV, total (% of population ages 15-49)",SH.DYN.AIDS.ZS,2023,0.6
+Uruguay,URY,Rural population,SP.RUR.TOTL,2023,143282.0
+Uruguay,URY,"Tuberculosis case detection rate (%, all forms)",SH.TBS.DTEC.ZS,2023,87.0
+Uruguay,URY,Tuberculosis treatment success rate (% of new cases),SH.TBS.CURE.ZS,2023,73.0
