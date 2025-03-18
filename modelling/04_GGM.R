@@ -143,6 +143,7 @@ plot_bm_model <- function(country_name, df, cumulative = FALSE) {
 }
 
 
+
 # run and plot GGM with catch error
 plot_ggm_model <- function(country_name, df, cumulative = FALSE) {
   
@@ -335,8 +336,10 @@ grid.arrange(grobs = plot_list, nrow = 2, ncol = 5)
 
 # Loop through the first 10 countries (to fit 2x5 grid)
 plot_list <- lapply(unique_countries, function(country) {
-  plot_bm_model(country, df_w)
+  plot_bm_model(country, df_w, TRUE)
 })
+
+
 
 # Arrange plots in a 2x5 grid
 grid.arrange(grobs = plot_list, nrow = 2, ncol = 5)
@@ -377,7 +380,7 @@ grid.arrange(grobs = plot_list, nrow = 2, ncol = 5)
 ## 3.2 Weekly-----------------------------------
 # Loop through the first 10 countries (to fit 2x5 grid)
 plot_list <- lapply(unique_countries, function(country) {
-  plot_ggm_model(country, df_w)
+  plot_ggm_model(country, df_w, TRUE)
 })
 
 # Arrange plots in a 2x5 grid
