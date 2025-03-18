@@ -1167,7 +1167,7 @@ plot_ggm_model_epidemics(ts_casos_zika, cumulative = FALSE)
 # cumulative
 plot_ggm_model_epidemics(ts_casos_zika, cumulative = TRUE)
 
-## 12.3 Chicunguya-------------
+## 12.3 Chikungunya-------------
 # new cases
 plot_ggm_model_epidemics(ts_casos_chic, cumulative = FALSE)
 # cumulative
@@ -1263,10 +1263,10 @@ process_epidemic(ts_casos_dengue, 'Dengue')
 process_epidemic(ts_casos_zika, 'Zika')
 
 ## 15.3 Chicunguya---------------
-process_epidemic(ts_casos_chic, 'Chicunguya')
+process_epidemic(ts_casos_chic, 'Chikungunya')
 
 ## 15.4 Varicela---------------
-process_epidemic(ts_casos_var, 'Varicela')
+process_epidemic(ts_casos_var, 'Chickenpox')
 
 
 # 16. GGM + Refinement Metrics
