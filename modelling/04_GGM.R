@@ -1435,7 +1435,8 @@ plot_ggm_model_test <- function(country_name, df, test_split = 0.2, cumulative =
     ggtitle(paste("COVID-19 Cases in", country_name)) +
     ylab("Cases") + 
     xlab("Time") +
-    theme_minimal()
+    theme_minimal()+
+    theme(plot.title = element_text(size = 12))
   
   return(p)
 }
@@ -1678,6 +1679,61 @@ process_country_metrics_test <- function(country, df, test_split = 0.2) {
   
   return(result)
 }
+## 16.1 BM----------------------
+
+
+# Loop through the first 10 countries (to fit 2x5 grid)
+plot_list <- lapply(unique_countries, function(country) {
+  plot_bm_model_test(country, df_w, 0.2,TRUE)
+})
+
+
+# Arrange plots in a 2x5 grid
+grid.arrange(grobs = plot_list, nrow = 2, ncol = 5)
+
+
+## 16.2 GGM---------------------------------
+
+# Loop through the first 10 countries (to fit 2x5 grid)
+plot_list <- lapply(unique_countries, function(country) {
+  plot_ggm_model_test(country, df_w, 0.2,TRUE)
+})
+
+
+
+# Arrange plots in a 2x5 grid
+grid.arrange(grobs = plot_list, nrow = 2, ncol = 5)
+
+
+## 16.3 BM vs GGM Metrics-----------------------------
+bm_metrics_test <- data.frame(Country = unique_countries, R2 = NA, RMSE = NA)
+ggm_metrics_test <- data.frame(Country = unique_countries, R2 = NA, RMSE = NA)
+
+# Loop through the countries and calculate metrics for BM
+bm_metrics_test$R2 <- sapply(unique_countries, function(country) {
+  calculate_metrics_bm_test(country, df_w, 0.2)[1]
+})
+bm_metrics_test$RMSE <- sapply(unique_countries, function(country) {
+  calculate_metrics_bm_test(country, df_w, 0.2)[2]
+})
+
+# Loop through the countries and calculate metrics for GGM
+ggm_metrics_test$R2 <- sapply(unique_countries, function(country) {
+  calculate_metrics_ggm_test(country, df_w, 0.2)[1]
+})
+ggm_metrics_test$RMSE <- sapply(unique_countries, function(country) {
+  calculate_metrics_ggm_test(country, df_w, 0.2)[2]
+})
+
+# Combine BM and GGM metrics into one table
+combined_metrics <- merge(bm_metrics_test, ggm_metrics_test, by = "Country", suffixes = c("_BM", "_GGM"))
+
+# Display the table
+View(combined_metrics)
+
+
+
+
 # 17. GGM + Refinement-----------------
 # all done with 80%-20% train test split
 ## 17.1 Daily-------------------
@@ -2116,59 +2172,40 @@ process_epidemics_metrics_test <- function(time_series, test_split = 0.2) {
 
 # 20. BM Epidemics-------------------------
 
-## 20.1 Dengue-------------
+# List of 4 time series
+time_series_list <- list(ts_casos_dengue, 
+                         ts_casos_zika, 
+                         ts_casos_chic, 
+                         ts_casos_var)
 
-# new cases
-plot_bm_epidemics_test(ts_casos_dengue, cumulative = FALSE,  test_split = 0.5)
-# cumulative
-plot_bm_epidemics_test(ts_casos_dengue, cumulative = TRUE, test_split = 0.5)
 
-## 20.2 Zika-------------
-# new cases
-plot_bm_epidemics_test(ts_casos_zika, cumulative = FALSE, test_split = 0.9)
-# cumulative
-plot_bm_epidemics_test(ts_casos_zika, cumulative = TRUE, test_split = 0.9)
+# Generate plots
+plot1 <- plot_bm_epidemics_test(time_series_list[[1]], test_split = 0.2, cumulative = TRUE)
+plot2 <- plot_bm_epidemics_test(time_series_list[[2]], test_split = 0.2, cumulative = TRUE)
+plot3 <- plot_bm_epidemics_test(time_series_list[[3]], test_split = 0.2, cumulative = TRUE)
+plot4 <- plot_bm_epidemics_test(time_series_list[[4]], test_split = 0.2, cumulative = TRUE)
 
-## 11.3 Chicunguya-------------
-# new cases
-plot_bm_epidemics_test(ts_casos_chic, cumulative = FALSE, test_split = 0.9)
-# cumulative
-plot_bm_epidemics_test(ts_casos_chic, cumulative = TRUE, test_split = 0.9)
 
-## 11.4 Varicela-------------
-# new cases
-plot_bm_epidemics_test(ts_casos_var, cumulative = FALSE, test_split = 0.2)
-# cumulative
-plot_bm_epidemics_test(ts_casos_var, cumulative = TRUE, test_split = 0.2)
-
+# Combine plots in a 2x2 grid using gridExtra
+grid.arrange(plot1, plot2, plot3, plot4, ncol = 2)
 
 
 # 21. GGM Epidemics----------------------
 
-## 21.1 Dengue-------------
+# List of 4 time series
 
-# new cases
-plot_ggm_epidemics_test(ts_casos_dengue, cumulative = FALSE, test_split = 0.5)
-# cumulative
-plot_ggm_epidemics_test(ts_casos_dengue, cumulative = TRUE, test_split = 0.5)
 
-## 21.2 Zika-------------
-# new cases
-plot_ggm_epidemics_test(ts_casos_zika, cumulative = FALSE, test_split = 0.9)
-# cumulative
-plot_ggm_epidemics_test(ts_casos_zika, cumulative = TRUE, test_split = 0.9)
+# Generate plots
+plot12 <- plot_ggm_epidemics_test(time_series_list[[1]], test_split = 0.2, cumulative = TRUE)
+plot22 <- plot_ggm_epidemics_test(time_series_list[[2]], test_split = 0.2, cumulative = TRUE)
+plot32 <- plot_ggm_epidemics_test(time_series_list[[3]], test_split = 0.2, cumulative = TRUE)
+plot42 <- plot_ggm_epidemics_test(time_series_list[[4]], test_split = 0.2, cumulative = TRUE)
 
-## 21.3 Chicunguya-------------
-# new cases
-plot_ggm_epidemics_test(ts_casos_chic, cumulative = FALSE, test_split = 0.9)
-# cumulative
-plot_ggm_epidemics_test(ts_casos_chic, cumulative = TRUE, test_split = 0.9)
 
-## 21.4 Varicela-------------
-# new cases
-plot_ggm_epidemics_test(ts_casos_var, cumulative = FALSE, test_split = 0.9)
-# cumulative
-plot_ggm_epidemics_test(ts_casos_var, cumulative = TRUE, test_split = 0.9)
+# Combine plots in a 2x2 grid using gridExtra
+grid.arrange(plot12, plot22, plot32, plot42, ncol = 2)
+
+
 
 # 22. BM vs GGM Metrics Epidemics---------------
 
@@ -2215,22 +2252,19 @@ for (name in names(series_list)) {
 }
 
 # Print the results table
-print(results)
+View(results)
 
 # 23. GGM + Refinement---------------------
 
+# Generate plots
+plot13 <- process_epidemics_test(time_series_list[[1]], test_split = 0.2)
+plot23 <- process_epidemics_test(time_series_list[[2]], test_split = 0.2)
+plot33 <- process_epidemics_test(time_series_list[[3]], test_split = 0.2)
+plot43 <- process_epidemics_test(time_series_list[[4]], test_split = 0.2)
 
-## 23.1 Dengue---------------
-process_epidemics_test(ts_casos_dengue, test_split = 0.5)
 
-## 23.2 Zika---------------
-process_epidemics_test(ts_casos_zika, test_split = 0.9)
-
-## 23.3 Chicunguya---------------
-process_epidemics_test(ts_casos_chic, test_split = 0.9)
-
-## 23.4 Varicela---------------
-process_epidemics_test(ts_casos_var, test_split = 0.5)
+# Combine plots in a 2x2 grid using gridExtra
+grid.arrange(plot13, plot23, plot33, plot43, ncol = 2)
 
 
 # 24. GGM + Refinement Epidemics Metrics----------------------
@@ -2247,7 +2281,7 @@ for (name in names(series_list)) {
   time_series <- series_list[[name]]
   
   # Calculate metrics using process_epidemic_metrics
-  metrics <- process_epidemics_metrics_test(time_series, test_split = 0.5)
+  metrics <- process_epidemics_metrics_test(time_series, test_split = 0.2)
   
   # Append the results to the data frame
   results_arima <- rbind(results_arima, data.frame(
@@ -2259,5 +2293,5 @@ for (name in names(series_list)) {
 }
 
 # Print the results table
-print(results_arima)
+View(results_arima)
 
