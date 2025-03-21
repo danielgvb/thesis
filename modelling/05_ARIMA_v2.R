@@ -313,6 +313,7 @@ results_df <- do.call(rbind, lapply(results, function(res) {
 
 # Print the results dataframe
 print(results_df)
+View(results_df)
 
 # Extract plots
 plots <- lapply(results, function(res) res$plot)
