@@ -1,0 +1,15 @@
+Things to implement or take care:
+* prophet
+* see difference in shape of process between epidemics and pandemics or human-human contagions
+* external variables like rain, temp, pop density....
+
+
+
+--------------------------
+meeting 09-04-2025
+* Write two chapters: i covid, ii epidemics
+* Do spatial features for epidemics
+* choose the best model and deepen a bit in it
+* do a fair way of comparing RNN with other time series
+* implement some NN for regression task
+* do the risk index based on classification
