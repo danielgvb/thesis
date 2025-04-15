@@ -1362,6 +1362,45 @@ plot_bm_model_test <- function(country_name, df, test_split = 0.2, cumulative = 
 }
 
 
+save_bm_model_test <- function(country_name, df, test_split = 0.2, cumulative = FALSE) {
+  # Filter data for the specific country
+  df_country <- df %>% filter(country == country_name)
+  covid_series <- df_country$new_cases
+  
+  # Define train-test split index
+  split_index <- floor((1 - test_split) * length(covid_series))
+  
+  # Train BM model on training set
+  bm_model <- BM(covid_series[1:split_index], display = FALSE)
+  
+  # Forecast for the entire period
+  full_forecast <- predict(bm_model, newx = 1:length(covid_series))
+  
+  # Prepare data for plotting
+  if (cumulative == FALSE) {
+    df_plot <- data.frame(
+      Time = df_country$date,
+      Actual = covid_series,
+      Fitted = make.instantaneous(full_forecast)  # Full instantaneous forecast
+    )
+  } else {
+    df_plot <- data.frame(
+      Time = df_country$date,
+      Actual = cumsum(covid_series),
+      Fitted = full_forecast  # Full cumulative forecast
+    )
+  }
+  
+  # Add train/test indicator
+  df_plot$Period <- ifelse(seq_along(covid_series) <= split_index, "Train", "Test")
+  
+  return(df_plot)
+}
+
+
+
+
+
 plot_ggm_model_test <- function(country_name, df, test_split = 0.2, cumulative = FALSE) {
   
   # Filter data for the specific country
@@ -1439,6 +1478,61 @@ plot_ggm_model_test <- function(country_name, df, test_split = 0.2, cumulative =
     theme(plot.title = element_text(size = 12))
   
   return(p)
+}
+
+save_ggm_model_test <- function(country_name, df, test_split = 0.2, cumulative = FALSE) {
+  
+  # Filter data for the specific country
+  df_country <- df %>% filter(country == country_name)
+  covid_series <- df_country$new_cases
+  
+  # Define train-test split index
+  split_index <- floor((1 - test_split) * length(covid_series))
+  
+  # Train GGM model on training set
+  ggm_model <- NULL
+  try_result <- try({
+    ggm_model <- GGM(covid_series[1:split_index], display = FALSE)
+  }, silent = TRUE)
+  
+  # If first attempt fails, try alternative method
+  if (inherits(try_result, "try-error")) {
+    if (grepl("chol.default.*not positive", try_result)) {
+      try_result_alt <- try({
+        ggm_model <- GGM(covid_series[1:split_index], mt=function(x) pchisq(x,10), display = FALSE)
+      }, silent = TRUE)
+      if (inherits(try_result_alt, "try-error")) {
+        stop("Both GGM model attempts failed for ", country_name)
+      }
+    } else {
+      stop("Unexpected error for ", country_name, ": ", try_result)
+    }
+  }
+  
+  # Forecast for the entire period
+  full_forecast <- predict(ggm_model, newx = 1:length(covid_series))
+  
+  # Prepare data for plotting
+  if (cumulative == FALSE) {
+    df_plot <- data.frame(
+      Time = df_country$date,
+      Actual = covid_series,
+      Fitted = make.instantaneous(full_forecast),  # Full instantaneous forecast
+      Country = country_name
+    )
+  } else {
+    df_plot <- data.frame(
+      Time = df_country$date,
+      Actual = cumsum(covid_series),
+      Fitted = full_forecast,  # Full cumulative forecast
+      Country = country_name
+    )
+  }
+  
+  # Add train/test indicator
+  df_plot$Period <- ifelse(seq_along(covid_series) <= split_index, "Train", "Test")
+  
+  return(df_plot)
 }
 
 calculate_metrics_bm_test <- function(country_name, df, test_split = 0.2) {
@@ -1646,6 +1740,44 @@ process_country_test <- function(country, df, test_split = 0.2) {
   return(plot)
 }
 
+
+save_ggm_r_test <- function(country, df, test_split = 0.2) {
+  # Step 1: Get GGM residuals and test data
+  ggm_results <- ggm_residuals_test(country, df, test_split = test_split)
+  df_train <- ggm_results$train_residuals
+  df_test <- ggm_results$test_data
+  
+  # Subset dates to match actual rows used
+  total_rows <- nrow(df_train) + nrow(df_test)
+  dates <- df %>% filter(country == country) %>% slice_tail(n = total_rows) %>% pull(DATE)
+  
+  # Step 2: Fit ARIMA model with external regressor (GGM fitted values)
+  arima_model <- auto.arima(df_train$Cases, xreg = df_train$Fitted)
+  
+  # Step 3a: In-sample fitted values from ARIMA (training set)
+  fitted_train <- fitted(arima_model)
+  
+  # Step 3b: Forecast for the test period
+  forecast_test <- forecast(arima_model, h = nrow(df_test), xreg = df_test$Fitted)$mean
+  
+  # Step 4: Combine both into one fitted vector
+  full_fitted <- c(fitted_train, as.numeric(forecast_test))
+  
+  # Step 5: Assemble full data frame
+  plot_data <- data.frame(
+    DATE = dates,
+    Cases = c(df_train$Cases, df_test$Cases),
+    Fitted = full_fitted
+  )
+  
+  return(plot_data)
+}
+# # ACA-------------------------------------
+# create a new function for ggm_residuals_test so it returns the whole series of 
+# fitted values
+probando <- save_ggm_r_test('Germany', df_w)
+View(probando)
+
 process_country_metrics_test <- function(country, df, test_split = 0.2) {
   # Step 1: Get GGM residuals and test data
   ggm_results <- ggm_residuals_test(country, df, test_split = test_split)
@@ -1691,6 +1823,26 @@ plot_list <- lapply(unique_countries, function(country) {
 # Arrange plots in a 2x5 grid
 grid.arrange(grobs = plot_list, nrow = 2, ncol = 5)
 
+### 16.1.2 Save Fitted Values------------
+# Get fitted values for all countries
+country_fitted_values <- lapply(unique_countries, function(country) {
+  result <- save_bm_model_test(country_name = country, 
+                               df = df_w, 
+                               test_split = 0.2, 
+                               cumulative = TRUE)
+  return(result$Fitted)
+})
+
+# Convert to dataframe and set column names
+fitted_df <- as.data.frame(do.call(cbind, country_fitted_values))
+colnames(fitted_df) <- unique_countries
+
+# Add dates as the first column (taken from the first country's results)
+first_country_result <- save_bm_model_test(unique_countries[1], df_w, 0.2, FALSE)
+fitted_df <- cbind(Date = first_country_result$Time, fitted_df)
+# Assuming you've created the fitted_df as shown previously
+write.csv(fitted_df, file = "../../results/BM_covid.csv", row.names = FALSE)
+
 
 ## 16.2 GGM---------------------------------
 
@@ -1699,10 +1851,27 @@ plot_list <- lapply(unique_countries, function(country) {
   plot_ggm_model_test(country, df_w, 0.2,TRUE)
 })
 
-
-
 # Arrange plots in a 2x5 grid
 grid.arrange(grobs = plot_list, nrow = 2, ncol = 5)
+
+### 16.2.2 Save Fitted Values----------------
+country_fitted_values <- lapply(unique_countries, function(country) {
+  result <- save_ggm_model_test(country_name = country, 
+                               df = df_w, 
+                               test_split = 0.2, 
+                               cumulative = TRUE)
+  return(result$Fitted)
+})
+
+# Convert to dataframe and set column names
+fitted_df <- as.data.frame(do.call(cbind, country_fitted_values))
+colnames(fitted_df) <- unique_countries
+
+# Add dates as the first column (taken from the first country's results)
+first_country_result <- save_bm_model_test(unique_countries[1], df_w, 0.2, FALSE)
+fitted_df <- cbind(Date = first_country_result$Time, fitted_df)
+# write the csv
+write.csv(fitted_df, file = "../../results/GGM_covid.csv", row.names = FALSE)
 
 
 ## 16.3 BM vs GGM Metrics-----------------------------
@@ -1754,6 +1923,9 @@ plot_list <- lapply(unique_countries, function(country) {
 # Arrange plots in a 2x5 grid
 grid.arrange(grobs = plot_list, nrow = 2, ncol = 5)
 
+### 17.2.2 Save fitted values-------------
+probando <- save_ggm_r_model_test('Germany', df_w, test_split = 0.2, cumulative = TRUE)
+  
 
 ## 17.3 Monthly-------------------
 # Iterate over each country and process
