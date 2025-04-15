@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b29d6ff842815c8c41c50814e8ba41bd {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_b29d6ff842815c8c41c50814e8ba41bd" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_b29d6ff842815c8c41c50814e8ba41bd = L.map(
+                "map_b29d6ff842815c8c41c50814e8ba41bd",
+                {
+                    center: [4.895875822222221, -73.81663730737006],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e1756113cb910350b6fbff9a8bf91d15 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e1756113cb910350b6fbff9a8bf91d15.addTo(map_b29d6ff842815c8c41c50814e8ba41bd);
+        
+    
+            var marker_6e6594ad7d58b9e1be5d869e9ddee2b9 = L.marker(
+                [4.6533816, -74.0836333],
+                {
+}
+            ).addTo(map_b29d6ff842815c8c41c50814e8ba41bd);
+        
+    
+        var popup_a12db4c9b9bbffe445478f8ea163aab2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_85629490187e83173c60cbfb775c1d16 = $(`<div id="html_85629490187e83173c60cbfb775c1d16" style="width: 100.0%; height: 100.0%;">bogota, bogota, colombia</div>`)[0];
+                popup_a12db4c9b9bbffe445478f8ea163aab2.setContent(html_85629490187e83173c60cbfb775c1d16);
+            
+        
+
+        marker_6e6594ad7d58b9e1be5d869e9ddee2b9.bindPopup(popup_a12db4c9b9bbffe445478f8ea163aab2)
+        ;
+
+        
+    
+    
+            var marker_cacbac4f0be47d98d70c0501e033a03d = L.marker(
+                [4.7002001, -74.2385058],
+                {
+}
+            ).addTo(map_b29d6ff842815c8c41c50814e8ba41bd);
+        
+    
+        var popup_a1a5428d7177480c1e86e930a127af7a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5a468c6e3d1546715c53cdb2e65b89c8 = $(`<div id="html_5a468c6e3d1546715c53cdb2e65b89c8" style="width: 100.0%; height: 100.0%;">mosquera, cundinamarca, colombia</div>`)[0];
+                popup_a1a5428d7177480c1e86e930a127af7a.setContent(html_5a468c6e3d1546715c53cdb2e65b89c8);
+            
+        
+
+        marker_cacbac4f0be47d98d70c0501e033a03d.bindPopup(popup_a1a5428d7177480c1e86e930a127af7a)
+        ;
+
+        
+    
+    
+            var marker_321dd80809e4d5f49ad6eb8366e00ee4 = L.marker(
+                [4.5821413, -74.2197178],
+                {
+}
+            ).addTo(map_b29d6ff842815c8c41c50814e8ba41bd);
+        
+    
+        var popup_f3980d49af0992e7c6e9ee60a37f08ef = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_73ae5bc5aba1249e5c6b2a69f73b736a = $(`<div id="html_73ae5bc5aba1249e5c6b2a69f73b736a" style="width: 100.0%; height: 100.0%;">soacha, cundinamarca, colombia</div>`)[0];
+                popup_f3980d49af0992e7c6e9ee60a37f08ef.setContent(html_73ae5bc5aba1249e5c6b2a69f73b736a);
+            
+        
+
+        marker_321dd80809e4d5f49ad6eb8366e00ee4.bindPopup(popup_f3980d49af0992e7c6e9ee60a37f08ef)
+        ;
+
+        
+    
+    
+            var marker_28fb12363399e22b0f89f81653943df6 = L.marker(
+                [4.8660334, -74.0306281],
+                {
+}
+            ).addTo(map_b29d6ff842815c8c41c50814e8ba41bd);
+        
+    
+        var popup_f4db4192684b0ec26803014ad032953d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bffac2d5ccf43a25488178592b21c807 = $(`<div id="html_bffac2d5ccf43a25488178592b21c807" style="width: 100.0%; height: 100.0%;">chia, cundinamarca, colombia</div>`)[0];
+                popup_f4db4192684b0ec26803014ad032953d.setContent(html_bffac2d5ccf43a25488178592b21c807);
+            
+        
+
+        marker_28fb12363399e22b0f89f81653943df6.bindPopup(popup_f4db4192684b0ec26803014ad032953d)
+        ;
+
+        
+    
+    
+            var marker_e9d5dd26de4f39da5f891f109034ace5 = L.marker(
+                [3.8582108, -74.9308216],
+                {
+}
+            ).addTo(map_b29d6ff842815c8c41c50814e8ba41bd);
+        
+    
+        var popup_4ba0735dbf1246bd6c9a7a18a85b9a43 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_efb0459304a34ce384ea8a4b07a1445e = $(`<div id="html_efb0459304a34ce384ea8a4b07a1445e" style="width: 100.0%; height: 100.0%;">purificacion, tolima, colombia</div>`)[0];
+                popup_4ba0735dbf1246bd6c9a7a18a85b9a43.setContent(html_efb0459304a34ce384ea8a4b07a1445e);
+            
+        
+
+        marker_e9d5dd26de4f39da5f891f109034ace5.bindPopup(popup_4ba0735dbf1246bd6c9a7a18a85b9a43)
+        ;
+
+        
+    
+    
+            var marker_1f10131fa02e49e9a144376bccd828b8 = L.marker(
+                [4.7177471, -74.2031547],
+                {
+}
+            ).addTo(map_b29d6ff842815c8c41c50814e8ba41bd);
+        
+    
+        var popup_4362abc35e196608d4200129f10e9243 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7f8acf137aa58f5735abefc480a58e6b = $(`<div id="html_7f8acf137aa58f5735abefc480a58e6b" style="width: 100.0%; height: 100.0%;">funza, cundinamarca, colombia</div>`)[0];
+                popup_4362abc35e196608d4200129f10e9243.setContent(html_7f8acf137aa58f5735abefc480a58e6b);
+            
+        
+
+        marker_1f10131fa02e49e9a144376bccd828b8.bindPopup(popup_4362abc35e196608d4200129f10e9243)
+        ;
+
+        
+    
+    
+            var marker_98ccfc341abd4f2519649959e67d3849 = L.marker(
+                [7.0851994, -70.7577762],
+                {
+}
+            ).addTo(map_b29d6ff842815c8c41c50814e8ba41bd);
+        
+    
+        var popup_62ff50a9d411ee63bff2a1e6d4d04639 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_80259ba6c0dca00ab9dfb0a537235f78 = $(`<div id="html_80259ba6c0dca00ab9dfb0a537235f78" style="width: 100.0%; height: 100.0%;">arauca, arauca, colombia</div>`)[0];
+                popup_62ff50a9d411ee63bff2a1e6d4d04639.setContent(html_80259ba6c0dca00ab9dfb0a537235f78);
+            
+        
+
+        marker_98ccfc341abd4f2519649959e67d3849.bindPopup(popup_62ff50a9d411ee63bff2a1e6d4d04639)
+        ;
+
+        
+    
+    
+            var marker_062d643a9cebd37008e54f43dbfa35ff = L.marker(
+                [4.8931442, -73.95341365530066],
+                {
+}
+            ).addTo(map_b29d6ff842815c8c41c50814e8ba41bd);
+        
+    
+        var popup_9ae661d68c41e85f8c1f6a0ae0cd7be7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_20b64f50f7a33566b94be2ca12b897c5 = $(`<div id="html_20b64f50f7a33566b94be2ca12b897c5" style="width: 100.0%; height: 100.0%;">sopo, cundinamarca, colombia</div>`)[0];
+                popup_9ae661d68c41e85f8c1f6a0ae0cd7be7.setContent(html_20b64f50f7a33566b94be2ca12b897c5);
+            
+        
+
+        marker_062d643a9cebd37008e54f43dbfa35ff.bindPopup(popup_9ae661d68c41e85f8c1f6a0ae0cd7be7)
+        ;
+
+        
+    
+    
+            var marker_bdcabdbb0e25acc3fb67dc9893d2c832 = L.marker(
+                [4.7068245, -73.93208461102986],
+                {
+}
+            ).addTo(map_b29d6ff842815c8c41c50814e8ba41bd);
+        
+    
+        var popup_897732c2a8729aba3f0e4c10eb8cc6ac = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_be67d42257886deba6dd5f62175f43be = $(`<div id="html_be67d42257886deba6dd5f62175f43be" style="width: 100.0%; height: 100.0%;">la calera, cundinamarca, colombia</div>`)[0];
+                popup_897732c2a8729aba3f0e4c10eb8cc6ac.setContent(html_be67d42257886deba6dd5f62175f43be);
+            
+        
+
+        marker_bdcabdbb0e25acc3fb67dc9893d2c832.bindPopup(popup_897732c2a8729aba3f0e4c10eb8cc6ac)
+        ;
+
+        
+    
+</script>
+</html>
