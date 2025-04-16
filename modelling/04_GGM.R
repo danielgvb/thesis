@@ -7,6 +7,9 @@ library(dplyr)
 library(ggplot2)
 library(gridExtra)  # For arranging plots in a grid
 library(lubridate) # for date handling in time series
+library(purrr)
+library(tidyr)
+
 
 # change directory
 setwd('../Data/silver/')
@@ -1740,43 +1743,31 @@ process_country_test <- function(country, df, test_split = 0.2) {
   return(plot)
 }
 
-
 save_ggm_r_test <- function(country, df, test_split = 0.2) {
   # Step 1: Get GGM residuals and test data
   ggm_results <- ggm_residuals_test(country, df, test_split = test_split)
   df_train <- ggm_results$train_residuals
   df_test <- ggm_results$test_data
   
-  # Subset dates to match actual rows used
+  # Subset dates to match only rows used in the model
   total_rows <- nrow(df_train) + nrow(df_test)
-  dates <- df %>% filter(country == country) %>% slice_tail(n = total_rows) %>% pull(DATE)
+  dates <- df %>%
+    filter(country == country) %>%
+    slice_head(n = total_rows) %>%
+    pull(date)
   
-  # Step 2: Fit ARIMA model with external regressor (GGM fitted values)
+  # Step 2: Fit ARIMA model
   arima_model <- auto.arima(df_train$Cases, xreg = df_train$Fitted)
   
-  # Step 3a: In-sample fitted values from ARIMA (training set)
+  # Step 3: Get in-sample + forecasted fitted values
   fitted_train <- fitted(arima_model)
-  
-  # Step 3b: Forecast for the test period
   forecast_test <- forecast(arima_model, h = nrow(df_test), xreg = df_test$Fitted)$mean
-  
-  # Step 4: Combine both into one fitted vector
   full_fitted <- c(fitted_train, as.numeric(forecast_test))
   
-  # Step 5: Assemble full data frame
-  plot_data <- data.frame(
-    DATE = dates,
-    Cases = c(df_train$Cases, df_test$Cases),
-    Fitted = full_fitted
-  )
-  
-  return(plot_data)
+  # Return both DATE and Fitted
+  return(data.frame(DATE = dates, Fitted = full_fitted))
 }
-# # ACA-------------------------------------
-# create a new function for ggm_residuals_test so it returns the whole series of 
-# fitted values
-probando <- save_ggm_r_test('Germany', df_w)
-View(probando)
+
 
 process_country_metrics_test <- function(country, df, test_split = 0.2) {
   # Step 1: Get GGM residuals and test data
@@ -1924,8 +1915,45 @@ plot_list <- lapply(unique_countries, function(country) {
 grid.arrange(grobs = plot_list, nrow = 2, ncol = 5)
 
 ### 17.2.2 Save fitted values-------------
-probando <- save_ggm_r_model_test('Germany', df_w, test_split = 0.2, cumulative = TRUE)
+
+
+# Initialize an empty list to store the results
+fitted_values_list <- list()
+
+# Loop over each country in unique_countries
+for (country in unique_countries) {
+  # Call the save_ggm_r_test function for the current country
+  fitted_values <- save_ggm_r_test(country, df = df_w, test_split = 0.2)
   
+  # Add the country name as a column in the dataframe
+  fitted_values$Country <- country
+  
+  # Append the result to the list
+  fitted_values_list[[country]] <- fitted_values
+}
+
+# Combine all dataframes in the list into a single dataframe
+fitted_values_df <- do.call(rbind, fitted_values_list)
+
+# Print the resulting dataframe
+View(fitted_values_df)
+
+
+
+
+# Reshape the fitted_values_df dataframe
+fitted_values_wide <- fitted_values_df %>%
+  pivot_wider(names_from = Country, values_from = Fitted)
+
+# Print the resulting dataframe
+View(fitted_values_wide)
+
+# Specify the file path where you want to save the CSV file
+file_path <- "../../results/GGM_Arima_covid.csv"  # Replace with your desired file path
+
+# Save the fitted_values_df dataframe to a CSV file
+write.csv(fitted_values_wide, file = file_path, row.names = FALSE)
+
 
 ## 17.3 Monthly-------------------
 # Iterate over each country and process
@@ -2030,6 +2058,50 @@ plot_bm_epidemics_test <- function(time_series, test_split = 0.2, cumulative = F
 }
 
 
+save_bm_epidemics_test <- function(time_series, dates, test_split = 0.2, cumulative = FALSE) {
+  # Define train-test split index
+  split_index <- floor((1 - test_split) * length(time_series))
+  
+  # get the dates from the time series
+  if (missing(dates)) {
+    # If dates not provided, create a sequence of weekly dates starting from today
+    dates <- seq.Date(from = Sys.Date() - 7 * (length(time_series) - 1), 
+                      by = "week", 
+                      length.out = length(time_series))
+  } else if (length(dates) != length(time_series)) {
+    stop("Length of dates must match length of time_series")
+  }
+  
+  # Split data into training and test sets
+  train_series <- time_series[1:split_index]
+  test_series <- time_series[(split_index + 1):length(time_series)]
+  
+  # Train BM model on training set
+  bm_model <- BM(train_series, display = FALSE)
+  
+  # Forecast for the entire period
+  full_forecast <- predict(bm_model, newx = 1:length(time_series))
+  
+  # Compute instantaneous fitted values
+  full_forecast_inst <- make.instantaneous(full_forecast)
+  
+  # Prepare data for plotting (show only test set forecast)
+  if (cumulative == FALSE) {
+    df_plot <- data.frame(
+      Date = dates,
+      Fitted = full_forecast_inst
+    )
+  } else {
+    df_plot <- data.frame(
+      Date = dates,
+      Fitted = full_forecast
+    )
+  }
+  
+  return(df_plot)
+}
+
+
 
 plot_ggm_epidemics_test <- function( time_series, test_split = 0.2, cumulative = FALSE) {
   
@@ -2106,6 +2178,74 @@ plot_ggm_epidemics_test <- function( time_series, test_split = 0.2, cumulative =
   
   return(p)
 }
+
+
+save_ggm_epidemics_test <- function(time_series, dates, test_split = 0.2, cumulative = FALSE) {
+  
+  # Define train-test split index
+  split_index <- floor((1 - test_split) * length(time_series))
+  
+  # Split data into training and test sets
+  train_series <- time_series[1:split_index]
+  test_series <- time_series[(split_index + 1):length(time_series)]
+  
+  # Initialize the GGM model
+  ggm_model <- NULL
+  
+  # Attempt first GGM model
+  try_result <- try({
+    ggm_model <- GGM(train_series, display = FALSE)
+  }, silent = TRUE)
+  
+  # Check if an error occurred
+  if (inherits(try_result, "try-error")) {
+    if (grepl("chol.default.*not positive", try_result)) {
+      message("Cholesky decomposition error detected. Trying alternative model...")
+      
+      # Attempt alternative GGM method
+      try_result_alt <- try({
+        ggm_model <- GGM(train_series, mt=function(x) pchisq(x,10), display = FALSE)
+      }, silent = TRUE)
+      
+      # If alternative method also fails, stop execution
+      if (inherits(try_result_alt, "try-error")) {
+        stop("Both GGM model attempts failed. Error: ", try_result_alt)
+      }
+    } else {
+      stop("Unexpected error in GGM model: ", try_result)
+    }
+  }
+  
+  # Ensure the model was successfully created
+  if (is.null(ggm_model)) {
+    stop("Failed to fit GGM model.")
+  }
+  
+  # Forecast for the entire period
+  full_forecast <- predict(ggm_model, newx = 1:length(time_series))
+  
+  # Compute instantaneous fitted values
+  full_forecast_inst <- make.instantaneous(full_forecast)
+  
+  # Prepare data for plotting (only test set forecast is plotted)
+  if (cumulative == FALSE) {
+    df_plot <- data.frame(
+      Date = dates,
+      Actual = time_series,
+      Fitted = c(rep(NA, split_index), full_forecast_inst[(split_index + 1):length(time_series)]) # Only show test forecast
+    )
+  } else {
+    df_plot <- data.frame(
+      Date = dates,
+      Actual = cumsum(time_series),
+      Fitted = c(rep(NA, split_index), full_forecast[(split_index + 1):length(time_series)]) # Only show test forecast
+    )
+  }
+  
+  return(df_plot)
+}
+
+
 
 calculate_metrics_bm_epidemics_test <- function(time_series, test_split = 0.2) {
   # Filter data for the specific country
@@ -2362,6 +2502,50 @@ plot4 <- plot_bm_epidemics_test(time_series_list[[4]], test_split = 0.2, cumulat
 grid.arrange(plot1, plot2, plot3, plot4, ncol = 2)
 
 
+## 20.1 Save csv-----------------
+# Define the series list
+series_list <- list(
+  Dengue = ts_casos_dengue,
+  Zika = ts_casos_zika,
+  Chicungunya = ts_casos_chic,
+  Varicela = ts_casos_var
+)
+
+
+# Modified processing to include actual values
+results_list <- lapply(names(series_list), function(disease_name) {
+  ts_data <- series_list[[disease_name]]
+  
+  # Get dates (consistent with your function logic)
+  dates <- seq.Date(from = Sys.Date() - 7 * (length(ts_data) - 1), 
+                    by = "week", 
+                    length.out = length(ts_data))
+  
+  data.frame(
+    Date = dates,
+    Disease = disease_name,
+    Actual = ts_data,
+    Fitted = save_bm_epidemics_test(ts_data)$Fitted
+  )
+})
+
+# Create separate wide dataframes for actual and fitted values
+actual_wide <- bind_rows(results_list) %>%
+  select(Date, Disease, Actual) %>%
+  pivot_wider(names_from = Disease, values_from = Actual)
+
+fitted_wide <- bind_rows(results_list) %>%
+  select(Date, Disease, Fitted) %>%
+  pivot_wider(names_from = Disease, values_from = Fitted)
+
+# Specify the file path where you want to save the CSV file
+file_path <- "../../results/BM_epidemics.csv"  # Replace with your desired file path
+
+# Save the fitted_values_df dataframe to a CSV file
+write.csv(fitted_wide, file = file_path, row.names = FALSE)
+# ACA!!!!!!!!!!!!!!!!!-------------
+# next: do the ggm save for epidemics
+
 # 21. GGM Epidemics----------------------
 
 # List of 4 time series
@@ -2381,7 +2565,6 @@ grid.arrange(plot12, plot22, plot32, plot42, ncol = 2)
 
 # 22. BM vs GGM Metrics Epidemics---------------
 
-# Assuming ts_casos_dengue, ts_casos_zika, and ts_casos_chic are your time series
 series_list <- list(
   Dengue = ts_casos_dengue,
   Zika = ts_casos_zika,
