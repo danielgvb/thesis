@@ -9,7 +9,7 @@ library(gridExtra)  # For arranging plots in a grid
 library(lubridate) # for date handling in time series
 library(purrr)
 library(tidyr)
-
+library(tibble)
 
 # change directory
 setwd('../Data/silver/')
@@ -2180,71 +2180,48 @@ plot_ggm_epidemics_test <- function( time_series, test_split = 0.2, cumulative =
 }
 
 
-save_ggm_epidemics_test <- function(time_series, dates, test_split = 0.2, cumulative = FALSE) {
+save_ggm_epidemics_test <- function(time_series,
+                                    dates = NULL,
+                                    test_split = 0.2,
+                                    cumulative = FALSE) {
   
-  # Define train-test split index
-  split_index <- floor((1 - test_split) * length(time_series))
-  
-  # Split data into training and test sets
+  # --- 1. train‑test split 
+  split_index  <- floor((1 - test_split) * length(time_series))
   train_series <- time_series[1:split_index]
-  test_series <- time_series[(split_index + 1):length(time_series)]
+  test_series  <- time_series[(split_index + 1):length(time_series)]  # <- unused but harmless
   
-  # Initialize the GGM model
-  ggm_model <- NULL
+  # --- 2. date vector
+  if (is.null(dates)) {
+    dates <- seq.Date(from = Sys.Date() - 7 * (length(time_series) - 1),
+                      by   = "week",
+                      length.out = length(time_series))
+  } else if (length(dates) != length(time_series)) {
+    stop("Length of dates must match length of time_series")
+  }
   
-  # Attempt first GGM model
-  try_result <- try({
-    ggm_model <- GGM(train_series, display = FALSE)
-  }, silent = TRUE)
-  
-  # Check if an error occurred
-  if (inherits(try_result, "try-error")) {
-    if (grepl("chol.default.*not positive", try_result)) {
-      message("Cholesky decomposition error detected. Trying alternative model...")
-      
-      # Attempt alternative GGM method
-      try_result_alt <- try({
-        ggm_model <- GGM(train_series, mt=function(x) pchisq(x,10), display = FALSE)
-      }, silent = TRUE)
-      
-      # If alternative method also fails, stop execution
-      if (inherits(try_result_alt, "try-error")) {
-        stop("Both GGM model attempts failed. Error: ", try_result_alt)
+  # --- 3. fit GGM -
+  ggm_model <- tryCatch(
+    GGM(train_series, display = FALSE),
+    error = function(e) {
+      if (grepl("chol.default.*not positive", e$message)) {
+        message("Cholesky error, trying alternative m‑t function …")
+        GGM(train_series, mt = function(x) pchisq(x, 10), display = FALSE)
+      } else {
+        stop(e)
       }
-    } else {
-      stop("Unexpected error in GGM model: ", try_result)
     }
-  }
+  )
   
-  # Ensure the model was successfully created
-  if (is.null(ggm_model)) {
-    stop("Failed to fit GGM model.")
-  }
-  
-  # Forecast for the entire period
-  full_forecast <- predict(ggm_model, newx = 1:length(time_series))
-  
-  # Compute instantaneous fitted values
+  # --- 4. forecast 
+  full_forecast      <- predict(ggm_model, newx = 1:length(time_series))
   full_forecast_inst <- make.instantaneous(full_forecast)
   
-  # Prepare data for plotting (only test set forecast is plotted)
-  if (cumulative == FALSE) {
-    df_plot <- data.frame(
-      Date = dates,
-      Actual = time_series,
-      Fitted = c(rep(NA, split_index), full_forecast_inst[(split_index + 1):length(time_series)]) # Only show test forecast
-    )
-  } else {
-    df_plot <- data.frame(
-      Date = dates,
-      Actual = cumsum(time_series),
-      Fitted = c(rep(NA, split_index), full_forecast[(split_index + 1):length(time_series)]) # Only show test forecast
-    )
-  }
-  
-  return(df_plot)
+  # --- 5. assemble output
+  data.frame(
+    Date   = dates,
+    Fitted = if (cumulative) full_forecast else full_forecast_inst
+  )
 }
-
 
 
 calculate_metrics_bm_epidemics_test <- function(time_series, test_split = 0.2) {
@@ -2482,6 +2459,103 @@ process_epidemics_metrics_test <- function(time_series, test_split = 0.2) {
   return(result)
 }
 
+
+# save ggm + refinement
+# --------------------------------------------------------------------------- #
+# Helper : turn a weekly ts or plain vector into a Date vector                #
+# --------------------------------------------------------------------------- #
+get_dates_from_ts <- function(x) {
+  
+  # 1. plain numeric / ts without frequency 
+  if (!is.ts(x)) {
+    return(seq.Date(Sys.Date() - 7 * (length(x) - 1),
+                    by = "week", length.out = length(x)))
+  }
+  
+  freq <- frequency(x)
+  if (!(freq %in% c(52, 53))) {          # not weekly → same fallback
+    warning("ts object is not weekly; generating dates from today's week.")
+    return(seq.Date(Sys.Date() - 7 * (length(x) - 1),
+                    by = "week", length.out = length(x)))
+  }
+  
+  # 2. weekly ts : need ISO week → Date 
+  if (!requireNamespace("ISOweek", quietly = TRUE)) {
+    warning("Package 'ISOweek' not installed; falling back to simple sequence.")
+    return(seq.Date(Sys.Date() - 7 * (length(x) - 1),
+                    by = "week", length.out = length(x)))
+  }
+  
+  st <- start(x)                  # e.g. c(2005, 10)
+  year0 <- st[1]
+  week0 <- st[2]
+  
+  # ISO week starts on Monday (“‑1”)
+  start_date <- ISOweek::ISOweek2date(sprintf("%d-W%02d-1", year0, week0))
+  seq.Date(from = start_date, by = "week", length.out = length(x))
+}
+
+# --------------------------------------------------------------------------- #
+# 1.  Fit GGM on TRAIN incidence and return residuals + dates                 #
+# --------------------------------------------------------------------------- #
+ggm_residuals_epidemics_test_2 <- function(time_series, test_split = 0.20) {
+  
+  dates_vec <- get_dates_from_ts(time_series)        # real Date vector
+  ts_cum    <- cumsum(as.numeric(time_series))
+  split_idx <- floor((1 - test_split) * length(time_series))
+  
+  train_inc <- time_series[1:split_idx]
+  test_cum  <- ts_cum[(split_idx + 1):length(ts_cum)]
+  
+  ggm_model <- tryCatch(
+    GGM(train_inc, mt = "base", display = FALSE),
+    error = function(e) {
+      if (grepl("chol.default.*not positive", e$message)) {
+        message("Cholesky error — trying alternative m‑t …")
+        GGM(train_inc, mt = function(x) stats::pchisq(x, 10), display = FALSE)
+      } else stop(e)
+    }
+  )
+  
+  ggm_fit_train <- predict(ggm_model, newx = 1:split_idx)
+  ggm_fit_test  <- predict(ggm_model, newx = (split_idx + 1):length(time_series))
+  
+  list(
+    train = data.frame(Date   = dates_vec[1:split_idx],
+                       Fitted = ggm_fit_train,
+                       Cases  = ts_cum[1:split_idx]),  # still needed for ARIMA
+    test  = data.frame(Date   = dates_vec[(split_idx + 1):length(ts_cum)],
+                       Fitted = ggm_fit_test,
+                       Cases  = test_cum)
+  )
+}
+
+# --------------------------------------------------------------------------- #
+# 2.  ARIMA on residuals — return ONLY Date + Fitted (+ Set flag)             #
+# --------------------------------------------------------------------------- #
+save_epidemics_ggm_r <- function(time_series, test_split = 0.20) {
+  
+  ggm <- ggm_residuals_epidemics_test_2(time_series, test_split)
+  tr  <- ggm$train
+  te  <- ggm$test
+  
+  arima_mod <- forecast::auto.arima(tr$Cases, xreg = tr$Fitted)
+  
+  fitted_train <- stats::fitted(arima_mod)
+  fore_test    <- forecast::forecast(arima_mod,
+                                     h    = nrow(te),
+                                     xreg = te$Fitted)$mean
+  
+  out <- data.frame(
+    Date   = c(tr$Date, te$Date),
+    Fitted = c(as.numeric(fitted_train), as.numeric(fore_test)),
+    Set    = c(rep("Train", nrow(tr)),   rep("Test",  nrow(te)))
+  )
+  rownames(out) <- NULL
+  out
+}
+
+
 # 20. BM Epidemics-------------------------
 
 # List of 4 time series
@@ -2525,7 +2599,7 @@ results_list <- lapply(names(series_list), function(disease_name) {
     Date = dates,
     Disease = disease_name,
     Actual = ts_data,
-    Fitted = save_bm_epidemics_test(ts_data)$Fitted
+    Fitted = save_bm_epidemics_test(ts_data, cumulative = TRUE)$Fitted
   )
 })
 
@@ -2543,8 +2617,6 @@ file_path <- "../../results/BM_epidemics.csv"  # Replace with your desired file 
 
 # Save the fitted_values_df dataframe to a CSV file
 write.csv(fitted_wide, file = file_path, row.names = FALSE)
-# ACA!!!!!!!!!!!!!!!!!-------------
-# next: do the ggm save for epidemics
 
 # 21. GGM Epidemics----------------------
 
@@ -2562,6 +2634,38 @@ plot42 <- plot_ggm_epidemics_test(time_series_list[[4]], test_split = 0.2, cumul
 grid.arrange(plot12, plot22, plot32, plot42, ncol = 2)
 
 
+## 21.1 Save csv----------------------
+
+results_list <- map(names(series_list), function(disease_name) {
+  ts_data <- series_list[[disease_name]]
+  
+  dates <- seq.Date(from = Sys.Date() - 7 * (length(ts_data) - 1),
+                    by   = "week",
+                    length.out = length(ts_data))
+  
+  fitted_vals <- save_ggm_epidemics_test(ts_data, dates = dates, cumulative =  TRUE)$Fitted
+  stopifnot(length(ts_data) == length(fitted_vals))
+  
+  tibble(Date = dates,
+         Disease = disease_name,
+         Actual  = ts_data,
+         Fitted  = fitted_vals)
+})
+
+actual_wide <- bind_rows(results_list) %>%
+  select(Date, Disease, Actual) %>%
+  pivot_wider(names_from = Disease, values_from = Actual)
+
+fitted_wide <- bind_rows(results_list) %>%
+  select(Date, Disease, Fitted) %>%
+  pivot_wider(names_from = Disease, values_from = Fitted)
+
+file_path <- "../../results/GGM_epidemics.csv"
+if (!dir.exists(dirname(file_path)))
+  dir.create(dirname(file_path), recursive = TRUE)
+
+write.csv(fitted_wide, file = file_path, row.names = FALSE)
+View(fitted_wide)
 
 # 22. BM vs GGM Metrics Epidemics---------------
 
@@ -2620,6 +2724,42 @@ plot43 <- process_epidemics_test(time_series_list[[4]], test_split = 0.2)
 
 # Combine plots in a 2x2 grid using gridExtra
 grid.arrange(plot13, plot23, plot33, plot43, ncol = 2)
+
+
+## 23.1 Save csv----------------------
+
+# 1.  Run GGM → ARIMA for every disease and collect fitted values
+results_list <- map(names(series_list), function(disease_name) {
+  
+  ts_data   <- series_list[[disease_name]]
+  
+  # save_epidemics_ggm_r() already returns Date + Fitted for the FULL series
+  fit_df    <- save_epidemics_ggm_r(ts_data, test_split = 0.20)
+  
+  # sanity check (optional but nice to keep)
+  stopifnot(nrow(fit_df) == length(ts_data))
+  
+  tibble(Date    = fit_df$Date,
+         Disease = disease_name,
+         Fitted  = fit_df$Fitted)          # <- no Actual, by request
+})
+
+# 2.  Wide format: one column per disease, Date down the rows
+fitted_wide <- bind_rows(results_list) %>%
+  pivot_wider(names_from = Disease, values_from = Fitted)
+
+# ---------------------------------------------------------------------------
+# 3.  Write to disk (create directory if it doesn’t exist)
+# ---------------------------------------------------------------------------
+file_path <- "../../results/GGM_ARIMA_epidemics.csv"
+dir.create(dirname(file_path), recursive = TRUE, showWarnings = FALSE)
+
+write.csv(fitted_wide, file = file_path, row.names = FALSE)
+
+# optional: inspect in RStudio viewer
+View(fitted_wide)
+
+
 
 
 # 24. GGM + Refinement Epidemics Metrics----------------------
