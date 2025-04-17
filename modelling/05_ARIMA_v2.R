@@ -7,6 +7,8 @@ library(lubridate)
 library(readr)
 library(dplyr)
 library(gridExtra)
+library(forecast)   # auto.arima(), forecast()
+library(tidyr)      # pivot_wider()
 
 setwd('GitHub/thesis/modelling/')
 
@@ -176,10 +178,50 @@ evaluate_arima_grid_train <- function(df, countries) {
   return(results_df)
 }
 
+
+## Get Fitted Values ------
+fit_arima_country <- function(df, country, train_ratio = 0.8) {
+  tryCatch({
+    
+    df_country <- df %>%
+      filter(country == !!country) %>%
+      arrange(date)                       # make sure rows are in time order
+    
+    series <- ts(df_country$cases)        # simple ts w/ freq = 1
+    
+    # --- train / test split 
+    train_n <- floor(train_ratio * length(series))
+    train_y <- series[1:train_n]
+    test_y  <- series[(train_n + 1):length(series)]
+    
+    # --- fit only on TRAIN 
+    ar_mod  <- auto.arima(train_y)
+    
+    # in‑sample one‑step‑ahead fits (train)
+    fit_train <- fitted(ar_mod)
+    
+    # out‑of‑sample forecasts (test)
+    fit_test  <- forecast(ar_mod,
+                          h    = length(test_y),
+                          xreg = NULL)$mean
+    
+    fitted_full <- c(as.numeric(fit_train), as.numeric(fit_test))
+    
+    # tidy output 
+    tibble(date    = df_country$date,
+           country = country,
+           fitted  = fitted_full)
+    
+  }, error = function(e) {
+    message("Error on ", country, ": ", e$message)
+    return(NULL)
+  })
+}
+
+
 ## 2.2 Epidemics----------------
 
 library(cowplot)
-
 prepare_dataframe <- function(df) {
   df <- df %>%
     arrange(date) %>%
@@ -284,6 +326,37 @@ evaluate_arima_grid(df_covid, unique_countries)
 ## 3.2 Train test split-------------------------
 evaluate_arima_grid_train(df_covid, unique_countries)
 
+
+## 3.3 Save CSVs-----------------
+fit_arima_all_countries <- function(df,
+                                    countries = unique(df$country),
+                                    train_ratio = 0.8) {
+  
+  fitted_long <- purrr::map_dfr(countries, fit_arima_country,
+                                df = df, train_ratio = train_ratio)
+  
+  fitted_wide <- fitted_long %>%
+    select(date, country, fitted) %>%
+    pivot_wider(names_from  = country,
+                values_from = fitted)
+  
+  list(long = fitted_long, wide = fitted_wide)
+}
+
+# run the whole pipeline
+out          <- fit_arima_all_countries(df = df_covid,
+                                        train_ratio = 0.8)
+
+fitted_long  <- out$long          # date | country | fitted
+fitted_wide  <- out$wide          # date down rows, one column per country
+
+# save the wide table
+file_path <- "../results/ARIMA_covid.csv"
+dir.create(dirname(file_path), recursive = TRUE, showWarnings = FALSE)
+write.csv(fitted_wide, file_path, row.names = FALSE)
+
+
+
 # 4. Epidemics----------------------
 # Load and preprocess datasets
 df_dengue <- prepare_dataframe(df_dengue)
@@ -356,4 +429,116 @@ combined_plot_split <- wrap_plots(plots_split, ncol = 2, nrow = 2)
 print(combined_plot_split)
 
 
+## 4.3 Save csvs----------------
+
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(forecast)     # auto.arima(), forecast()
+library(readr)        # write_csv()
+
+# 0.  make sure each epidemic data‑frame has a cumulative_cases column
+
+prepare_dataframe <- function(df) {
+  df %>%
+    arrange(date) %>%
+    mutate(cumulative_cases = cumsum(Casos))        # <-- use your Casos column
+}
+
+
+### 1.  Fit one epidemic 
+
+fit_arima_epidemic <- function(df_epidemic,
+                               epidemic_name,
+                               train_ratio = 0.8) {
+  
+  df_epidemic <- prepare_dataframe(df_epidemic)
+  
+  series      <- ts(df_epidemic$cumulative_cases, frequency = 52)
+  n_train     <- floor(train_ratio * length(series))
+  y_train     <- series[1:n_train]
+  y_test_len  <- length(series) - n_train
+  
+  # fit on train only
+  mod         <- auto.arima(y_train)
+  
+  # in‑sample fits for train part
+  fit_train   <- fitted(mod)
+  
+  # forecasts for test part
+  fit_test    <- forecast(mod, h = y_test_len)$mean
+  
+  tibble(
+    date     = df_epidemic$date,
+    epidemic = epidemic_name,
+    fitted   = c(as.numeric(fit_train), as.numeric(fit_test))
+  )
+}
+
+
+# 2.  Fit ALL epidemics in a list 
+#      epidemics_list  : named list of data‑frames
+#                        names(epidemics_list) are the epidemic labels
+
+fit_arima_all_epidemics <- function(epidemics_list,
+                                    train_ratio = 0.8) {
+  
+  fitted_long <- map2_dfr(
+    epidemics_list,
+    names(epidemics_list),
+    ~ fit_arima_epidemic(.x, epidemic_name = .y, train_ratio = train_ratio)
+  )
+  
+  fitted_wide <- fitted_long %>%
+    select(date, epidemic, fitted) %>%
+    pivot_wider(
+      names_from  = epidemic,
+      values_from = fitted,
+      values_fill = NA          # missing dates → NA (“nan” in csv)
+    ) %>%
+    arrange(date)
+  
+  list(long = fitted_long, wide = fitted_wide)
+}
+
+
+# 3.  Implement
+
+# epidemics_list must be a named list:
+epidemics_list <- list(
+   Dengue  = df_dengue,
+   Zika    = df_zika,
+   Chikungunya = df_chic,
+   Varicela = df_var)
+ 
+
+out <- fit_arima_all_epidemics(epidemics_list, train_ratio = 0.8)
+
+fitted_long <- out$long          # date | epidemic | fitted
+fitted_wide <- out$wide          # date as index, one col per epidemic
+
+fitted_wide <- fitted_long %>%            # date | epidemic | fitted
+  group_by(date, epidemic) %>%            # <- collapse dups *before* pivot
+  summarise(fitted = mean(fitted), .groups = "drop") %>%
+  pivot_wider(
+    names_from  = epidemic,
+    values_from = fitted,
+    values_fill = NA_real_            # keep NA for missing dates
+  ) %>%
+  arrange(date)
+
+library(tibble)   # column_to_rownames()
+
+fitted_wide_idx <- fitted_wide %>%
+  column_to_rownames("date") %>%     # date → row‑names (the “index”)
+  as.data.frame()                    # drop tibble class
+
+stopifnot(!any(vapply(fitted_wide_idx, is.list, logical(1))))
+
+file_path <- "../results/ARIMA_epidemics.csv"
+dir.create(dirname(file_path), recursive = TRUE, showWarnings = FALSE)
+
+utils::write.csv(fitted_wide_idx,
+                 file      = file_path,
+                 row.names = TRUE)   # keeps the date index
 
