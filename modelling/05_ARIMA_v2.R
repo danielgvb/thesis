@@ -10,7 +10,7 @@ library(gridExtra)
 library(forecast)   # auto.arima(), forecast()
 library(tidyr)      # pivot_wider()
 
-setwd('GitHub/thesis/modelling/')
+#setwd('GitHub/thesis/modelling/')
 
 # 0. load data-------------------------
 df_covid <- read_csv("../Data/silver/covid_data_weekly.csv")
