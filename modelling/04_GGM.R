@@ -2058,48 +2058,124 @@ plot_bm_epidemics_test <- function(time_series, test_split = 0.2, cumulative = F
 }
 
 
-save_bm_epidemics_test <- function(time_series, dates, test_split = 0.2, cumulative = FALSE) {
-  # Define train-test split index
-  split_index <- floor((1 - test_split) * length(time_series))
+
+save_bm_epidemics <- function(time_series,
+                              dates        = NULL,
+                              test_split   = 0.20,
+                              cumulative   = FALSE) {
   
-  # get the dates from the time series
-  if (missing(dates)) {
-    # If dates not provided, create a sequence of weekly dates starting from today
-    dates <- seq.Date(from = Sys.Date() - 7 * (length(time_series) - 1), 
-                      by = "week", 
-                      length.out = length(time_series))
-  } else if (length(dates) != length(time_series)) {
-    stop("Length of dates must match length of time_series")
+  # 1. Numeric vector of the data
+  y <- as.numeric(time_series)
+  
+  #2. Build / verify a Date index 
+  if (is.null(dates)) {
+    
+    if (inherits(time_series, "ts")) {          # ── 'ts' objects 
+      freq  <- frequency(time_series)
+      ts_start <- start(time_series)
+      
+      if (freq == 52) {                         # weekly data
+        start_date <- as.Date(paste(ts_start[1], 1, 1, sep = "-")) +
+          7 * (ts_start[2] - 1)
+        dates <- seq.Date(start_date, by = "week", length.out = length(y))
+        
+      } else if (freq == 12) {                  # monthly data
+        start_date <- as.Date(paste(ts_start[1], ts_start[2], 1, sep = "-"))
+        dates <- seq.Date(start_date, by = "month", length.out = length(y))
+        
+      } else {
+        stop("Unsupported ts() frequency. Provide 'dates' manually.")
+      }
+      
+    } else if (!is.null(time(time_series))) {   # zoo / xts
+      dates <- as.Date(time(time_series))
+      
+    } else {                                    # fallback
+      dates <- seq.Date(Sys.Date() - 7 * (length(y) - 1),
+                        by = "week", length.out = length(y))
+    }
+    
   }
   
-  # Split data into training and test sets
-  train_series <- time_series[1:split_index]
-  test_series <- time_series[(split_index + 1):length(time_series)]
+  if (length(dates) != length(y))
+    stop("Length of 'dates' must equal length of 'time_series'")
   
-  # Train BM model on training set
-  bm_model <- BM(train_series, display = FALSE)
+  # 3. 80 / 20 chronological split
+  split_idx <- floor((1 - test_split) * length(y))
+  train_y   <- y[1:split_idx]
   
-  # Forecast for the entire period
-  full_forecast <- predict(bm_model, newx = 1:length(time_series))
+  #  4. Fit Bass Model on training slice
+  bm_mod <- BM(train_y, display = FALSE)
   
-  # Compute instantaneous fitted values
-  full_forecast_inst <- make.instantaneous(full_forecast)
+  # 5. Forecast for the full horizon 
+  full_forecast <- predict(bm_mod, newx = seq_along(y))
   
-  # Prepare data for plotting (show only test set forecast)
-  if (cumulative == FALSE) {
-    df_plot <- data.frame(
-      Date = dates,
-      Fitted = full_forecast_inst
-    )
+  fitted_vals <- if (cumulative) {
+    full_forecast
   } else {
-    df_plot <- data.frame(
-      Date = dates,
-      Fitted = full_forecast
-    )
+    make.instantaneous(full_forecast)
   }
   
-  return(df_plot)
+  #  6. Return tidy data-frame 
+  data.frame(
+    date   = dates,
+    fitted = fitted_vals
+  )
 }
+
+
+check_even_spacing <- function(series, dates_col = NULL, name = "series") {
+  
+  # 1. Pull out the Date vector
+  
+  if (!is.null(dates_col)) {          # user supplied dates
+    dd <- as.Date(dates_col)
+    
+  } else if (inherits(series, "ts")) {   # ts
+    freq  <- frequency(series)
+    st    <- start(series)               # c(year, period)
+    if (freq == 52) {                    # weekly
+      dd0 <- as.Date(paste0(st[1], "-01-01")) + 7 * (st[2] - 1)
+      dd  <- seq(dd0, by = "week", length.out = length(series))
+    } else if (freq == 12) {             # monthly
+      dd0 <- as.Date(paste0(st[1], "-", st[2], "-01"))
+      dd  <- seq(dd0, by = "month", length.out = length(series))
+    } else {
+      stop("Unsupported ts() frequency")
+    }
+    
+  } else if (inherits(series, "zoo") || inherits(series, "xts")) {
+    dd <- as.Date(index(series))         #  zoo / xts
+  } else {
+    stop("Need either a ts/zoo object or an explicit dates vector")
+  }
+  
+  
+  # 2. Check spacing
+  
+  gaps <- diff(dd)
+  is_regular <- length(unique(gaps)) == 1
+  
+  cat("───", name, "───\n")
+  cat(" Earliest date :", min(dd), "\n")
+  cat(" Latest date   :", max(dd), "\n")
+  cat(" Expected freq :", ifelse(is_regular, gaps[1], "IRREGULAR"), "\n\n")
+  
+  # Optional: show any irregular points
+  if (!is_regular) {
+    bad_idx <- which(gaps != gaps[1])
+    cat("Irregular gaps at rows : ", bad_idx, "\n")
+    print(dd[sort(unique(c(bad_idx, bad_idx + 1)))])
+  }
+}
+
+## usage:
+check_even_spacing(ts_casos_dengue,        name = "Dengue")
+check_even_spacing(ts_casos_zika,          name = "Zika")
+check_even_spacing(ts_casos_chic,          name = "Chicungunya")
+check_even_spacing(ts_casos_var,           name = "Varicela")
+
+
 
 
 
@@ -2180,48 +2256,81 @@ plot_ggm_epidemics_test <- function( time_series, test_split = 0.2, cumulative =
 }
 
 
-save_ggm_epidemics_test <- function(time_series,
-                                    dates = NULL,
-                                    test_split = 0.2,
-                                    cumulative = FALSE) {
+# save_ggm_epidemics()
+# • Auto–detects the calendar index (ts, zoo/xts, or supplied)
+# • Splits first (1–test_split) rows as training data
+# • Fits the GGM model on the training slice
+# • Forecasts the whole horizon
+# • Returns either cumulative or instantaneous fitted values
+#   in a tidy data-frame:  date | fitted
+
+save_ggm_epidemics <- function(time_series,
+                               dates      = NULL,
+                               test_split = 0.20,
+                               cumulative = FALSE) {
   
-  # --- 1. train‑test split 
-  split_index  <- floor((1 - test_split) * length(time_series))
-  train_series <- time_series[1:split_index]
-  test_series  <- time_series[(split_index + 1):length(time_series)]  # <- unused but harmless
+  #  1. numeric vector 
+  y <- as.numeric(time_series)
   
-  # --- 2. date vector
+  #  2. build / verify Date vector 
   if (is.null(dates)) {
-    dates <- seq.Date(from = Sys.Date() - 7 * (length(time_series) - 1),
-                      by   = "week",
-                      length.out = length(time_series))
-  } else if (length(dates) != length(time_series)) {
-    stop("Length of dates must match length of time_series")
+    
+    if (inherits(time_series, "ts")) {                 #  ts 
+      freq <- frequency(time_series)
+      st   <- start(time_series)                      # c(year, period)
+      
+      if (freq == 52) {                               # weekly ts
+        start_date <- as.Date(paste(st[1], 1, 1, sep = "-")) +
+          7 * (st[2] - 1)
+        dates <- seq.Date(start_date, by = "week", length.out = length(y))
+        
+      } else if (freq == 12) {                        # monthly ts
+        start_date <- as.Date(paste(st[1], st[2], 1, sep = "-"))
+        dates <- seq.Date(start_date, by = "month", length.out = length(y))
+        
+      } else {
+        stop("Unsupported ts() frequency; please supply 'dates' manually.")
+      }
+      
+    } else if (!is.null(time(time_series))) {         # zoo/xts 
+      dates <- as.Date(time(time_series))
+      
+    } else {                                          #  fallback 
+      dates <- seq.Date(Sys.Date() - 7 * (length(y) - 1),
+                        by = "week", length.out = length(y))
+    }
   }
   
-  # --- 3. fit GGM -
+  if (length(dates) != length(y))
+    stop("Length of 'dates' must equal length of 'time_series'")
+  
+  # 3. 80 / 20 chronological split
+  split_idx  <- floor((1 - test_split) * length(y))
+  train_y    <- y[1:split_idx]
+  
+  #  4. Fit GGM on the training slice 
   ggm_model <- tryCatch(
-    GGM(train_series, display = FALSE),
+    GGM(train_y, display = FALSE),
     error = function(e) {
       if (grepl("chol.default.*not positive", e$message)) {
-        message("Cholesky error, trying alternative m‑t function …")
-        GGM(train_series, mt = function(x) pchisq(x, 10), display = FALSE)
-      } else {
-        stop(e)
-      }
+        message("Cholesky error, retrying with mt = pchisq(·,10)…")
+        GGM(train_y, mt = function(x) pchisq(x, 10), display = FALSE)
+      } else stop(e)
     }
   )
   
-  # --- 4. forecast 
-  full_forecast      <- predict(ggm_model, newx = 1:length(time_series))
-  full_forecast_inst <- make.instantaneous(full_forecast)
+  #5. Forecast full horizon 
+  full_forecast <- predict(ggm_model, newx = seq_along(y))
+  fitted_vals   <- if (cumulative) full_forecast
+  else            make.instantaneous(full_forecast)
   
-  # --- 5. assemble output
+  # 6. Output tidy frame
   data.frame(
-    Date   = dates,
-    Fitted = if (cumulative) full_forecast else full_forecast_inst
+    date   = dates,
+    fitted = fitted_vals
   )
 }
+
 
 
 calculate_metrics_bm_epidemics_test <- function(time_series, test_split = 0.2) {
@@ -2565,6 +2674,7 @@ time_series_list <- list(ts_casos_dengue,
                          ts_casos_var)
 
 
+
 # Generate plots
 plot1 <- plot_bm_epidemics_test(time_series_list[[1]], test_split = 0.2, cumulative = TRUE)
 plot2 <- plot_bm_epidemics_test(time_series_list[[2]], test_split = 0.2, cumulative = TRUE)
@@ -2576,47 +2686,56 @@ plot4 <- plot_bm_epidemics_test(time_series_list[[4]], test_split = 0.2, cumulat
 grid.arrange(plot1, plot2, plot3, plot4, ncol = 2)
 
 
-## 20.1 Save csv-----------------
-# Define the series list
+
+
+## 20.1 Save csv-------------------------
+
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(lubridate)     # floor_date()
+
+
+# 0.  Time-series list
+
 series_list <- list(
-  Dengue = ts_casos_dengue,
-  Zika = ts_casos_zika,
+  Dengue      = ts_casos_dengue,
+  Zika        = ts_casos_zika,
   Chicungunya = ts_casos_chic,
-  Varicela = ts_casos_var
+  Varicela    = ts_casos_var
 )
 
 
-# Modified processing to include actual values
-results_list <- lapply(names(series_list), function(disease_name) {
-  ts_data <- series_list[[disease_name]]
-  
-  # Get dates (consistent with your function logic)
-  dates <- seq.Date(from = Sys.Date() - 7 * (length(ts_data) - 1), 
-                    by = "week", 
-                    length.out = length(ts_data))
-  
-  data.frame(
-    Date = dates,
-    Disease = disease_name,
-    Actual = ts_data,
-    Fitted = save_bm_epidemics_test(ts_data, cumulative = TRUE)$Fitted
-  )
-})
+# 1.  Helper: run Bass model & return tidy long data
 
-# Create separate wide dataframes for actual and fitted values
-actual_wide <- bind_rows(results_list) %>%
-  select(Date, Disease, Actual) %>%
-  pivot_wider(names_from = Disease, values_from = Actual)
+fit_one <- function(ts_obj, name){
+  df <- save_bm_epidemics(ts_obj, cumulative = TRUE)   # <- patched function
+  df %>%
+    mutate(
+      # snap every date to ISO-week Monday
+      date = floor_date(date, unit = "week", week_start = 1),
+      disease = name,
+      cases   = fitted
+    ) %>%
+    select(date, disease, cases)
+}
 
-fitted_wide <- bind_rows(results_list) %>%
-  select(Date, Disease, Fitted) %>%
-  pivot_wider(names_from = Disease, values_from = Fitted)
+# run for every series
+results_long <- imap_dfr(series_list, fit_one)
 
-# Specify the file path where you want to save the CSV file
-file_path <- "../../results/BM_epidemics.csv"  # Replace with your desired file path
 
-# Save the fitted_values_df dataframe to a CSV file
-write.csv(fitted_wide, file = file_path, row.names = FALSE)
+# 2.  Pivot to wide; NA where a disease has no data that week
+
+df_epidemics <- results_long %>%
+  pivot_wider(names_from = disease, values_from = cases) %>%
+  arrange(date)
+
+
+# 3.  Save
+
+write.csv(df_epidemics,
+          file = "../../results/BM_epidemics.csv",
+          row.names = FALSE)
 
 # 21. GGM Epidemics----------------------
 
@@ -2636,36 +2755,37 @@ grid.arrange(plot12, plot22, plot32, plot42, ncol = 2)
 
 ## 21.1 Save csv----------------------
 
-results_list <- map(names(series_list), function(disease_name) {
-  ts_data <- series_list[[disease_name]]
-  
-  dates <- seq.Date(from = Sys.Date() - 7 * (length(ts_data) - 1),
-                    by   = "week",
-                    length.out = length(ts_data))
-  
-  fitted_vals <- save_ggm_epidemics_test(ts_data, dates = dates, cumulative =  TRUE)$Fitted
-  stopifnot(length(ts_data) == length(fitted_vals))
-  
-  tibble(Date = dates,
-         Disease = disease_name,
-         Actual  = ts_data,
-         Fitted  = fitted_vals)
-})
 
-actual_wide <- bind_rows(results_list) %>%
-  select(Date, Disease, Actual) %>%
-  pivot_wider(names_from = Disease, values_from = Actual)
 
-fitted_wide <- bind_rows(results_list) %>%
-  select(Date, Disease, Fitted) %>%
-  pivot_wider(names_from = Disease, values_from = Fitted)
+# 1.  Helper: run GGM model → tidy long frame
+#     (snap every date to the ISO-week Monday so rows align)
 
-file_path <- "../../results/GGM_epidemics.csv"
-if (!dir.exists(dirname(file_path)))
-  dir.create(dirname(file_path), recursive = TRUE)
+fit_one <- function(ts_obj, name) {
+  save_ggm_epidemics(ts_obj, cumulative = TRUE) %>%   # <- patched GGM helper
+    mutate(
+      date    = floor_date(date, unit = "week", week_start = 1),  # align weeks
+      disease = name,
+      cases   = fitted
+    ) %>%
+    select(date, disease, cases)
+}
 
-write.csv(fitted_wide, file = file_path, row.names = FALSE)
-View(fitted_wide)
+results_long <- imap_dfr(series_list, fit_one)
+
+
+# 2.  Wide matrix  (index = date, columns = diseases)
+
+df_epidemics <- results_long %>%
+  pivot_wider(names_from = disease, values_from = cases) %>%
+  arrange(date)
+
+
+# 3.  Save to disk
+
+write.csv(df_epidemics,
+          file = "../../results/GGM_epidemics.csv",
+          row.names = FALSE)
+
 
 # 22. BM vs GGM Metrics Epidemics---------------
 
