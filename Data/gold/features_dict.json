@@ -1,0 +1,16 @@
+{
+    "covid_col": [
+        "new_cases",
+        "google_symptom",
+        "o3",
+        "pop_vaccinated",
+        "no2"
+    ],
+    "dengue": [
+        "dengue",
+        "pres",
+        "google_symptom",
+        "date_num",
+        "google_physician"
+    ]
+}
