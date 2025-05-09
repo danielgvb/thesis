@@ -2868,10 +2868,11 @@ results_list <- map(names(series_list), function(disease_name) {
 fitted_wide <- bind_rows(results_list) %>%
   pivot_wider(names_from = Disease, values_from = Fitted)
 
-# ---------------------------------------------------------------------------
+View(fitted_wide)
+
 # 3.  Write to disk (create directory if it doesn’t exist)
-# ---------------------------------------------------------------------------
-file_path <- "../../results/GGM_ARIMA_epidemics.csv"
+
+file_path <- "../../results/GGM-ARIMA_epidemics.csv"
 dir.create(dirname(file_path), recursive = TRUE, showWarnings = FALSE)
 
 write.csv(fitted_wide, file = file_path, row.names = FALSE)
