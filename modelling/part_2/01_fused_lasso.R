@@ -1,4 +1,14 @@
 # Fused lasso
 # import packages
 
-dengue_geo_weather <- read.csv("~/GitHub/thesis/Data/gold/dengue_geo_weather.csv")
+library(genlasso)
+install.packages('genlasso')
+
+df <- read.csv("~/GitHub/thesis/Data/gold/dengue_geo_weather.csv")
+
+X <- df[c('Latitude', 'Longitude')]
+y <- df[c('count')]
+
+
+f1 <- fusedlasso(y, X)
+
