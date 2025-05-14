@@ -14,8 +14,7 @@ y <- df[c('count')]
 m1 <- gam(count~s(Latitude)+s(Longitude)  + s(elevation)+ s(tavg) + s(tmax) + s(prcp) + 
             s(wdir) + s(wspd) + s(pres), family = poisson, data = df)
 summary(m1)
-plot(m1)
-plot(m1,pages=1,seWithMean=TRUE) ## `with intercept' CIs
+plot(m1,pages=1,seWithMean=TRUE, scale = 0) ## `with intercept' CIs
 ## run some basic model checks, including checking
 ## smoothing basis dimensions...
 gam.check(m1)
@@ -35,7 +34,8 @@ plot(b0,pages=1,scheme=1,unconditional=TRUE, scale = 0)
 bt <- gam(count~te(Longitude,Latitude,k=7) + s(elevation)+ s(tavg) + s(tmax) + s(prcp) + 
             s(wdir) + s(wspd) + s(pres), family = poisson,,data=df,
           method="REML")
-plot(bt,pages=3, scale = 0)
+summary(bt)
+plot(bt,pages=2, scale = 0)
 plot(bt,pages=2,scheme=2, scale = 0) ## alternative visualization
 AIC(b0,bt) ## interaction better than additive
 gam.check(bt)
