@@ -129,8 +129,10 @@ final_formula_str <- paste0(response, "~ te(Longitude, Latitude, k=7) + ")
 final_formula_str <- paste0(final_formula_str, paste0("s(", covariates, ", bs='", best_bases, "')", collapse=" + "))
 
 final_gam <- gam(as.formula(final_formula_str), family=poisson, data=df, method="REML")
+AIC(final_gam, final_mod)
 
 # Check final model
 summary(final_gam)
 
-
+plot(final_gam,pages=2,scheme=2, scale = 0) ## alternative visualization
+plot(final_gam,pages=2,scheme=1, scale = 0) ## alternative visualization
