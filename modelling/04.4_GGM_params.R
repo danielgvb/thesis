@@ -25,10 +25,11 @@ results$coefficients
 
 
 
-
+unique_countries <- unique(df_w$country)
+test_split <- 0.2
 
 # 2. Functions---------------------
-fit_BM_country <- function(country_name, data, test_prop = 0.20) {
+fit_GGM_country <- function(country_name, data, test_prop = 0.20) {
   df_country   <- filter(data, country == country_name)
   covid_series <- df_country$new_cases
   
@@ -38,19 +39,20 @@ fit_BM_country <- function(country_name, data, test_prop = 0.20) {
   split_index  <- floor((1 - test_prop) * length(covid_series))
   train_series <- covid_series[1:split_index]
   
-  bm_model     <- BM(train_series, display = FALSE)
+  bm_model     <- GGM(train_series, display = FALSE)
   coefs        <- summary(bm_model)$coefficients
   
   # return a named numeric vector (or data.frame – see Option B)
   return(coefs)
 }
 
-unique_countries <- unique(df_w$country)
-test_split <- 0.2
+pxndx <- fit_GGM_country("Colombia", df_w, test_prop = 0.2)
+pxndx
+
 # 3. Results----------------
 coef_df <- map_df(unique_countries,
                   ~{
-                    co <- fit_BM_country(.x, df_w, test_split)
+                    co <- fit_GGM_country(.x, df_w, test_split)
                     if (is.null(co)) return(NULL)          # skip if too short
                     tibble(country = .x,
                            term     = names(co),
@@ -86,7 +88,7 @@ library(xtable)
 xt <- xtable(
   coef_wide,
   digits  = 3,
-  caption = "BM coefficients by country",
+  caption = "GGM coefficients by country",
   label   = "tab:bm_coefs",
   align   = c("l", rep("r", ncol(coef_wide)))  # l = first col left-align
 )
@@ -111,8 +113,7 @@ zika <- df_zika$Casos
 chikungunya <- df_chic$Casos
 varicella <- df_var$Casos
 
-
-
+epidemics <- c(dengue, zika, chikungunya, varicella)
 series_list <- list(
   Dengue      = df_dengue$Casos,
   Zika        = df_zika$Casos,
@@ -121,38 +122,44 @@ series_list <- list(
 )
 
 # 2. Functions--------------
-fit_BM_epidemics <- function(series, test_prop = 0.20) {
+fit_GGM_epidemics <- function(series, test_prop = 0.20) {
+  
+  
+  
+  # guard clause – skip countries with too-few observations
   if (length(series) < 10L) return(NULL)
+  
   split_index  <- floor((1 - test_prop) * length(series))
   train_series <- series[1:split_index]
-  bm_model     <- BM(train_series, display = FALSE)
-  summary(bm_model)$coefficients
+  
+  ggm_model     <- GGM(train_series, display = FALSE)
+  coefs        <- summary(ggm_model)$coefficients
+  
+  # return a named numeric vector (or data.frame – see Option B)
+  return(coefs)
 }
 
-# 3. Results — wide version --------------
-# 3.1 Fit to each series and drop NULLs
-coefs_list <- lapply(series_list, fit_BM_epidemics)
-coefs_list <- coefs_list[!sapply(coefs_list, is.null)]
+# 3. Results----------------
 
-# 3.2 Bind into one data.frame
-coef_wide_epidemics <- do.call(rbind,
-                               lapply(names(coefs_list), function(name) {
-                                 data.frame(
-                                   Epidemic = name,
-                                   t(coefs_list[[name]]),
-                                   check.names = FALSE
-                                 )
-                               })
+coefs_list <- lapply(series_list, fit_GGM_epidemics)
+valid      <- !sapply(coefs_list, is.null)
+coefs_list <- coefs_list[valid]
+
+coef_wide  <- do.call(rbind, 
+                      lapply(names(coefs_list), function(name) {
+                        data.frame(Epidemic = name, t(coefs_list[[name]]), check.names = FALSE)
+                      })
 )
 
-# 4. Emit LaTeX table for epidemics --------
-xt_ep <- xtable(
-  coef_wide_epidemics,
+# 4. print LaTeX table
+xt <- xtable(
+  coef_wide,
   digits  = 3,
-  caption = "BM coefficients by epidemic",
-  label   = "tab:bm_coefs_epidemics",
-  align   = c("l", rep("r", ncol(coef_wide_epidemics)))
+  caption = "GGM coefficients by epidemic",
+  label   = "tab:ggm_coefs_epidemics",
+  align   = c("l", rep("r", ncol(coef_wide)))
 )
 
-xt_ep
+xt
+
 
