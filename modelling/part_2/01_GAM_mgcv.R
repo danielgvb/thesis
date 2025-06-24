@@ -84,6 +84,33 @@ final_mod <- gam(count ~ te(Longitude, Latitude, k = optimal_k) +
                  family = poisson, data = df, method = "REML")
 plot(final_mod,pages=2,scheme=2, scale = 0) ## alternative visualization
 
+
+## choose best interaction term-----
+# Your current model using te()
+mod_te <- gam(count ~ te(Longitude, Latitude, k = optimal_k) +
+                s(elevation, k = optimal_k) +
+                s(tavg, k = optimal_k) +
+                s(tmax, k = optimal_k) +
+                s(prcp, k = optimal_k) +
+                s(wdir, k = optimal_k) +
+                s(wspd, k = optimal_k) +
+                s(pres, k = optimal_k), 
+              family = poisson, data = df, method = "REML")
+
+# The alternative model using s()
+mod_s <- gam(count ~ s(Longitude, Latitude, k = optimal_k) +
+               s(elevation, k = optimal_k) +
+               s(tavg, k = optimal_k) +
+               s(tmax, k = optimal_k) +
+               s(prcp, k = optimal_k) +
+               s(wdir, k = optimal_k) +
+               s(wspd, k = optimal_k) +
+               s(pres, k = optimal_k), 
+             family = poisson, data = df, method = "REML")
+
+# Compare the two models
+AIC(mod_te, mod_s)
+
 # Loop Basis Function-----------
 
 # Define your response and covariates
@@ -134,5 +161,8 @@ AIC(final_gam, final_mod)
 # Check final model
 summary(final_gam)
 
+# plot model with best basis fn
 plot(final_gam,pages=2,scheme=2, scale = 0) ## alternative visualization
 plot(final_gam,pages=2,scheme=1, scale = 0) ## alternative visualization
+# plot model with best k (df)
+plot(final_mod,pages=2,scheme=2, scale = 0) ## alternative visualization
