@@ -1,6 +1,24 @@
 # GAM
 
 # SCRIPT CONFIGURATION
+# List of required packages
+required_packages <- c(
+  "dplyr", "stringr", "tidyr", "sf", 
+  "spatialsample", "rsample", "mgcv"
+)
+
+# Identify missing packages
+missing_packages <- required_packages[!(required_packages %in% installed.packages()[,"Package"])]
+
+# Install missing packages
+if(length(missing_packages) > 0) {
+  cat("Installing missing packages:", paste(missing_packages, collapse = ", "), "\n")
+  install.packages(missing_packages)
+} else {
+  cat("All required packages are already installed.\n")
+}
+
+
 
 
 # 1. Load all required libraries ------------
@@ -177,86 +195,170 @@ cat(paste("  - Final Test Set Correlation:", round(test_cor, 3), "\n"))
 cat("\nPlotting final model smooths...\n")
 plot(final_gam_model, pages = 2, scheme = 2, scale = 0)
 
-# Bis Hier******-----------------------
+# Best Basis Fn -------------------------
+# HYPERPARAMETER TUNING (FINDING BEST BASIS FUNCTION `bs`) VIA AIC
+# This section uses ONLY the 'train_data'
 
-## choose best interaction term-----
-# Your current model using te()
-mod_te <- gam(count ~ te(Longitude, Latitude, k = optimal_k) +
-                s(elevation, k = optimal_k) +
-                s(tavg, k = optimal_k) +
-                s(tmax, k = optimal_k) +
-                s(prcp, k = optimal_k) +
-                s(wdir, k = optimal_k) +
-                s(wspd, k = optimal_k) +
-                s(pres, k = optimal_k), 
-              family = poisson, data = df, method = "REML")
+cat("\n--- Starting hyperparameter tuning to find the best basis function (`bs`) for each covariate ---\n")
 
-# The alternative model using s()
-mod_s <- gam(count ~ s(Longitude, Latitude, k = optimal_k) +
-               s(elevation, k = optimal_k) +
-               s(tavg, k = optimal_k) +
-               s(tmax, k = optimal_k) +
-               s(prcp, k = optimal_k) +
-               s(wdir, k = optimal_k) +
-               s(wspd, k = optimal_k) +
-               s(pres, k = optimal_k), 
-             family = poisson, data = df, method = "REML")
+# --- 1. Define the search space ---
 
-# Compare the two models
-AIC(mod_te, mod_s)
+# Covariates to optimize
+covariates_to_tune <- c("elevation", "tavg", "tmax", "prcp", "wdir", "wspd", "pres")
 
-# Loop Basis Function-----------
+# Candidate basis functions to test
+candidate_bases <- c("tp", "cr", "cs", "ps", "ts") 
 
-# Define your response and covariates
-response <- "count"
-covariates <- c("elevation", "tavg", "tmax", "prcp", "wdir", "wspd", "pres")
+# Fixed k for this tuning approach. A moderate value is chosen.
+K_FIXED <- 7
 
-# Candidate smoothing bases
-bases <- c("tp", "cr", "cs", "ps", "ts")
+# --- 2. Run the tuning loop ---
 
-# Store best bases
+# A list to store the best basis function found for each covariate
 best_bases <- list()
 
-# Loop through covariates individually, choosing best smoothing basis per covariate
-for(var in covariates){
-  aic_vals <- c()
+# Loop through each covariate
+for (current_var in covariates_to_tune) {
   
-  for(b in bases){
-    # Construct the model formula dynamically
-    formula_str <- paste0(response, "~ te(Longitude, Latitude, k=7) + ")
-    formula_str <- paste0(formula_str, paste0("s(", var, ", bs='", b, "') + "))
+  aic_scores <- c() # To store AIC values for the current variable
+  cat(paste0("--- Tuning basis for: '", current_var, "' ---\n"))
+  
+  # Loop through each candidate basis for the current covariate
+  for (current_basis in candidate_bases) {
     
-    # Add other variables with default "tp"
-    other_vars <- covariates[covariates != var]
-    formula_str <- paste0(formula_str, paste0("s(", other_vars, ", bs='tp')", collapse=" + "))
+    # Dynamically build the formula string
+    # Start with the spatial term
+    formula_str <- paste0("count ~ te(Longitude, Latitude, k = ", K_FIXED, ")")
     
-    # Fit the GAM with REML or ML for AIC comparison (REML is default but use ML for strict AIC optimization)
-    mod <- gam(as.formula(formula_str), family=poisson, data=df, method="ML")
+    # Add the smooth term for the variable we are currently tuning
+    formula_str <- paste0(formula_str, " + s(", current_var, ", bs='", current_basis, "', k=", K_FIXED, ")")
     
-    # Save AIC
-    aic_vals[b] <- AIC(mod)
+    # Add all other covariates with a default basis ('tp')
+    other_vars <- covariates_to_tune[covariates_to_tune != current_var]
+    other_smooths <- paste0("s(", other_vars, ", bs='tp', k=", K_FIXED, ")", collapse = " + ")
+    
+    final_formula_str <- paste(formula_str, other_smooths, sep = " + ")
+    
+    # Fit the GAM using ML for strict AIC comparison
+    # Use the entire training data for AIC calculation
+    model_fit <- gam(as.formula(final_formula_str), 
+                     family = poisson, 
+                     data = train_data, 
+                     method = "ML") # Use ML for comparing models with different smooths via AIC
+    
+    # Store the AIC score
+    aic_scores[current_basis] <- AIC(model_fit)
   }
   
-  # Select basis with lowest AIC
-  best_basis <- names(which.min(aic_vals))
-  best_bases[[var]] <- best_basis
+  # Find and store the basis with the lowest AIC for the current variable
+  best_basis_for_var <- names(which.min(aic_scores))
+  best_bases[[current_var]] <- best_basis_for_var
+  
+  cat(paste0("  -> Best basis for '", current_var, "': '", best_basis_for_var, "' (AIC: ", round(min(aic_scores), 1), ")\n\n"))
 }
 
-# Display the selected best basis per variable
-print(best_bases)
+cat("--- Basis Function Tuning Complete ---\n")
+print(unlist(best_bases))
 
-# Fit final GAM using optimal smoothing basis per covariate
-final_formula_str <- paste0(response, "~ te(Longitude, Latitude, k=7) + ")
-final_formula_str <- paste0(final_formula_str, paste0("s(", covariates, ", bs='", best_bases, "')", collapse=" + "))
 
-final_gam <- gam(as.formula(final_formula_str), family=poisson, data=df, method="REML")
-AIC(final_gam, final_mod)
+## FINAL MODEL TRAINING --------------------------
 
-# Check final model
-summary(final_gam)
+cat("\n--- Training final model using the best basis functions found ---\n")
 
-# plot model with best basis fn
-plot(final_gam,pages=2,scheme=2, scale = 0) ## alternative visualization
-plot(final_gam,pages=2,scheme=1, scale = 0) ## alternative visualization
-# plot model with best k (df)
-plot(final_mod,pages=2,scheme=2, scale = 0) ## alternative visualization
+# Build the final formula string using the list of best bases
+final_formula_basis <- "count ~ te(Longitude, Latitude, k = K_FIXED)"
+for (var in names(best_bases)) {
+  final_formula_basis <- paste0(final_formula_basis, " + s(", var, ", bs='", best_bases[[var]], "', k=", K_FIXED, ")")
+}
+
+# Train the final model on the ENTIRE training dataset using REML for better estimation
+final_gam_model_basis <- gam(as.formula(final_formula_basis),
+                             family = poisson,
+                             data = train_data,
+                             method = "REML")
+
+cat("Final model (basis function strategy) trained successfully.\n")
+
+
+## FINAL MODEL EVALUATION----------------
+
+# --- 1. Inspect the model summary ---
+cat("\n--- Final Model Summary (Basis Function Strategy) ---\n")
+print(summary(final_gam_model_basis))
+
+# --- 2. Evaluate performance on the held-out test set ---
+cat("\n--- Evaluating performance on hold-out test set ---\n")
+
+test_predictions_basis <- predict(final_gam_model_basis, newdata = test_data, type = "response")
+test_rmse_basis <- sqrt(mean((test_predictions_basis - test_data$count)^2))
+test_cor_basis <- cor(test_predictions_basis, test_data$count)
+
+cat(paste("  - Final Test Set RMSE:", round(test_rmse_basis, 3), "\n"))
+cat(paste("  - Final Test Set Correlation:", round(test_cor_basis, 3), "\n"))
+
+# --- 3. Plot the smooth effects of the final model ---
+cat("\nPlotting final model smooths...\n")
+plot(final_gam_model_basis, pages = 2, scheme = 2, scale = 0)
+
+# Model Comparison --------------
+
+# MODEL SHOWDOWN: COMPARING THE TWO STRATEGIES
+# This section assumes you have two final model objects in your R environment:
+#   - `final_gam_model`: The result of tuning 'k' with cross-validation.
+#   - `final_gam_model_basis`: The result of tuning 'bs' with AIC.
+
+cat("--- Model Comparison: k-Tuning vs. Basis-Tuning ---\n")
+
+# --- 1. Compare models using AIC ---
+# The AIC function can compare multiple models at once.
+aic_comparison <- AIC(final_gam_model, final_gam_model_basis)
+rownames(aic_comparison) <- c("k-Tuning Model", "Basis-Tuning Model")
+
+print(aic_comparison)
+
+# --- 2. Programmatically select the best model ---
+if (aic_comparison$AIC[1] < aic_comparison$AIC[2]) {
+  best_overall_model <- final_gam_model
+  best_model_name <- "k-Tuning Model (`final_gam_model`)"
+} else {
+  best_overall_model <- final_gam_model_basis
+  best_model_name <- "Basis-Tuning Model (`final_gam_model_basis`)"
+}
+
+cat(paste("\nConclusion: The", best_model_name, "is the superior model based on the lower AIC score.\n"))
+
+
+## SUMMARY OF THE WINNING MODEL------------
+# Now, we create a clean summary table for the best overall model.
+
+cat(paste("\n--- Summary Table for the Winning Model:", best_model_name, "---\n"))
+
+# --- 1. Extract the table of smooth terms from the summary object ---
+summary_table <- as.data.frame(summary(best_overall_model)$s.table)
+
+# --- 2. Clean up the table for presentation ---
+# Load dplyr if not already loaded
+if (!require(dplyr)) install.packages("dplyr")
+library(dplyr)
+
+summary_table_clean <- summary_table %>%
+  # The term names are stored as row names, so we move them to a column
+  tibble::rownames_to_column("Smooth Term") %>%
+  # Select and rename the most important columns
+  select(
+    `Smooth Term`,
+    `EDF` = edf,
+    `Chi-sq` = `Chi.sq`,
+    `p-value` = `p-value`
+  ) %>%
+  # Format the numbers for readability
+  mutate(
+    EDF = round(EDF, 2),
+    `Chi-sq` = round(`Chi-sq`, 1),
+    `p-value` = scales::pvalue(`p-value`, accuracy = 0.001, add_p = TRUE) # Formats p-values as "<0.001"
+  )
+
+# --- 3. Print the clean summary table ---
+print(summary_table_clean)
+
+cat("\n\nEDF (Effective Degrees of Freedom): Measures the non-linearity of the term's effect (1 = a straight line).\n")
