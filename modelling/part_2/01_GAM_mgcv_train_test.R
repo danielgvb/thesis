@@ -94,108 +94,113 @@ cat("  - Training data:", nrow(train_data), "rows from", n_distinct(train_data$d
 cat("  - Testing data: ", nrow(test_data), "rows from", n_distinct(test_data$departamento), "departments.\n")
 
 
+# Best K Loop--------------------------
+## HYPERPARAMETER TUNING (FINDING BEST K) VIA SPATIAL CV------------------
 
-# HYPERPARAMETER TUNING (FINDING BEST K) VIA SPATIAL CV------------------
+# This section uses ONLY the 'train_data'.
+# Since AIC is an in-sample metric, cross-validation is not required.
 
-# This section uses ONLY the 'train_data'
+cat("\n--- Starting tuning to find the best k using AIC ---\n")
 
-cat("\n--- Setting up for hyperparameter tuning using spatial CV ---\n")
+# 1. Define candidates and a place to store results
+# Candidate values for k
+candidate_k <- c(5, 7, 10, 15, 20)
 
-# Create spatial cross-validation folds from the training data
-cv_folds <- spatial_block_cv(train_data, v = CV_FOLDS)
-cat(paste("Created", CV_FOLDS, "spatial cross-validation folds.\n"))
+# Data frame to store the AIC for each k
+aic_results <- tibble(k = integer(), AIC = double())
 
-# Define the GAM formula once to avoid repeating it
-gam_formula <- as.formula(
-  count ~ te(Longitude, Latitude, k = k_val) +
-    s(elevation, k = k_val) + s(tavg, k = k_val) + s(tmax, k = k_val) +
-    s(prcp, k = k_val) + s(wdir, k = k_val) + s(wspd, k = k_val) +
-    s(pres, k = k_val)
-)
-
-# Data frame to store tuning results
-cv_results <- tibble(k = integer(), mean_rmse = double(), sd_rmse = double())
-
-cat("\n--- Starting cross-validation to find the best k ---\n")
-
-# Loop through each candidate k
-for (k_val in CANDIDATE_K) {
+# 2. Loop through each candidate k, fit on all training data, and get AIC
+for (k_val in candidate_k) {
   
-  fold_rmse_scores <- c()
   cat(paste0("--- Evaluating k = ", k_val, " ---\n"))
   
-  # Loop through each CV fold
-  for (i in 1:CV_FOLDS) {
-    analysis_set <- training(cv_folds$splits[[i]])
-    assessment_set <- testing(cv_folds$splits[[i]])
-    
-    # Fit the model on the analysis set
-    model_fit <- gam(gam_formula, family = poisson, data = analysis_set, method = "REML")
-    
-    # Predict on the assessment set and calculate RMSE
-    predictions <- predict(model_fit, newdata = assessment_set, type = "response")
-    fold_rmse <- sqrt(mean((predictions - assessment_set$count)^2))
-    fold_rmse_scores <- c(fold_rmse_scores, fold_rmse)
-  }
+  # Define the formula with the current k value
+  current_formula <- as.formula(
+    paste0("count ~ te(Longitude, Latitude, k = ", k_val, ") +",
+           "s(elevation, k = ", k_val, ") + s(tavg, k = ", k_val, ") + s(tmax, k = ", k_val, ") +",
+           "s(prcp, k = ", k_val, ") + s(wdir, k = ", k_val, ") + s(wspd, k = ", k_val, ") +",
+           "s(pres, k = ", k_val, ")")
+  )
   
-  # Store the average performance for this k
-  cv_results <- cv_results %>%
-    add_row(k = k_val, mean_rmse = mean(fold_rmse_scores), sd_rmse = sd(fold_rmse_scores))
+  # Fit the GAM model on the ENTIRE training dataset
+  model_fit <- gam(current_formula, 
+                   family = poisson, 
+                   data = train_data, 
+                   method = "REML")
+  
+  # Extract the AIC and store it
+  current_aic <- AIC(model_fit)
+  aic_results <- aic_results %>% add_row(k = k_val, AIC = current_aic)
+  
+  cat(paste0("  -> AIC for k = ", k_val, ": ", round(current_aic, 2), "\n"))
 }
 
-cat("\n--- Cross-Validation Complete ---\n")
-print(cv_results)
+# --- 3. Select the optimal k ---
+cat("\n--- Tuning Complete ---\n")
+print(aic_results)
 
-# Select the optimal k based on the lowest mean RMSE
-optimal_k_cv <- cv_results$k[which.min(cv_results$mean_rmse)]
-cat(paste("\nOptimal k selected by Cross-Validation:", optimal_k_cv, "\n"))
+# Select the optimal k based on the lowest AIC score
+optimal_k_aic <- aic_results$k[which.min(aic_results$AIC)]
+cat(paste("\nOptimal k selected by AIC:", optimal_k_aic, "\n"))
 
 
 
-# FINAL MODEL TRAINING-------------
+## FINAL MODEL TRAINING (using k from AIC tuning)----------
 
 # Now we train the definitive model on the *entire* training dataset
-# using the best hyperparameter (k) we just found.
+# using the best hyperparameter (k) we just found via AIC.
 
 cat("\n--- Training final model on all training data ---\n")
 
 # Redefine formula with the now-known optimal k
-final_formula <- as.formula(
-  count ~ te(Longitude, Latitude, k = optimal_k_cv) +
-    s(elevation, k = optimal_k_cv) + s(tavg, k = optimal_k_cv) + s(tmax, k = optimal_k_cv) +
-    s(prcp, k = optimal_k_cv) + s(wdir, k = optimal_k_cv) + s(wspd, k = optimal_k_cv) +
-    s(pres, k = optimal_k_cv)
+final_formula_aic <- as.formula(
+  paste0("count ~ te(Longitude, Latitude, k = ", optimal_k_aic, ") +",
+         "s(elevation, k = ", optimal_k_aic, ") + s(tavg, k = ", optimal_k_aic, ") + s(tmax, k = ", optimal_k_aic, ") +",
+         "s(prcp, k = ", optimal_k_aic, ") + s(wdir, k = ", optimal_k_aic, ") + s(wspd, k = ", optimal_k_aic, ") +",
+         "s(pres, k = ", optimal_k_aic, ")")
 )
 
 # Train the final model
-final_gam_model <- gam(final_formula, family = poisson, data = train_data, method = "REML")
+final_gam_model_aic <- gam(final_formula_aic, 
+                           family = poisson, 
+                           data = train_data, 
+                           method = "REML")
 
-cat("Final model trained successfully.\n")
+cat("Final model (tuned via AIC) trained successfully.\n")
 
 
 
-# FINAL MODEL EVALUATION-------------
+## FINAL MODEL EVALUATION (using k from AIC tuning)------------------
+
+library(tidyr)
+predictor_cols <- c('count', 'Latitude', 'Longitude', "tavg", "tmax", "prcp", "wdir", "wspd", "pres", "elevation")
+test_data_clean <- test_data %>%
+  drop_na(all_of(predictor_cols))
+
+cat("\n--- Evaluating performance on CLEANED hold-out test set ---\n")
+cat("Original test rows:", nrow(test_data), "| Cleaned test rows:", nrow(test_data_clean), "\n")
 
 
-# --- 1. Inspect the model summary ---
-cat("\n--- Final Model Summary ---\n")
-print(summary(final_gam_model))
+# --- 2. Predict on the CLEANED test data ---
+test_predictions_aic <- predict(final_gam_model_aic, newdata = test_data_clean, type = "response")
 
-# --- 2. Evaluate performance on the held-out test set ---
-cat("\n--- Evaluating performance on hold-out test set ---\n")
 
-test_predictions <- predict(final_gam_model, newdata = test_data, type = "response")
-test_rmse <- sqrt(mean((test_predictions - test_data$count)^2))
-test_cor <- cor(test_predictions, test_data$count)
+# --- 3. Evaluate performance ---
+# These calculations should now work perfectly.
+test_rmse_aic <- sqrt(mean((test_predictions_aic - test_data_clean$count)^2))
+test_cor_aic <- cor(test_predictions_aic, test_data_clean$count)
 
-cat(paste("  - Final Test Set RMSE:", round(test_rmse, 3), "\n"))
-cat(paste("  - Final Test Set Correlation:", round(test_cor, 3), "\n"))
+cat(paste("  - Final Test Set RMSE:", round(test_rmse_aic, 3), "\n"))
+cat(paste("  - Final Test Set Correlation:", round(test_cor_aic, 3), "\n"))
 
 # --- 3. Plot the smooth effects of the final model ---
 cat("\nPlotting final model smooths...\n")
-plot(final_gam_model, pages = 2, scheme = 2, scale = 0)
+plot(final_gam_model_aic, pages = 2, scheme = 2, scale = 0)
 
-# Best Basis Fn -------------------------
+optimal_k_aic
+# BIS HIER********************--------------
+
+# Best Basis Fn --------------------------------------
 # HYPERPARAMETER TUNING (FINDING BEST BASIS FUNCTION `bs`) VIA AIC
 # This section uses ONLY the 'train_data'
 
