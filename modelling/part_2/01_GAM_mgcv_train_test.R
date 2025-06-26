@@ -169,8 +169,8 @@ cat("\n--- Tuning Results ---\n")
 print(aic_results)
 
 # Select the optimal k based on the lowest AIC score
-optimal_k_aic <- aic_results$k[which.min(aic_results$AIC)] # result is 20
-# optimal_k_aic <- 20 # uncomment and coment the loop to avoid time
+#optimal_k_aic <- aic_results$k[which.min(aic_results$AIC)] # result is 20
+optimal_k_aic <- 20 # uncomment and coment the loop to avoid time
 cat(paste("\nOptimal k selected by AIC:", optimal_k_aic, "\n"))
 
 ## 6. FINAL MODEL TRAINING--------------------------------
@@ -360,79 +360,5 @@ plot(final_gam_model_basis, pages = 2, scheme = 2, scale = 0)
 
 
 
-# 3. HYPERPARAMETER TUNING (FINDING BEST BASIS `bs`) - PARALLEL VERSION--------------
 
-# --- 1. Load libraries for parallel processing ---
-# install.packages(c("future", "furrr")) # Run this once if you don't have them
-library(future)
-library(furrr)
-library(dplyr)
-library(stringr)
-library(mgcv)
-
-cat("\n--- Starting PARALLEL hyperparameter tuning for the best basis function (`bs`) ---\n")
-
-# --- 2. Define the search space (same as before) ---
-covariates_to_tune <- c("elevation", "tavg", "tmax", "prcp", "wdir", "wspd", "pres")
-candidate_bases <- c("tp", "cr", "cs", "ps", "ts") 
-K_FIXED <- 20
-
-# --- 3. Set up the parallel plan ---
-# This tells R how many CPU cores to use.
-# We'll use all available cores minus one, to keep your computer responsive.
-# You can also set it to a specific number, e.g., plan(multisession, workers = 4)
-n_cores <- availableCores() - 1
-plan(multisession, workers = n_cores)
-cat(paste("Parallel plan set up to use", n_cores, "CPU cores.\n"))
-
-
-# --- 4. Run the tuning process in parallel ---
-# We replace the outer `for` loop with `future_map_chr`.
-# `future_map_chr` iterates over `covariates_to_tune` and expects a single character string
-# (the name of the best basis) back for each, which is exactly what we want.
-# The `future` package automatically handles exporting necessary objects (like train_data)
-# and loading required packages to each core.
-
-best_bases_list <- furrr::future_map(covariates_to_tune, .progress = TRUE, .options = furrr_options(seed=TRUE), .f = function(current_var) {
-  
-  aic_scores <- c() # To store AIC values for the current variable
-  
-  # The inner loop remains the same, it runs on each core for its assigned variable
-  for (current_basis in candidate_bases) {
-    
-    # Dynamically build the formula string
-    formula_str <- paste0("count ~ te(Longitude, Latitude, k = ", K_FIXED, ")")
-    formula_str <- paste0(formula_str, " + s(", current_var, ", bs='", current_basis, "', k=", K_FIXED, ")")
-    
-    other_vars <- covariates_to_tune[covariates_to_tune != current_var]
-    other_smooths <- paste0("s(", other_vars, ", bs='tp', k=", K_FIXED, ")", collapse = " + ")
-    
-    final_formula_str <- paste(formula_str, other_smooths, sep = " + ")
-    
-    # Fit the GAM
-    model_fit <- gam(as.formula(final_formula_str), 
-                     family = poisson, 
-                     data = train_data, 
-                     method = "ML")
-    
-    # Store the AIC score
-    aic_scores[current_basis] <- AIC(model_fit)
-  }
-  
-  # Find the basis with the lowest AIC for the current variable
-  best_basis_for_var <- names(which.min(aic_scores))
-  
-  # This function returns the best basis name, which future_map_chr collects
-  return(best_basis_for_var)
-})
-
-# After the parallel processing is done, create the final named list
-best_bases <- setNames(as.list(best_bases_list), covariates_to_tune)
-
-# --- 5. Reset the parallel plan back to sequential (good practice) ---
-plan(sequential)
-
-
-cat("\n--- Basis Function Tuning Complete ---\n")
-print(unlist(best_bases))
 
