@@ -1,3 +1,4 @@
+rm(list=ls()) # remove everything in memory
 # GAM
 
 # SCRIPT CONFIGURATION
@@ -54,7 +55,7 @@ set.seed(42)
 
 
 
-# DATA LOADING AND PRE-PROCESSING-----------
+# 3. DATA LOADING AND PRE-PROCESSING-----------
 
 cat("--- Loading and pre-processing data ---\n")
 
@@ -73,7 +74,7 @@ cat("Data loaded and converted to spatial object.\n")
 
 
 
-# TRAIN-TEST SPLIT BY DEPARTMENT---------------
+# 4. TRAIN-TEST SPLIT BY DEPARTMENT---------------
 
 # This creates the final hold-out test set, which will not be touched
 # during model tuning.
@@ -94,25 +95,48 @@ cat("  - Training data:", nrow(train_data), "rows from", n_distinct(train_data$d
 cat("  - Testing data: ", nrow(test_data), "rows from", n_distinct(test_data$departamento), "departments.\n")
 
 
-# Best K Loop--------------------------
-## HYPERPARAMETER TUNING (FINDING BEST K) VIA SPATIAL CV------------------
+## clean NaNs---------------
+library(tidyr)
+predictor_cols <- c('count', 'Latitude', 'Longitude', "tavg", "tmax", "prcp", "wdir", "wspd", "pres", "elevation")
+test_data_clean <- test_data %>%
+  drop_na(all_of(predictor_cols))
 
-# This section uses ONLY the 'train_data'.
-# Since AIC is an in-sample metric, cross-validation is not required.
+# 5. Best K loop--------------------------------
+# HYPERPARAMETER TUNING (FINDING BEST K) VIA AIC - PARALLEL `foreach` VERSION
+# This section uses ONLY the 'train_data' to find the best `k` for the model
+# by fitting a model for each candidate `k` and choosing the one with the lowest AIC.
+# The process is parallelized to speed up computation.
 
-cat("\n--- Starting tuning to find the best k using AIC ---\n")
+## 1. Load libraries for parallel processing ------
+# install.packages(c("foreach", "doParallel")) # Run once if not installed
+library(foreach)
+library(doParallel)
+library(mgcv)
+library(tibble)
 
-# 1. Define candidates and a place to store results
+## 2. Set up the parallel environment ------
+# Use all cores minus one to keep the computer responsive
+n_cores <- parallel::detectCores() - 1
+my_cluster <- makeCluster(n_cores)
+registerDoParallel(my_cluster) # Register the cluster for foreach
+
+cat(paste("\n--- Starting PARALLEL tuning to find best k using", n_cores, "cores (foreach) ---\n"))
+
+## 3. Define candidates and run the parallel tuning loop -------
 # Candidate values for k
 candidate_k <- c(5, 7, 10, 15, 20)
 
-# Data frame to store the AIC for each k
-aic_results <- tibble(k = integer(), AIC = double())
-
-# 2. Loop through each candidate k, fit on all training data, and get AIC
-for (k_val in candidate_k) {
+# The `foreach` loop replaces a standard `for` loop.
+# - `%dopar%` tells it to run iterations in parallel.
+# - `.combine = 'rbind'` gathers the results from each core into a single data frame.
+# - `.packages` ensures each parallel worker has the necessary libraries loaded.
+aic_results <- foreach(
+  k_val = candidate_k, 
+  .combine = 'rbind', 
+  .packages = c('mgcv', 'tibble')
+) %dopar% {
   
-  cat(paste0("--- Evaluating k = ", k_val, " ---\n"))
+  # This block of code is executed on a separate core for each `k_val`.
   
   # Define the formula with the current k value
   current_formula <- as.formula(
@@ -128,32 +152,35 @@ for (k_val in candidate_k) {
                    data = train_data, 
                    method = "REML")
   
-  # Extract the AIC and store it
+  # Extract the AIC 
   current_aic <- AIC(model_fit)
-  aic_results <- aic_results %>% add_row(k = k_val, AIC = current_aic)
   
-  cat(paste0("  -> AIC for k = ", k_val, ": ", round(current_aic, 2), "\n"))
-}
+  # Return a one-row tibble for this k_val. `foreach` will combine these.
+  return(tibble(k = k_val, AIC = current_aic))
+  
+} # End of foreach loop
 
-# --- 3. Select the optimal k ---
-cat("\n--- Tuning Complete ---\n")
+## 4. Shut down parallel workers and show results --------
+# It's very important to stop the cluster to release the computer's resources.
+stopCluster(my_cluster)
+cat("\nParallel processing complete.\n")
+
+cat("\n--- Tuning Results ---\n")
 print(aic_results)
 
 # Select the optimal k based on the lowest AIC score
-optimal_k_aic <- aic_results$k[which.min(aic_results$AIC)]
+optimal_k_aic <- aic_results$k[which.min(aic_results$AIC)] # result is 20
+# optimal_k_aic <- 20 # uncomment and coment the loop to avoid time
 cat(paste("\nOptimal k selected by AIC:", optimal_k_aic, "\n"))
 
-
-
-## FINAL MODEL TRAINING (using k from AIC tuning)----------
-
+## 6. FINAL MODEL TRAINING--------------------------------
 # Now we train the definitive model on the *entire* training dataset
 # using the best hyperparameter (k) we just found via AIC.
 
 cat("\n--- Training final model on all training data ---\n")
 
 # Redefine formula with the now-known optimal k
-final_formula_aic <- as.formula(
+final_formula <- as.formula(
   paste0("count ~ te(Longitude, Latitude, k = ", optimal_k_aic, ") +",
          "s(elevation, k = ", optimal_k_aic, ") + s(tavg, k = ", optimal_k_aic, ") + s(tmax, k = ", optimal_k_aic, ") +",
          "s(prcp, k = ", optimal_k_aic, ") + s(wdir, k = ", optimal_k_aic, ") + s(wspd, k = ", optimal_k_aic, ") +",
@@ -161,43 +188,67 @@ final_formula_aic <- as.formula(
 )
 
 # Train the final model
-final_gam_model_aic <- gam(final_formula_aic, 
-                           family = poisson, 
-                           data = train_data, 
-                           method = "REML")
+final_model <- gam(final_formula, 
+                   family = poisson, 
+                   data = train_data, 
+                   method = "REML")
 
-cat("Final model (tuned via AIC) trained successfully.\n")
+cat("Final model trained successfully using k =", optimal_k_aic, "\n")
+
+# Print the model summary to inspect its components
+cat("\n--- Final Model Summary ---\n")
+print(summary(final_model))
 
 
+## 7. VISUALIZE MODEL EFFECTS-------------------------
+# Plot the smooth terms of the final model to understand the relationships
+# between each predictor and the outcome.
 
-## FINAL MODEL EVALUATION (using k from AIC tuning)------------------
+cat("\n--- Plotting final model smooths... ---\n")
 
-library(tidyr)
+# plot.gam() visualizes each smooth component.
+# - `pages=2` spreads the plots over multiple pages to make them readable.
+# - `scheme=2` uses a color scheme with shaded confidence intervals.
+# - `scale=0` puts all plots on the same y-axis scale for easier comparison.
+plot(final_model, pages = 2, scheme = 2, scale = 0)
+
+
+## 8. FINAL MODEL EVALUATION ON TEST DATA-------------------------
+# This is the final validation step. We use the model trained on `train_data`
+# to make predictions on the completely unseen `test_data`.
+
+cat("\n--- Evaluating performance on hold-out test set ---\n")
+
+# --- 1. Clean the test data to avoid errors with NAs ---
+# It's crucial to remove any rows with missing data from the test set 
+# before making predictions.
 predictor_cols <- c('count', 'Latitude', 'Longitude', "tavg", "tmax", "prcp", "wdir", "wspd", "pres", "elevation")
 test_data_clean <- test_data %>%
-  drop_na(all_of(predictor_cols))
+  tidyr::drop_na(all_of(predictor_cols))
 
-cat("\n--- Evaluating performance on CLEANED hold-out test set ---\n")
-cat("Original test rows:", nrow(test_data), "| Cleaned test rows:", nrow(test_data_clean), "\n")
-
-
-# --- 2. Predict on the CLEANED test data ---
-test_predictions_aic <- predict(final_gam_model_aic, newdata = test_data_clean, type = "response")
+cat(paste("Original test rows:", nrow(test_data), "| Cleaned test rows for evaluation:", nrow(test_data_clean), "\n"))
 
 
-# --- 3. Evaluate performance ---
-# These calculations should now work perfectly.
-test_rmse_aic <- sqrt(mean((test_predictions_aic - test_data_clean$count)^2))
-test_cor_aic <- cor(test_predictions_aic, test_data_clean$count)
+# --- 2. Make predictions on the cleaned test data ---
+# `type = "response"` ensures the predictions are on the original count scale.
+test_predictions <- predict(final_model, newdata = test_data_clean, type = "response")
+actual_values <- test_data_clean$count
 
-cat(paste("  - Final Test Set RMSE:", round(test_rmse_aic, 3), "\n"))
-cat(paste("  - Final Test Set Correlation:", round(test_cor_aic, 3), "\n"))
 
-# --- 3. Plot the smooth effects of the final model ---
-cat("\nPlotting final model smooths...\n")
-plot(final_gam_model_aic, pages = 2, scheme = 2, scale = 0)
+# --- 3. Calculate and report performance metrics ---
+# Root Mean Squared Error (RMSE)
+rmse <- sqrt(mean((test_predictions - actual_values)^2))
 
-optimal_k_aic
+# R-squared (R²), calculated as the square of the correlation between actuals and predictions.
+# This is a common way to assess R² for non-linear models.
+r_squared <- cor(test_predictions, actual_values)^2
+
+cat("\n--- Test Set Performance Metrics ---\n")
+cat(paste("  - RMSE:", round(rmse, 3), "\n"))
+cat(paste("  - R-squared (R²):", round(r_squared, 4), "\n"))
+
+
+
 # BIS HIER********************--------------
 
 # Best Basis Fn --------------------------------------
@@ -215,7 +266,7 @@ covariates_to_tune <- c("elevation", "tavg", "tmax", "prcp", "wdir", "wspd", "pr
 candidate_bases <- c("tp", "cr", "cs", "ps", "ts") 
 
 # Fixed k for this tuning approach. A moderate value is chosen.
-K_FIXED <- 7
+K_FIXED <- 20
 
 # --- 2. Run the tuning loop ---
 
@@ -306,4 +357,82 @@ cat("\nPlotting final model smooths...\n")
 plot(final_gam_model_basis, pages = 2, scheme = 2, scale = 0)
 
 # Model Comparison --------------
+
+
+
+# 3. HYPERPARAMETER TUNING (FINDING BEST BASIS `bs`) - PARALLEL VERSION--------------
+
+# --- 1. Load libraries for parallel processing ---
+# install.packages(c("future", "furrr")) # Run this once if you don't have them
+library(future)
+library(furrr)
+library(dplyr)
+library(stringr)
+library(mgcv)
+
+cat("\n--- Starting PARALLEL hyperparameter tuning for the best basis function (`bs`) ---\n")
+
+# --- 2. Define the search space (same as before) ---
+covariates_to_tune <- c("elevation", "tavg", "tmax", "prcp", "wdir", "wspd", "pres")
+candidate_bases <- c("tp", "cr", "cs", "ps", "ts") 
+K_FIXED <- 20
+
+# --- 3. Set up the parallel plan ---
+# This tells R how many CPU cores to use.
+# We'll use all available cores minus one, to keep your computer responsive.
+# You can also set it to a specific number, e.g., plan(multisession, workers = 4)
+n_cores <- availableCores() - 1
+plan(multisession, workers = n_cores)
+cat(paste("Parallel plan set up to use", n_cores, "CPU cores.\n"))
+
+
+# --- 4. Run the tuning process in parallel ---
+# We replace the outer `for` loop with `future_map_chr`.
+# `future_map_chr` iterates over `covariates_to_tune` and expects a single character string
+# (the name of the best basis) back for each, which is exactly what we want.
+# The `future` package automatically handles exporting necessary objects (like train_data)
+# and loading required packages to each core.
+
+best_bases_list <- furrr::future_map(covariates_to_tune, .progress = TRUE, .options = furrr_options(seed=TRUE), .f = function(current_var) {
+  
+  aic_scores <- c() # To store AIC values for the current variable
+  
+  # The inner loop remains the same, it runs on each core for its assigned variable
+  for (current_basis in candidate_bases) {
+    
+    # Dynamically build the formula string
+    formula_str <- paste0("count ~ te(Longitude, Latitude, k = ", K_FIXED, ")")
+    formula_str <- paste0(formula_str, " + s(", current_var, ", bs='", current_basis, "', k=", K_FIXED, ")")
+    
+    other_vars <- covariates_to_tune[covariates_to_tune != current_var]
+    other_smooths <- paste0("s(", other_vars, ", bs='tp', k=", K_FIXED, ")", collapse = " + ")
+    
+    final_formula_str <- paste(formula_str, other_smooths, sep = " + ")
+    
+    # Fit the GAM
+    model_fit <- gam(as.formula(final_formula_str), 
+                     family = poisson, 
+                     data = train_data, 
+                     method = "ML")
+    
+    # Store the AIC score
+    aic_scores[current_basis] <- AIC(model_fit)
+  }
+  
+  # Find the basis with the lowest AIC for the current variable
+  best_basis_for_var <- names(which.min(aic_scores))
+  
+  # This function returns the best basis name, which future_map_chr collects
+  return(best_basis_for_var)
+})
+
+# After the parallel processing is done, create the final named list
+best_bases <- setNames(as.list(best_bases_list), covariates_to_tune)
+
+# --- 5. Reset the parallel plan back to sequential (good practice) ---
+plan(sequential)
+
+
+cat("\n--- Basis Function Tuning Complete ---\n")
+print(unlist(best_bases))
 
