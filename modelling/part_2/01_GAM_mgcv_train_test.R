@@ -249,9 +249,9 @@ cat(paste("  - R-squared (R²):", round(r_squared, 4), "\n"))
 
 
 
-# BIS HIER********************--------------
 
-# Best Basis Fn --------------------------------------
+
+# 6. Best Basis Fn --------------------------------------
 # HYPERPARAMETER TUNING (FINDING BEST BASIS FUNCTION `bs`) VIA AIC
 # This section uses ONLY the 'train_data'
 
@@ -313,8 +313,21 @@ for (current_var in covariates_to_tune) {
   cat(paste0("  -> Best basis for '", current_var, "': '", best_basis_for_var, "' (AIC: ", round(min(aic_scores), 1), ")\n\n"))
 }
 
+# manually do best basis to avoid re runing the loop
+best_bases <- list(
+  elevation = "cr",
+  tavg      = "cr",
+  tmax      = "cs",
+  prcp      = "cr",
+  wdir      = "tp",
+  wspd      = "cr",
+  pres      = "cr"
+)
+
+
 cat("--- Basis Function Tuning Complete ---\n")
 print(unlist(best_bases))
+
 
 
 ## FINAL MODEL TRAINING --------------------------
@@ -345,20 +358,60 @@ print(summary(final_gam_model_basis))
 # --- 2. Evaluate performance on the held-out test set ---
 cat("\n--- Evaluating performance on hold-out test set ---\n")
 
-test_predictions_basis <- predict(final_gam_model_basis, newdata = test_data, type = "response")
-test_rmse_basis <- sqrt(mean((test_predictions_basis - test_data$count)^2))
-test_cor_basis <- cor(test_predictions_basis, test_data$count)
+# 💡 **Step 1: Clean the test data to remove NAs**
+# Define the columns the model uses to ensure we check them all for NAs.
+predictor_cols <- c('count', 'Latitude', 'Longitude', "tavg", "tmax", "prcp", "wdir", "wspd", "pres", "elevation")
+test_data_clean <- test_data %>%
+  tidyr::drop_na(all_of(predictor_cols))
+
+cat(paste("Original test rows:", nrow(test_data), "| Cleaned test rows for evaluation:", nrow(test_data_clean), "\n"))
+
+# **Step 2: Use the CLEANED data for predictions**
+test_predictions_basis <- predict(final_gam_model_basis, newdata = test_data_clean, type = "response")
+
+# **Step 3: Use the CLEANED data for calculating metrics**
+# This ensures your predictions and actuals align perfectly.
+actual_values_basis <- test_data_clean$count
+
+test_rmse_basis <- sqrt(mean((test_predictions_basis - actual_values_basis)^2, na.rm = TRUE))
+test_cor_basis <- cor(test_predictions_basis, actual_values_basis)
 
 cat(paste("  - Final Test Set RMSE:", round(test_rmse_basis, 3), "\n"))
 cat(paste("  - Final Test Set Correlation:", round(test_cor_basis, 3), "\n"))
 
-# --- 3. Plot the smooth effects of the final model ---
-cat("\nPlotting final model smooths...\n")
+
 plot(final_gam_model_basis, pages = 2, scheme = 2, scale = 0)
 
-# Model Comparison --------------
+# 7. Model Comparison --------------
 
+## 1. Extract AIC from both final models ------
+aic_best_k <- AIC(final_model)
+aic_best_basis <- AIC(final_gam_model_basis)
 
+## 2. Calculate RMSE on the test set for both models ------
+# Note: It's important to use the same cleaned test data for a fair comparison.
+predictor_cols <- c('count', 'Latitude', 'Longitude', "tavg", "tmax", "prcp", "wdir", "wspd", "pres", "elevation")
+test_data_clean <- test_data %>%
+  tidyr::drop_na(all_of(predictor_cols))
+
+# Predictions for the "Best K" model
+predictions_k <- predict(final_model, newdata = test_data_clean, type = "response")
+rmse_k <- sqrt(mean((predictions_k - test_data_clean$count)^2))
+
+# Predictions for the "Best Basis" model
+predictions_basis <- predict(final_gam_model_basis, newdata = test_data_clean, type = "response")
+rmse_basis <- sqrt(mean((predictions_basis - test_data_clean$count)^2))
+
+##3. Create a comparison table -----
+comparison_df <- data.frame(
+  Model_Approach = c("Best K Selection", "Best Basis Function"),
+  AIC = c(aic_best_k, aic_best_basis),
+  Test_RMSE = c(rmse_k, rmse_basis)
+)
+
+## 4. Print the comparison table ------
+cat("\n--- Model Comparison Summary ---\n")
+print(comparison_df)
 
 
 
