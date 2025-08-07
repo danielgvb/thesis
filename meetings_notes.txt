@@ -10,6 +10,19 @@ meeting 09-04-2025
 * Write two chapters: i covid, ii epidemics
 * Do spatial features for epidemics
 * choose the best model and deepen a bit in it
-* do a fair way of comparing RNN with other time series
+* do a fair way of comparing RNN with other time series (OK)
 * implement some NN for regression task
 * do the risk index based on classification
+
+####### 07/08/2025##############
+
+* add time as a predictor
+* reduce degrees of freedom, see if mgcv does it automatically
+	* curves that are less wavy
+* try different functions than poisson
+* do interaction of space and time
+* visualization of time
+* try to plot map of Colombia with the te(lat, lon)
+* compare the results of all the chapters
+* add reference on mathematical framework -> scarpa book
+* summarize all models and compare between them

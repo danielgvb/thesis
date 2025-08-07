@@ -124,7 +124,8 @@ cat(paste("\n--- Starting PARALLEL tuning to find best k using", n_cores, "cores
 
 ## 3. Define candidates and run the parallel tuning loop -------
 # Candidate values for k
-candidate_k <- c(5, 7, 10, 15, 20)
+#candidate_k <- c(5, 7, 10, 15, 20)
+candidate_k <- c(3,5,7)
 
 # The `foreach` loop replaces a standard `for` loop.
 # - `%dopar%` tells it to run iterations in parallel.
@@ -170,7 +171,7 @@ print(aic_results)
 
 # Select the optimal k based on the lowest AIC score
 #optimal_k_aic <- aic_results$k[which.min(aic_results$AIC)] # result is 20
-optimal_k_aic <- 20 # uncomment and coment the loop to avoid time
+optimal_k_aic <- 7 # uncomment and coment the loop to avoid time
 cat(paste("\nOptimal k selected by AIC:", optimal_k_aic, "\n"))
 
 ## 6. FINAL MODEL TRAINING--------------------------------
@@ -212,7 +213,7 @@ cat("\n--- Plotting final model smooths... ---\n")
 # - `scale=0` puts all plots on the same y-axis scale for easier comparison.
 plot(final_model, pages = 2, scheme = 2, scale = 0)
 
-
+summary(final_model)
 ## 8. FINAL MODEL EVALUATION ON TEST DATA-------------------------
 # This is the final validation step. We use the model trained on `train_data`
 # to make predictions on the completely unseen `test_data`.
