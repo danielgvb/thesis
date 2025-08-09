@@ -133,76 +133,209 @@ test_data_clean <- test_data %>%
 # )
 
 base_formula <- as.formula(
-  "count_t1 ~ te(Longitude, Latitude, k=c(5,5))  + s(tmax) +
-   s(prcp, k=5)  + s(wspd, k=5)  + s(week_num)"
+  "count_t1 ~ s(count) + te(Longitude, Latitude, k=c(12,12))  + s(tmax) +
+   s(prcp, k=5)  + s(wspd, k=5)  + s(week_num, k=5)"
 )
 
-
-# 5. Fit GAM-Poisson----------------
-
-
-# Fit the GAM model on the ENTIRE training dataset
-model_fit <- gam(base_formula, 
-                 family = poisson, 
-                 data = train_data, 
-                 method = "REML",
-                 select = TRUE)
-
-gam.check(model_fit)
-
-summary(model_fit)
+# k de te(lat,lon) = 10, 15, 17 para el gaussian da muy bueno
 
 
-plot(model_fit, pages = 4, scheme = 2, scale = 0)
+# 6. Fit GAM-Poisson ----------------
+model_fit_poisson <- gam(base_formula,
+                         family = poisson,
+                         data = train_data,
+                         method = "REML",
+                         select = TRUE)
 
-# 6. Fit GAM-Gaussian----------------
+# 7. Fit GAM-Gaussian ----------------
+model_fit_gauss <- gam(base_formula,
+                       family = gaussian(),
+                       data = train_data,
+                       method = "REML",
+                       select = TRUE)
+
+# 8. Fit GAM-QuasiPoisson -----------------
+model_fit_quasi <- gam(base_formula,
+                       family = quasipoisson,
+                       data = train_data,
+                       method = "REML",
+                       select = TRUE)
+
+# 9. Fit GAM-Log-Normal -----------------
+
+model_fit_lognormal <- gam(base_formula,
+                           family = gaussian(link = "log"), # Use gaussian family with a log link
+                           data = train_data,
+                           method = "REML",
+                           select = TRUE)
+
+gam.check(model_fit_lognormal)
+summary(model_fit_lognormal)
 
 
-model_fit_gauss <- gam(base_formula, 
-                 family = gaussian(), 
-                 data = train_data, 
-                 method = "REML",
-                 select = TRUE)
+# 10. Compare all four models ---------------
 
-gam.check(model_fit_gauss)
-
-summary(model_fit_gauss)
-
-plot(model_fit_gauss, pages = 2, scheme = 2, scale = 0)
-
-# 7. Compare models---------------
-# Assume you have a data frame called 'test_data'
-# It must contain the same predictor columns as train_data and the actual 'count' column.
-
-# 1. Get predictions from the Poisson model
-predictions_poisson <- predict(model_fit, newdata = test_data_clean, type = "response")
-
-# 2. Get predictions from the Gaussian model
+# 1. Get predictions from all models
+predictions_poisson <- predict(model_fit_poisson, newdata = test_data_clean, type = "response")
 predictions_gauss <- predict(model_fit_gauss, newdata = test_data_clean, type = "response")
+predictions_quasi <- predict(model_fit_quasi, newdata = test_data_clean, type = "response")
+predictions_lognormal <- predict(model_fit_lognormal, newdata = test_data_clean, type = "response") # New
 
-# 3. Get the actual values from the test set
-# 3. Get the actual values from the test set
-actuals <- test_data_clean$count_t1 # <-- FIX: Use the correct target variable
+# 2. Get the actual values from the test set
+actuals <- test_data_clean$count_t1
 
-# The rest of the RMSE calculation is now correct
+# 3. Calculate RMSE for each model
 rmse_poisson <- sqrt(mean((predictions_poisson - actuals)^2))
 rmse_gauss <- sqrt(mean((predictions_gauss - actuals)^2))
-# Print the results
+rmse_quasi <- sqrt(mean((predictions_quasi - actuals)^2))
+rmse_lognormal <- sqrt(mean((predictions_lognormal - actuals)^2)) # New
+
+# 4. Print the results
 print(paste("Poisson Model RMSE:", round(rmse_poisson, 4)))
 print(paste("Gaussian Model RMSE:", round(rmse_gauss, 4)))
+print(paste("Quasipoisson Model RMSE:", round(rmse_quasi, 4)))
+print(paste("Log-Normal Model RMSE:", round(rmse_lognormal, 4))) # New
 
-# Compare and determine the better model
-if (rmse_poisson < rmse_gauss) {
-  print("The Poisson model performs better on the test set (lower RMSE).")
-} else {
-  print("The Gaussian model performs better on the test set (lower RMSE).")
+# 5. Programmatically find and announce the best model
+rmse_values <- c(Poisson = rmse_poisson,
+                 Gaussian = rmse_gauss,
+                 Quasipoisson = rmse_quasi,
+                 `Log-Normal` = rmse_lognormal) # Added new model to comparison
+
+best_model_name <- names(which.min(rmse_values))
+min_rmse <- min(rmse_values)
+
+cat("\n--- Comparison Result ---\n")
+print(paste0("The ", best_model_name, " model performs best on the test set with an RMSE of ", round(min_rmse, 4), "."))
+
+# ¨Poisson is best with 7.1319 RMSE
+
+# 11. Best smoother-----------------
+## 11.1. Define Variables and Bases to Test ---------
+
+# List of predictor variables that have a smooth term
+# Note: We are not tuning the 'te' term for simplicity, but you could adapt the script to do so.
+vars_to_test <- c("count", "tmax", "prcp", "wspd", "week_num")
+
+# A list of common basis types to try for each variable.
+# 'tp' = Thin Plate Regression Splines (default)
+# 'ts' = Thin Plate with shrinkage
+# 'cr' = Cubic Regression Splines
+# 'ps' = P-splines
+# 'cc' = Cyclic Cubic (ideal for cyclical predictors like week_num)
+bases_to_test <- c("tp", "ts", "cr", "ps")
+cyclic_bases_to_test <- c("cc", "ps", "cr") # A specific set for the week_num variable
+
+## 11.2. Iterative Search for Best Basis ----------
+
+# This will store the best basis found for each variable
+best_bases <- list(
+  count = "s(count, k=-1, bs='tp')", # Start with defaults
+  tmax = "s(tmax, k=-1, bs='tp')",
+  prcp = "s(prcp, k=5, bs='tp')",
+  wspd = "s(wspd, k=5, bs='tp')",
+  week_num = "s(week_num, k=5, bs='tp')"
+)
+
+# The fixed part of our formula
+fixed_formula_part <- "te(Longitude, Latitude, k=c(12,12))"
+
+cat("Starting the search for the best smoothing basis for each variable...\n\n")
+
+# Loop through each variable to test
+for (variable in vars_to_test) {
+  
+  cat(paste0("--- Testing variable: '", variable, "' ---\n"))
+  
+  # Store results (AIC for each basis type) for the current variable
+  results <- data.frame(variable = character(), basis = character(), aic = numeric())
+  
+  # Determine which set of bases to test
+  current_bases_to_test <- if (variable == "week_num") cyclic_bases_to_test else bases_to_test
+  
+  # Loop through each basis type for the current variable
+  for (basis in current_bases_to_test) {
+    
+    # Construct the smooth term for the current variable and basis
+    # We'll use the k value from your original formula, or -1 for gam to choose
+    k_val <- switch(variable,
+                    "prcp" = 5,
+                    "wspd" = 5,
+                    "week_num" = 5,
+                    -1) # Default k for count, tmax
+    
+    current_smooth <- paste0("s(", variable, ", k=", k_val, ", bs='", basis, "')")
+    
+    # Build the full formula for this iteration
+    # It includes the fixed part, the smooth we are currently testing,
+    # and the best smooths found so far for the other variables.
+    other_vars <- setdiff(vars_to_test, variable)
+    other_smooths <- sapply(other_vars, function(v) best_bases[[v]])
+    
+    formula_str <- paste("count_t1 ~", current_smooth, "+",
+                         paste(other_smooths, collapse = " + "), "+",
+                         fixed_formula_part)
+    
+    formula_obj <- as.formula(formula_str)
+    
+    # Fit the GAM
+    model_fit <- gam(formula_obj,
+                     family = gaussian(),
+                     data = train_data,
+                     method = "REML",
+                     select = TRUE)
+    
+    # Store the result
+    current_aic <- AIC(model_fit)
+    results <- rbind(results, data.frame(variable = variable, basis = basis, aic = current_aic))
+    
+    cat(paste0("  Basis '", basis, "' -> AIC: ", round(current_aic, 2), "\n"))
+  }
+  
+  # Find the best basis for the current variable (the one with the minimum AIC)
+  best_result <- results[which.min(results$aic), ]
+  
+  # Update our list of best bases with the winner for this variable
+  best_k_val <- switch(best_result$variable,
+                       "prcp" = 5,
+                       "wspd" = 5,
+                       "week_num" = 5,
+                       -1)
+  best_bases[[variable]] <- paste0("s(", best_result$variable, ", k=", best_k_val, ", bs='", best_result$basis, "')")
+  
+  cat(paste0("\n  >> Best basis for '", variable, "' is '", best_result$basis, "'\n\n"))
 }
 
 
+## 11.3. Construct Final Model ---------------
 
-# 8. Plots----------------
-# Install packages if you don't have them
-#install.packages(c("sf", "rnaturalearth", "rnaturalearthdata"))
+# Now that we have the best basis for each variable, let's build the final formula
+final_smooth_terms <- paste(unlist(best_bases), collapse = " + ")
+final_formula_str <- paste("count_t1 ~", final_smooth_terms, "+", fixed_formula_part)
+final_formula <- as.formula(final_formula_str)
+
+cat("------------------------------------------\n")
+cat("Final optimized formula:\n")
+print(final_formula)
+cat("------------------------------------------\n\n")
+#gam_gaus_formula< - count_t1 ~ s(count, k = -1, bs = "ps") + s(tmax, k = -1, bs = "cr") + 
+#  s(prcp, k = 5, bs = "cr") + s(wspd, k = 5, bs = "tp") + s(week_num, 
+#                                                            k = 5, bs = "ps") + te(Longitude, Latitude, k = c(12, 12))
+
+# Fit the final, optimized model
+final_model <- gam(final_formula,
+                   family = gaussian(), # change for best model
+                   data = train_data,
+                   method = "REML",
+                   select = TRUE)
+
+# View the summary of the final model
+cat("Summary of the final model:\n")
+summary(final_model)
+
+
+
+# 12. Plots----------------
 
 library(ggplot2)
 library(sf)
@@ -233,6 +366,7 @@ prediction_grid <- expand_grid(
 
 # Add the other model predictors to the grid, setting each to its mean
 #prediction_grid$elevation <- mean(train_data$elevation)
+prediction_grid$count      <- mean(train_data$count) # comment 
 prediction_grid$tmax      <- mean(train_data$tmax)
 prediction_grid$prcp      <- mean(train_data$prcp)
 prediction_grid$wspd      <- mean(train_data$wspd)
@@ -245,7 +379,7 @@ prediction_grid$week_num  <- round(mean(train_data$week_num)) # Use mean or a ty
 # Predict the effect ONLY for the spatial term
 # Predict using your new Gaussian model
 spatial_effect <- predict(
-  model_fit,               # <-- Use your new model here
+  model_fit_gauss,               # <-- Use your new model here
   newdata = prediction_grid,
   type = "terms",
   se.fit = TRUE
@@ -277,8 +411,83 @@ ggplot() +
   ) +
   theme_minimal()
 
+# 13. Clipped Plots------------
+# 2. Get Country Map
+country_map <- ne_countries(scale = "large", country = "Colombia", returnclass = "sf")
 
-  # 9. Plots 3D-----------------
+# 3. Create Prediction Grid
+# This part is the same as your original code
+prediction_grid <- expand_grid(
+  Longitude = seq(
+    from = st_bbox(train_data)["xmin"],
+    to = st_bbox(train_data)["xmax"],
+    length.out = 150
+  ),
+  Latitude = seq(
+    from = st_bbox(train_data)["ymin"],
+    to = st_bbox(train_data)["ymax"],
+    length.out = 150
+  )
+)
+
+# 4. Clip the Grid to the Country Borders [KEY CHANGE]
+# Convert the grid to a spatial object (sf) and then clip it
+clipped_grid <- prediction_grid %>%
+  st_as_sf(coords = c("Longitude", "Latitude"), crs = st_crs(country_map)) %>%
+  st_intersection(country_map)
+
+# The 'clipped_grid' now only contains points inside Colombia.
+# We need to extract the coordinates back into Longitude/Latitude columns for ggplot
+clipped_coords <- st_coordinates(clipped_grid)
+clipped_grid$Longitude <- clipped_coords[, "X"]
+clipped_grid$Latitude <- clipped_coords[, "Y"]
+
+
+# 5. Add Predictors and Make Predictions
+# Add other predictors to the clipped grid
+# clipped_grid$elevation <- mean(train_data$elevation)
+clipped_grid$count     <- mean(train_data$count)
+clipped_grid$tmax      <- mean(train_data$tmax)
+clipped_grid$prcp      <- mean(train_data$prcp)
+clipped_grid$wspd      <- mean(train_data$wspd)
+clipped_grid$week_num  <- round(mean(train_data$week_num))
+
+# Predict using the clipped grid
+spatial_effect <- predict(
+  final_model,
+  newdata = clipped_grid,
+  type = "terms",
+  se.fit = TRUE
+)
+
+# Combine the clipped grid with the predicted values
+clipped_grid$effect <- spatial_effect$fit[, "te(Longitude,Latitude)"]
+
+
+# 6. Plot the Clipped Spatial Effect
+ggplot() +
+  # Plot the predicted effect using the CLIPPED data
+  geom_raster(data = clipped_grid, aes(x = Longitude, y = Latitude, fill = effect)) +
+  
+  # Add the country outline
+  geom_sf(data = country_map, fill = NA, color = "black", linewidth = 0.5) +
+  
+  # Use a nice color scale
+  scale_fill_viridis_c(name = "Spatial Effect") +
+  
+  # Set map coordinates
+  coord_sf(crs = st_crs(country_map)) +
+  
+  # Add informative labels
+  labs(
+    title = "Predicted Spatial Effect (Clipped to Borders)",
+    subtitle = "Effect of Longitude and Latitude on the response",
+    x = "Longitude",
+    y = "Latitude"
+  ) +
+  theme_minimal()
+
+# 14. Plots 3D-----------------
 
 # Get the map of Colombia
 country_map <- ne_countries(scale = "large", country = "Colombia", returnclass = "sf")

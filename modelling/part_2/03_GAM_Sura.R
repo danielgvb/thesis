@@ -105,7 +105,7 @@ test_data_clean <- test_data %>%
 
 
 base_formula <- as.formula(
-  "count_t.1 ~ te(longitude, latitude, k = c(7, 7)) + s(elevation_m, k = 5)  + s(temp) +
+  "count_t.2 ~ s(count) + te(longitude, latitude, k = c(7, 7)) + s(elevation_m, k = 5)  + s(temp) +
    s(prcp, k=5) + s(week_num)"
 )
 
@@ -151,7 +151,7 @@ predictions_gauss <- predict(model_fit_gauss, newdata = test_data_clean, type = 
 
 # 3. Get the actual values from the test set
 # 3. Get the actual values from the test set
-actuals <- test_data_clean$count_t.1 # <-- FIX: Use the correct target variable
+actuals <- test_data_clean$count_t.2 # <-- FIX: Use the correct target variable
 
 # The rest of the RMSE calculation is now correct
 rmse_poisson <- sqrt(mean((predictions_poisson - actuals)^2))
@@ -193,7 +193,7 @@ prediction_grid <- expand_grid(
     length.out = 150
   )
 )
-
+prediction_grid$count <- mean(train_data$count)
 prediction_grid$elevation_m <- mean(train_data$elevation_m)
 prediction_grid$temp      <- mean(train_data$temp)
 prediction_grid$prcp      <- mean(train_data$prcp)
