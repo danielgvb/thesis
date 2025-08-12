@@ -132,8 +132,7 @@ test_data_clean <- test_data %>%
 #    s(tmax) + s(prcp, k=5) + s(wspd, k=5) + s(week_num)"
 # )
 
-base_formula <- as.formula(
-  "count_t1 ~ s(count) + te(Longitude, Latitude, k=c(12,12))  + s(tmax) +
+base_formula <- as.formula("count_t1 ~ s(count) + te(Longitude, Latitude, k=c(12,12))  + s(tmax) +
    s(prcp, k=5)  + s(wspd, k=5)  + s(week_num, k=5)"
 )
 
@@ -318,12 +317,22 @@ cat("------------------------------------------\n")
 cat("Final optimized formula:\n")
 print(final_formula)
 cat("------------------------------------------\n\n")
-#gam_gaus_formula< - count_t1 ~ s(count, k = -1, bs = "ps") + s(tmax, k = -1, bs = "cr") + 
-#  s(prcp, k = 5, bs = "cr") + s(wspd, k = 5, bs = "tp") + s(week_num, 
-#                                                            k = 5, bs = "ps") + te(Longitude, Latitude, k = c(12, 12))
+
+
+# Original formula
+final_formula <- count_t1 ~ s(count, k = -1, bs = "ps") + s(tmax, k = -1, bs = "cr") + 
+  s(prcp, bs = "cr", k=5) + s(wspd, k = 5, bs = "tp") + s(week_num, 
+                                                            k = 5, bs = "ps") + te(Longitude, Latitude, k = c(12, 12))
+
+# New formula without the 'count' term
+new_formula <- count_t1 ~ s(tmax, k = -1, bs = "cr") + 
+  s(prcp, bs = "cr") + s(wspd, k = 5, bs = "tp") + s(week_num, 
+                                                            k = 5, bs = "ps") + te(Longitude, Latitude, k = c(12, 12))
+gam_gaus_formula <-  count_t1 ~ s(count, k = -1, bs = "ps") + s(tmax, k = -1, bs = "cr") +   s(prcp, k = 5, bs = "cr") + s(wspd, k = 5, bs = "tp") + s(week_num, 
+                                                            k = 5, bs = "ps") + te(Longitude, Latitude, k = c(12, 12))
 
 # Fit the final, optimized model
-final_model <- gam(final_formula,
+final_model <- gam(gam_gaus_formula,
                    family = gaussian(), # change for best model
                    data = train_data,
                    method = "REML",
@@ -333,6 +342,8 @@ final_model <- gam(final_formula,
 cat("Summary of the final model:\n")
 summary(final_model)
 
+# Plot just the spatial term as a contour map
+plot(final_model, pages=2, scheme = 2) # Use select = 6 because it's the 6th term
 
 
 # 12. Plots----------------
@@ -340,6 +351,8 @@ summary(final_model)
 library(ggplot2)
 library(sf)
 library(rnaturalearth)
+
+#install.packages("devtools")
 
 # Get world map and filter for the specific country
 country_map <- ne_countries(scale = "large", country = "Colombia", returnclass = "sf")
@@ -474,6 +487,30 @@ ggplot() +
   
   # Use a nice color scale
   scale_fill_viridis_c(name = "Spatial Effect") +
+  
+  # Set map coordinates
+  coord_sf(crs = st_crs(country_map)) +
+  
+  # Add informative labels
+  labs(
+    title = "Predicted Spatial Effect (Clipped to Borders)",
+    subtitle = "Effect of Longitude and Latitude on the response",
+    x = "Longitude",
+    y = "Latitude"
+  ) +
+  theme_minimal()
+
+
+# hear colors-------------
+ggplot() +
+  # Plot the predicted effect using the CLIPPED data
+  geom_raster(data = clipped_grid, aes(x = Longitude, y = Latitude, fill = effect)) +
+  
+  # Add the country outline
+  geom_sf(data = country_map, fill = NA, color = "black", linewidth = 0.5) +
+  
+  # Use a Red-to-Blue color scale
+  scale_fill_distiller(palette = "RdBu", name = "Spatial Effect") +
   
   # Set map coordinates
   coord_sf(crs = st_crs(country_map)) +
