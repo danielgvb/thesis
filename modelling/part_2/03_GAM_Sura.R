@@ -105,8 +105,8 @@ test_data_clean <- test_data %>%
 
 
 base_formula <- as.formula(
-  "count_t.2 ~ s(count) + te(longitude, latitude, k = c(7, 7)) + s(elevation_m, k = 5)  + s(temp) +
-   s(prcp, k=5) + s(week_num)"
+  "count_t.1 ~  te(longitude, latitude) + s(elevation_m)  + s(temp) +
+   s(prcp) + s(week_num)"
 )
 
 
@@ -123,7 +123,7 @@ gam.check(model_fit)
 summary(model_fit)
 
 
-plot(model_fit, pages = 1, scheme = 2, scale = 0)
+#plot(model_fit, pages = 1, scheme = 2, scale = 0)
 
 # 6. Fit GAM-Gaussian----------------
 
@@ -137,7 +137,7 @@ model_fit_gauss <- gam(base_formula,
 gam.check(model_fit_gauss)
 summary(model_fit_gauss)
 
-plot(model_fit_gauss, pages = 2, scheme = 2, scale = 0)
+plot(model_fit_gauss, pages = 1, scheme = 2, scale = 0)
 
 # 7. Compare models---------------
 # Assume you have a data frame called 'test_data'

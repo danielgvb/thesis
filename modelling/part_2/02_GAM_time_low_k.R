@@ -132,9 +132,15 @@ test_data_clean <- test_data %>%
 #    s(tmax) + s(prcp, k=5) + s(wspd, k=5) + s(week_num)"
 # )
 
-base_formula <- as.formula("count_t1 ~ s(count) + te(Longitude, Latitude, k=c(12,12))  + s(tmax) +
-   s(prcp, k=5)  + s(wspd, k=5)  + s(week_num, k=5)"
+base_formula <- as.formula("count_t1 ~  te(Longitude, Latitude)  + s(tmax) +
+   s(prcp)  + s(wspd)  + s(week_num)"
 )
+
+
+base_formula_2 <- as.formula("count_t1 ~s(count) + te(Longitude, Latitude)  + s(tmax) +
+   s(prcp)  + s(wspd)  + s(week_num)"
+)
+
 
 # k de te(lat,lon) = 10, 15, 17 para el gaussian da muy bueno
 
@@ -145,6 +151,7 @@ model_fit_poisson <- gam(base_formula,
                          data = train_data,
                          method = "REML",
                          select = TRUE)
+plot(model_fit_poisson, pages = 1, scheme = 2, scale = 0)
 
 # 7. Fit GAM-Gaussian ----------------
 model_fit_gauss <- gam(base_formula,
@@ -152,6 +159,8 @@ model_fit_gauss <- gam(base_formula,
                        data = train_data,
                        method = "REML",
                        select = TRUE)
+plot(model_fit_gauss, pages = 1, scheme = 2, scale = 0)
+# gauss is way smoother
 
 # 8. Fit GAM-QuasiPoisson -----------------
 model_fit_quasi <- gam(base_formula,
@@ -159,6 +168,7 @@ model_fit_quasi <- gam(base_formula,
                        data = train_data,
                        method = "REML",
                        select = TRUE)
+plot(model_fit_quasi, pages = 1, scheme = 2, scale = 0)
 
 # 9. Fit GAM-Log-Normal -----------------
 
@@ -167,9 +177,8 @@ model_fit_lognormal <- gam(base_formula,
                            data = train_data,
                            method = "REML",
                            select = TRUE)
+plot(model_fit_lognormal, pages = 1, scheme = 2, scale = 0)
 
-gam.check(model_fit_lognormal)
-summary(model_fit_lognormal)
 
 
 # 10. Compare all four models ---------------
@@ -207,37 +216,68 @@ min_rmse <- min(rmse_values)
 cat("\n--- Comparison Result ---\n")
 print(paste0("The ", best_model_name, " model performs best on the test set with an RMSE of ", round(min_rmse, 4), "."))
 
-# ¨Poisson is best with 7.1319 RMSE
+# ¨quasiPoisson is best with 7.1319 RMSE
 
-# 11. Best smoother-----------------
-## 11.1. Define Variables and Bases to Test ---------
-
-# List of predictor variables that have a smooth term
-# Note: We are not tuning the 'te' term for simplicity, but you could adapt the script to do so.
-vars_to_test <- c("count", "tmax", "prcp", "wspd", "week_num")
-
-# A list of common basis types to try for each variable.
-# 'tp' = Thin Plate Regression Splines (default)
-# 'ts' = Thin Plate with shrinkage
-# 'cr' = Cubic Regression Splines
-# 'ps' = P-splines
-# 'cc' = Cyclic Cubic (ideal for cyclical predictors like week_num)
-bases_to_test <- c("tp", "ts", "cr", "ps")
-cyclic_bases_to_test <- c("cc", "ps", "cr") # A specific set for the week_num variable
-
-## 11.2. Iterative Search for Best Basis ----------
-
-# This will store the best basis found for each variable
-best_bases <- list(
-  count = "s(count, k=-1, bs='tp')", # Start with defaults
-  tmax = "s(tmax, k=-1, bs='tp')",
-  prcp = "s(prcp, k=5, bs='tp')",
-  wspd = "s(wspd, k=5, bs='tp')",
-  week_num = "s(week_num, k=5, bs='tp')"
+## 10.1 Print Table---------------
+results_df <- data.frame(
+  Model = c("Poisson", "Gaussian", "Quasipoisson", "Log-Normal"),
+  RMSE = c(rmse_poisson, rmse_gauss, rmse_quasi, rmse_lognormal)
 )
 
-# The fixed part of our formula
-fixed_formula_part <- "te(Longitude, Latitude, k=c(12,12))"
+# Sort the data frame by RMSE for better presentation
+results_df <- results_df[order(results_df$RMSE), ]
+
+
+# 2. Load the xtable library
+library(xtable)
+
+# 3. Create the LaTeX table object
+# We specify a caption, a label for cross-referencing, and the number of digits
+latex_table <- xtable(results_df,
+                      caption = "Comparison of Root Mean Square Error (RMSE) for GAM Models",
+                      label = "tab:gam_rmse_comparison",
+                      digits = 4)
+
+# 4. Print the LaTeX code to the console
+# include.rownames = FALSE cleans up the output
+# comment = FALSE removes the xtable timestamp
+print(latex_table,
+      include.rownames = FALSE,
+      comment = FALSE)
+
+# 11. Best smoother-----------------
+## 11.1. Setup: Define variables and bases from  formula ----------------
+
+base_formula <- as.formula("count_t1 ~ te(Longitude, Latitude) + s(tmax) + s(prcp) + s(wspd) + s(week_num)")
+
+
+
+
+# Automatically get the predictor variables with smooth terms from the formula
+# This avoids manually listing them and accidentally including the response variable
+formula_terms <- attributes(terms(base_formula))$term.labels
+smooth_vars <- formula_terms[grepl("^s\\(", formula_terms)]
+vars_to_test <- gsub("s\\(([^,)]+).*", "\\1", smooth_vars)
+
+# The fixed part of our formula (spatial term)
+fixed_formula_part <- "te(Longitude, Latitude)"
+
+# A list of common basis types to try for each variable
+bases_to_test <- c("tp", "ts", "cr", "ps")
+# A specific set for cyclical variables like week_num
+cyclic_bases_to_test <- c("cc", "ps", "tp")
+
+cat("Identified variables to test:", paste(vars_to_test, collapse = ", "), "\n\n")
+
+
+## 11.2. Iterative Search for Best Basis ------------------
+
+# Initialize a list to store the best basis found for each variable.
+# We start with the default 'tp' basis for all.
+best_bases <- setNames(
+  paste0("s(", vars_to_test, ", bs='tp')"),
+  vars_to_test
+)
 
 cat("Starting the search for the best smoothing basis for each variable...\n\n")
 
@@ -249,42 +289,37 @@ for (variable in vars_to_test) {
   # Store results (AIC for each basis type) for the current variable
   results <- data.frame(variable = character(), basis = character(), aic = numeric())
   
-  # Determine which set of bases to test
+  # Determine which set of bases to test for the current variable
   current_bases_to_test <- if (variable == "week_num") cyclic_bases_to_test else bases_to_test
   
-  # Loop through each basis type for the current variable
+  # Loop through each basis type
   for (basis in current_bases_to_test) {
     
-    # Construct the smooth term for the current variable and basis
-    # We'll use the k value from your original formula, or -1 for gam to choose
-    k_val <- switch(variable,
-                    "prcp" = 5,
-                    "wspd" = 5,
-                    "week_num" = 5,
-                    -1) # Default k for count, tmax
+    # Construct the smooth term for the current variable and basis.
+    # We are NOT setting 'k', allowing gam() to choose the default.
+    current_smooth <- paste0("s(", variable, ", bs='", basis, "')")
     
-    current_smooth <- paste0("s(", variable, ", k=", k_val, ", bs='", basis, "')")
+    # Get the best smooths found so far for the *other* variables.
+    other_vars <- setdiff(vars_to_test, variable)
+    other_smooths <- best_bases[other_vars]
     
     # Build the full formula for this iteration
-    # It includes the fixed part, the smooth we are currently testing,
-    # and the best smooths found so far for the other variables.
-    other_vars <- setdiff(vars_to_test, variable)
-    other_smooths <- sapply(other_vars, function(v) best_bases[[v]])
-    
-    formula_str <- paste("count_t1 ~", current_smooth, "+",
+    formula_str <- paste("count_t1 ~",
+                         current_smooth, "+",
                          paste(other_smooths, collapse = " + "), "+",
                          fixed_formula_part)
     
     formula_obj <- as.formula(formula_str)
     
-    # Fit the GAM
+    # Fit the GAM. Using gaussian() as in your original script.
+    # select = TRUE is important as it helps regularize and remove unneeded complexity.
     model_fit <- gam(formula_obj,
-                     family = gaussian(),
+                     family = gaussian(), # Change family if needed (e.g., poisson())
                      data = train_data,
                      method = "REML",
                      select = TRUE)
     
-    # Store the result
+    # Store the AIC
     current_aic <- AIC(model_fit)
     results <- rbind(results, data.frame(variable = variable, basis = basis, aic = current_aic))
     
@@ -295,55 +330,118 @@ for (variable in vars_to_test) {
   best_result <- results[which.min(results$aic), ]
   
   # Update our list of best bases with the winner for this variable
-  best_k_val <- switch(best_result$variable,
-                       "prcp" = 5,
-                       "wspd" = 5,
-                       "week_num" = 5,
-                       -1)
-  best_bases[[variable]] <- paste0("s(", best_result$variable, ", k=", best_k_val, ", bs='", best_result$basis, "')")
+  best_bases[[variable]] <- paste0("s(", best_result$variable, ", bs='", best_result$basis, "')")
   
   cat(paste0("\n  >> Best basis for '", variable, "' is '", best_result$basis, "'\n\n"))
 }
 
 
-## 11.3. Construct Final Model ---------------
+## 11.3. Final Output -------------------
 
-# Now that we have the best basis for each variable, let's build the final formula
-final_smooth_terms <- paste(unlist(best_bases), collapse = " + ")
-final_formula_str <- paste("count_t1 ~", final_smooth_terms, "+", fixed_formula_part)
+# Combine all the best parts into the final formula string
+final_formula_str <- paste("count_t1 ~",
+                           paste(best_bases, collapse = " + "), "+",
+                           fixed_formula_part)
+
 final_formula <- as.formula(final_formula_str)
 
-cat("------------------------------------------\n")
-cat("Final optimized formula:\n")
+cat("--- Search Complete ---\n")
+cat("The final, optimized formula is:\n")
 print(final_formula)
-cat("------------------------------------------\n\n")
+
+final_formula <- as.formula("count_t1 ~ s(tmax, bs = 'tp', k=6) + 
+                                       s(prcp, bs = 'ts') + 
+                                       s(wspd, bs = 'ps') + 
+                                       s(week_num, bs = 'ps') + 
+                                       te(Longitude, Latitude)")
 
 
-# Original formula
-final_formula <- count_t1 ~ s(count, k = -1, bs = "ps") + s(tmax, k = -1, bs = "cr") + 
-  s(prcp, bs = "cr", k=5) + s(wspd, k = 5, bs = "tp") + s(week_num, 
-                                                            k = 5, bs = "ps") + te(Longitude, Latitude, k = c(12, 12))
+final_formula <- as.formula("count_t1 ~ s(tmax, bs = 'tp', k=6) + 
+                                       s(prcp, bs = 'ts') + 
+                                       s(wspd, bs = 'ps') + 
+                                       s(week_num, bs = 'ps') + 
+                                       te(Longitude, Latitude)+
+                                        s(count)")
 
-# New formula without the 'count' term
-new_formula <- count_t1 ~ s(tmax, k = -1, bs = "cr") + 
-  s(prcp, bs = "cr") + s(wspd, k = 5, bs = "tp") + s(week_num, 
-                                                            k = 5, bs = "ps") + te(Longitude, Latitude, k = c(12, 12))
-gam_gaus_formula <-  count_t1 ~ s(count, k = -1, bs = "ps") + s(tmax, k = -1, bs = "cr") +   s(prcp, k = 5, bs = "cr") + s(wspd, k = 5, bs = "tp") + s(week_num, 
-                                                            k = 5, bs = "ps") + te(Longitude, Latitude, k = c(12, 12))
+
+
 
 # Fit the final, optimized model
-final_model <- gam(gam_gaus_formula,
+final_model <- gam(final_formula,
                    family = gaussian(), # change for best model
                    data = train_data,
                    method = "REML",
                    select = TRUE)
 
+
+plot(final_model, pages = 1, scheme = 2, scale = 0)
+
 # View the summary of the final model
 cat("Summary of the final model:\n")
 summary(final_model)
 
+## 11.4 Latex Table print---------------
+library(xtable)
+
+# --- 1. Get the model summary and extract the necessary parts ---
+
+# Get the summary object once to avoid re-computing
+model_summary <- summary(final_model)
+
+# Extract the smooth terms table
+smooth_table <- model_summary$s.table
+
+# Extract the deviance explained and format it as a percentage string for LaTeX
+# Note: model_summary$dev.expl is a proportion, so we multiply by 100
+dev_explained_pct <- paste0(round(model_summary$dev.expl * 100, 2), "\\%")
+
+
+# --- 2. Create the xtable object ---
+
+xtable_smooth <- xtable(smooth_table, 
+                        caption = "Approximate Significance of Smooth Terms and Model Fit",
+                        label = "tab:gam_smooth_terms_fit",
+                        digits = c(0, 4, 2, 2, 4)) # Digits for each column
+
+
+# --- 3. Define the custom row to add ---
+
+# This list tells print.xtable where to add a command and what command to add.
+# 'pos' is a list of positions. nrow(smooth_table) means "after the last data row".
+# 'command' is the LaTeX string to insert.
+# We add a \hline, then a row that spans 5 columns (\multicolumn) for our text.
+add_row <- list()
+add_row$pos <- list(nrow(smooth_table))
+add_row$command <- paste0("\\hline \n",
+                          "\\multicolumn{5}{r}{Deviance Explained: ", dev_explained_pct, "} \\\\ \n")
+
+
+# --- 4. Print the final LaTeX table ---
+
+# The add.to.row argument inserts our custom string at the specified position
+print(xtable_smooth, 
+      comment = FALSE,
+      add.to.row = add_row)
+
+
+# --- Table 2: Parametric Coefficients (Intercept) ---
+
+# Extract the parametric coefficients table
+parametric_table <- summary(final_model)$p.table
+
+# Create a LaTeX table from it
+xtable_parametric <- xtable(parametric_table,
+                            caption = "Parametric Coefficients of the GAM",
+                            label = "tab:gam_parametric_terms",
+                            digits = c(0, 4, 4, 2, 4))
+
+# Print the LaTeX code to the console
+print(xtable_parametric, comment = FALSE)
+
+
+gam.check(final_model)
 # Plot just the spatial term as a contour map
-plot(final_model, pages=2, scheme = 2) # Use select = 6 because it's the 6th term
+plot(final_model, pages=5, scheme = 2)
 
 
 # 12. Plots----------------
@@ -524,67 +622,100 @@ ggplot() +
   ) +
   theme_minimal()
 
-# 14. Plots 3D-----------------
+# 14. Count vs no count-----------------
+# Formula without the autoregressive term
+formula_base <- as.formula("count_t1 ~ s(tmax, bs = 'tp', k=6) + 
+                                       s(prcp, bs = 'ts') + 
+                                       s(wspd, bs = 'ps') + 
+                                       s(week_num, bs = 'ps') + 
+                                       te(Longitude, Latitude)")
 
-# Get the map of Colombia
-country_map <- ne_countries(scale = "large", country = "Colombia", returnclass = "sf")
+# Formula with the autoregressive term s(count)
+# NOTE: Assumes your data has a column named 'count' representing the previous time step's count.
+formula_autoregressive <- as.formula("count_t1 ~ s(tmax, bs = 'tp', k=6) + 
+                                                  s(prcp, bs = 'ts') + 
+                                                  s(wspd, bs = 'ps') + 
+                                                  s(week_num, bs = 'ps') + 
+                                                  te(Longitude, Latitude) +
+                                                  s(count)")
 
-# --- Create a new prediction grid for different elevation slices ---
 
-# 1. Define the elevation levels you want to see
-# We'll use the 25th, 50th (median), and 75th percentiles from your data
-elevation_slices <- quantile(train_data$elevation, probs = c(0.1, 0.2, 0.3, 0.4,
-                                                             0.50, 0.6,  0.75, 0.95))
+# --- 2. Fit both models on the training data ---
 
-# 2. Create a grid that includes Longitude, Latitude, AND the elevation slices
-prediction_grid_3d <- expand_grid(
-  Longitude = seq(from = st_bbox(train_data)["xmin"], to = st_bbox(train_data)["xmax"], length.out = 75),
-  Latitude = seq(from = st_bbox(train_data)["ymin"], to = st_bbox(train_data)["ymax"], length.out = 75),
-  elevation = elevation_slices # Use the specific elevation values
+cat("Fitting the base model (without autoregressive term)...\n")
+model_base <- gam(formula_base,
+                  family = gaussian(),
+                  data = train_data,
+                  method = "REML",
+                  select = TRUE)
+
+cat("Fitting the autoregressive model...\n")
+model_autoregressive <- gam(formula_autoregressive,
+                            family = gaussian(),
+                            data = train_data,
+                            method = "REML",
+                            select = TRUE)
+
+cat("Models fitted successfully.\n\n")
+
+
+# --- 3. Generate predictions on the test set ---
+
+# Ensure your test data is clean and available (e.g., test_data_clean)
+predictions_base <- predict(model_base, newdata = test_data_clean, type = "response")
+predictions_autoregressive <- predict(model_autoregressive, newdata = test_data_clean, type = "response")
+
+# Get the actual values from the test set
+actuals <- test_data_clean$count_t1
+
+
+# --- 4. Calculate performance metrics (RMSE and R-squared) ---
+
+# Function to calculate RMSE
+calculate_rmse <- function(predictions, actuals) {
+  sqrt(mean((predictions - actuals)^2))
+}
+
+# Function to calculate R-squared
+calculate_r2 <- function(predictions, actuals) {
+  ssr <- sum((predictions - actuals)^2)
+  sst <- sum((actuals - mean(actuals))^2)
+  1 - (ssr / sst)
+}
+
+# Calculate metrics for the base model
+rmse_base <- calculate_rmse(predictions_base, actuals)
+r2_base <- calculate_r2(predictions_base, actuals)
+
+# Calculate metrics for the autoregressive model
+rmse_autoregressive <- calculate_rmse(predictions_autoregressive, actuals)
+r2_autoregressive <- calculate_r2(predictions_autoregressive, actuals)
+
+
+# --- 5. Display the results in a clean table ---
+
+results_df <- data.frame(
+  Model = c("Base Model", "Autoregressive Model"),
+  RMSE = c(rmse_base, rmse_autoregressive),
+  R_squared = c(r2_base, r2_autoregressive)
 )
 
-# 3. Add the other predictors, setting them to their mean
-prediction_grid_3d$tmax     <- mean(train_data$tmax)
-prediction_grid_3d$prcp     <- mean(train_data$prcp)
-prediction_grid_3d$wspd     <- mean(train_data$wspd)
-prediction_grid_3d$week_num <- round(mean(train_data$week_num))
-
-# --- Predict and Plot ---
-
-# 4. Predict the effect using your model (e.g., model_fit_gauss)
-spatial_effect_3d <- predict(
-  model_fit, # Or model_fit for the Poisson version
-  newdata = prediction_grid_3d,
-  type = "terms",
-  se.fit = TRUE
-)
-
-# 5. Combine the grid with the predicted values
-# The term name now includes elevation
-prediction_grid_3d$effect <- spatial_effect_3d$fit[, "te(Longitude,Latitude,elevation)"]
-
-# 6. Create a label for faceting
-prediction_grid_3d$elevation_level <- paste("Elevation:", round(prediction_grid_3d$elevation, 0), "m")
+cat("--- Performance on Test Set ---\n")
+print(results_df, row.names = FALSE)
 
 
-# 7. Create the final plot with facets for each elevation level
-ggplot() +
-  geom_raster(data = prediction_grid_3d, aes(x = Longitude, y = Latitude, fill = effect)) +
-  geom_sf(data = country_map, fill = NA, color = "black", linewidth = 0.5) +
-  
-  # Use facet_wrap to create a separate map for each elevation slice
-  facet_wrap(~ elevation_level) +
-  
-  scale_fill_viridis_c(name = "Spatio-Elevation\nEffect") +
-  coord_sf(
-    xlim = st_bbox(train_data)[c("xmin", "xmax")],
-    ylim = st_bbox(train_data)[c("ymin", "ymax")]
-  ) +
-  labs(
-    title = "Predicted Spatial Effect by Elevation",
-    subtitle = "How the effect of location changes at different altitudes",
-    x = "Longitude",
-    y = "Latitude"
-  ) +
-  theme_minimal()
+# --- 6. Generate LaTeX table for the report ---
+
+cat("\n--- LaTeX Code for Report ---\n")
+
+# Create an xtable object
+latex_table <- xtable(results_df,
+                      caption = "Comparison of Model Performance on the Test Set",
+                      label = "tab:model_performance_comparison",
+                      digits = 4)
+
+# Print the LaTeX code to the console
+print(latex_table, 
+      include.rownames = FALSE, 
+      comment = FALSE)
 
