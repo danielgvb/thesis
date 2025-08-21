@@ -365,7 +365,6 @@ final_formula <- as.formula("count_t1 ~ s(tmax, bs = 'tp', k=6) +
 
 
 
-
 # Fit the final, optimized model
 final_model <- gam(final_formula,
                    family = gaussian(), # change for best model
@@ -718,4 +717,3 @@ latex_table <- xtable(results_df,
 print(latex_table, 
       include.rownames = FALSE, 
       comment = FALSE)
-
