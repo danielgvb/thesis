@@ -282,3 +282,66 @@ for (i in 1:length(week_sequence)) {
 
 cat("--- Frame generation complete! --- \n")
 cat("You can now use the Python script or FFmpeg to create your dynamic video. 🎬\n")
+
+
+
+
+# --- 7. GENERATE AND SAVE PLOTS IN A LOOP ---
+cat("--- Starting to generate and save animation frames... ---\n")
+
+# Get the map's bounding box to help place the text
+map_bbox <- st_bbox(country_map)
+
+for (i in 1:length(week_sequence)) {
+  current_week_num <- week_sequence[i]
+  plot_data <- full_prediction_grid %>% 
+    filter(week_num == current_week_num)
+  current_date <- plot_data$week_date[1]
+  
+  # Format the date string for the plot
+  date_label <- format(current_date, "%d %b %Y") # e.g., "20 Aug 2025"
+  
+  p <- ggplot() +
+    geom_raster(data = plot_data, aes(x = Longitude, y = Latitude, fill = spatial_time_effect)) +
+    geom_sf(data = country_map, fill = NA, color = "black", linewidth = 0.5) +
+    
+    scale_fill_distiller(
+      palette = "RdBu",
+      name = "Spatio-temporal\nEffect",
+      limits = effect_range
+    ) +
+    
+    # --- NEW CODE TO ADD THE DATE ---
+    # This adds a label with a white, semi-transparent background to the bottom-left corner.
+    annotate(
+      "label",
+      x = map_bbox["xmin"] + 0.5, # X-coordinate (slightly in from the left edge)
+      y = map_bbox["ymin"] + 0.5, # Y-coordinate (slightly up from the bottom edge)
+      label = date_label,        # The text to display
+      fontface = "bold",         # Make the font bold
+      color = "black",           # Text color
+      fill = alpha("white", 0.6),# Background color (60% transparent white)
+      hjust = 0                  # Horizontal justification (0 = left)
+    ) +
+    # ---------------------------------
+  
+  coord_sf(crs = st_crs(country_map)) +
+    
+    labs(
+      title = "Spatio-temporal Interaction Effect on Dengue",
+      subtitle = "Spatial risk pattern shown for the date below", # Subtitle is now more general
+      x = "Longitude",
+      y = "Latitude"
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(size = 16, face = "bold"),
+      plot.subtitle = element_text(size = 14)
+    )
+  
+  file_name <- sprintf("animation_frames/frame_%03d.png", i)
+  ggsave(file_name, plot = p, width = 8, height = 7, dpi = 150)
+  cat("Saved:", file_name, "\n")
+}
+
+cat("--- Frame generation complete! --- \n")
