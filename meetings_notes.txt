@@ -16,13 +16,13 @@ meeting 09-04-2025
 
 ####### 07/08/2025##############
 
-* add time as a predictor
+* add time as a predictor (ok)
 * reduce degrees of freedom, see if mgcv does it automatically (it does)
 	* curves that are less wavy (ok)
 * try different functions than poisson (ok-ish)
-* do interaction of space and time 
-* visualization of time
+* do interaction of space and time  (ok)
+* visualization of time (ok)
 * try to plot map of Colombia with the te(lat, lon) - (ok)
-* compare the results of all the chapters
-* add reference on mathematical framework -> scarpa book
-* summarize all models and compare between them
+* compare the results of all the chapters (ok)
+* add reference on mathematical framework -> scarpa book (ok)
+* summarize all models and compare between them (ok)

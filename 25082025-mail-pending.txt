@@ -1,0 +1,15 @@
+I think it is fine. I have some comments by looking at the chapters.
+
+For example,
+
+* I have not clear to which data refer the results shown in chapter 1: the ANOVA results at page 20 (tab. 4.1) refer to which data? I understand they are from Columbia, are they the total from Columbia? I understand that the target variable is new_cases(t+1), so the first line of the table refer to new_cases(t), i.e., it is a sort of an autoregressive coefficient?
+
+	kind of ok
+
+* Figure 4.5 refers to marginal correlations?
+	kind of ok
+* Section 4.2.10 you mention the VAR (vector autocorrelation) model, but I have not clear wich is the multivariate target you are modelling. i.e., I understand that the target is univariate (the new_cases at time t+q); how do you prepare a vector to be modelled? Could you be clearer in this detail?
+* E.g., in figure 5.1 an fig. 5.2, (the second graph) you plot a weekly seasonality as a continuous function, which sows ort of waves. Why not to use a discrete time seasonality (i.e., an indicator variable for each day)?. How can we interpret the observed waves (which phase does not seem to be regular during days)?
+ 
+
+* Finally the movie you sent us is a green square. I don’t see any figure in i
