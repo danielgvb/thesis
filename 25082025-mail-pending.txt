@@ -9,6 +9,8 @@ For example,
 * Figure 4.5 refers to marginal correlations?
 	kind of ok
 * Section 4.2.10 you mention the VAR (vector autocorrelation) model, but I have not clear wich is the multivariate target you are modelling. i.e., I understand that the target is univariate (the new_cases at time t+q); how do you prepare a vector to be modelled? Could you be clearer in this detail?
+	OK
+	
 * E.g., in figure 5.1 an fig. 5.2, (the second graph) you plot a weekly seasonality as a continuous function, which sows ort of waves. Why not to use a discrete time seasonality (i.e., an indicator variable for each day)?. How can we interpret the observed waves (which phase does not seem to be regular during days)?
  
 
