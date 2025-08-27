@@ -158,6 +158,7 @@ cat("--- Model fitting complete. ---\n")
 
 plot(final_model, scheme = 2, pages = 2)
 
+summary(final_model)
 # --- 2. LOAD REQUIRED LIBRARIES ---
 library(ggplot2)
 library(sf)
@@ -276,7 +277,7 @@ for (i in 1:length(week_sequence)) {
     )
   
   file_name <- sprintf("animation_frames/frame_%03d.png", i)
-  ggsave(file_name, plot = p, width = 8, height = 7, dpi = 150)
+  ggsave(file_name, plot = p, width = 8, height = 7, dpi = 150, bg= "white")
   cat("Saved:", file_name, "\n")
 }
 
@@ -340,7 +341,7 @@ for (i in 1:length(week_sequence)) {
     )
   
   file_name <- sprintf("animation_frames/frame_%03d.png", i)
-  ggsave(file_name, plot = p, width = 8, height = 7, dpi = 150)
+  ggsave(file_name, plot = p, width = 8, height = 7, dpi = 150,  bg= "white")
   cat("Saved:", file_name, "\n")
 }
 
